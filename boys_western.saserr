@@ -1,0 +1,9 @@
+18:WARNING: Unable to copy SASUSER registry to WORK registry. Because of this, you will not see registry customizations during 
+448:WARNING: 405 of 7832 observations in data set WORK.BOYS96 omitted due to missing values.
+833:WARNING: 296 of 5641 observations in data set WORK.BOYS97 omitted due to missing values.
+1190:WARNING: 269 of 6345 observations in data set WORK.BOYS98 omitted due to missing values.
+1390:WARNING: 105 of 4136 observations in data set WORK.BOYS01 omitted due to missing values.
+1721:WARNING: 282 of 4914 observations in data set WORK.BOYS204 omitted due to missing values.
+2050:WARNING: 154 of 3860 observations in data set WORK.BOYS206 omitted due to missing values.
+2402:WARNING: 78 of 3009 observations in data set WORK.BOYS208 omitted due to missing values.
+2629:WARNING: 40 of 2757 observations in data set WORK.BOYS211 omitted due to missing values.
