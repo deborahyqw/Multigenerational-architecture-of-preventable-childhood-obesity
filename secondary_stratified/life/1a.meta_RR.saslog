@@ -1,0 +1,2901 @@
+This job's information: 
+Job name: 1a.meta_RR
+Job ID: 3734249
+Partition: linux01
+Memory Requested (4 GB / 4000 MB is default): 4000 M
+Work directory: /d/q1/slurm/3734249
+Running on hostname: derby04.bwh.harvard.edu
+
+
+
+
+
+1                                                      The SAS System                              19:24 Monday, July 7, 2025
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+WARNING: Unable to copy SASUSER registry to WORK registry. Because of this, you will not see registry customizations during 
+         this session.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: Copyright (c) 2016 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M6) 
+      Licensed to CHANNING DIVISION OF NETWORK MEDICINE - T&R, Site 70123069.
+NOTE: This session is executing on the Linux 3.10.0-1160.114.2.el7.x86_64 (LIN X64) platform.
+
+
+
+NOTE: Analytical products:
+      
+      SAS/STAT 15.1
+      SAS/ETS 15.1
+      SAS/OR 15.1
+      SAS/IML 15.1
+      SAS/QC 15.1
+
+NOTE: Additional host information:
+
+ Linux LIN X64 3.10.0-1160.114.2.el7.x86_64 #1 SMP Wed Mar 20 15:54:52 UTC 2024 x86_64 CentOS Linux release 7.9.2009 (Core) 
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.65 seconds
+      cpu time            0.11 seconds
+      
+1          
+2          /**********************************************************************
+3           Read-in macros, data formats, and libraries
+4          **********************************************************************/
+5          
+6          /*path to library with datasets, MANUAL SPECIFICATION*/
+7          libname dat_lb '/udd/nhywa/GUTSOB/secondary_stratified/1.data';
+NOTE: Libref DAT_LB was successfully assigned as follows: 
+      Engine:        V9 
+      Physical Name: /udd/nhywa/GUTSOB/secondary_stratified/1.data
+8          
+9          /* Show full log, try to find which step is the slowest */
+10         options msglevel=i fullstimer;
+11         
+12         filename nhstools '/proj/nhsass/nhsas00/nhstools/sasautos/';
+13         filename channing '/usr/local/channing/sasautos/';
+14         filename ehmac '/udd/stleh/ehmac/';
+15         options  mautosource sasautos=(channing nhstools);
+16         libname  nhsfmt   "/proj/nhsass/nhsas00/formats";
+NOTE: Libref NHSFMT was successfully assigned as follows: 
+      Engine:        V9 
+      Physical Name: /proj/nhsass/nhsas00/formats
+17         options fmtsearch=(nhsfmt);
+18         * options  fmtsearch=(nhsfmt) nofmterr nocenter nonumber nodate formdlim=' ';
+19         
+20         options  linesize=150 pagesize=110;
+21         			
+22         %include '/udd/nhywa/macros/cumavg.macro.sas'; *macro for calculation of CV;
+72         
+73         /**********************************************************************
+74          Call in the RR data from each of the stratified groups, and combine
+75          the data from the respective group
+76         **********************************************************************/
+77         
+78         /**SEX************************************/
+79         
+80         data meta_RR_sex;
+81            set dat_lb.life_female_rr  dat_lb.life_male_rr;;
+82            length  HRCI2 $ 18;
+83            HRCI2=.;
+84            SE=StdErr*1;
+85            beta=Estimate*1;
+86            if mod="life";
+87            keep Parm mod group beta SE HRCI2;
+88         run;
+
+NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
+      83:10   
+NOTE: There were 12 observations read from the data set DAT_LB.LIFE_FEMALE_RR.
+NOTE: There were 12 observations read from the data set DAT_LB.LIFE_MALE_RR.
+NOTE: The data set WORK.META_RR_SEX has 24 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.11 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              1384.84k
+      OS Memory           8868.00k
+      Timestamp           07/07/2025 07:24:54 PM
+      Step Count                        1  Switch Count  0
+      Page Faults                       0
+2                                                                   The SAS System                                          19:24 Monday, July 7, 2025
+
+      Page Reclaims                     883
+      Page Swaps                        0
+      Voluntary Context Switches        94
+      Involuntary Context Switches      1
+      Block Input Operations            664
+      Block Output Operations           144
+      
+
+89         
+90         proc print data=meta_RR_sex;
+91         run;
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.14 seconds
+      user cpu time       0.03 seconds
+      system cpu time     0.02 seconds
+      memory              2411.09k
+      OS Memory           10148.00k
+      Timestamp           07/07/2025 07:24:54 PM
+      Step Count                        2  Switch Count  1
+      Page Faults                       0
+      Page Reclaims                     1018
+      Page Swaps                        0
+      Voluntary Context Switches        117
+      Involuntary Context Switches      0
+      Block Input Operations            2232
+      Block Output Operations           0
+      
+
+92         
+93         /**AGE************************************/
+94         
+95         data meta_RR_age;
+96            set dat_lb.life_child_rr  dat_lb.life_teen_rr;;
+97            length  HRCI2 $ 18;
+98            HRCI2=.;
+99            SE=StdErr*1;
+100           beta=Estimate*1;
+101           if mod="life";
+102           keep Parm mod group beta SE HRCI2;
+103        run;
+
+NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
+      98:10   
+NOTE: There were 12 observations read from the data set DAT_LB.LIFE_CHILD_RR.
+NOTE: There were 12 observations read from the data set DAT_LB.LIFE_TEEN_RR.
+NOTE: The data set WORK.META_RR_AGE has 24 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              810.87k
+      OS Memory           10660.00k
+      Timestamp           07/07/2025 07:24:54 PM
+      Step Count                        3  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     111
+      Page Swaps                        0
+      Voluntary Context Switches        31
+      Involuntary Context Switches      0
+      Block Input Operations            440
+      Block Output Operations           144
+      
+
+104        
+105        proc print data=meta_RR_age;
+106        run;
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The PROCEDURE PRINT printed page 2.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              420.18k
+      OS Memory           10404.00k
+      Timestamp           07/07/2025 07:24:54 PM
+      Step Count                        4  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     11
+      Page Swaps                        0
+      Voluntary Context Switches        5
+      Involuntary Context Switches      0
+      Block Input Operations            160
+      Block Output Operations           0
+      
+
+107        
+108        /**MATERNAL BMI************************************/
+109        
+110        
+111        data meta_RR_mob;
+112           set dat_lb.life_moob_rr  dat_lb.life_nomoob_rr;;
+113           length  HRCI2 $ 18;
+114           HRCI2=.;
+115           SE=StdErr*1;
+116           beta=Estimate*1;
+117           if mod="life";
+118           keep Parm mod group beta SE HRCI2;
+119        run;
+
+NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
+      114:10   
+NOTE: There were 12 observations read from the data set DAT_LB.LIFE_MOOB_RR.
+NOTE: There were 12 observations read from the data set DAT_LB.LIFE_NOMOOB_RR.
+NOTE: The data set WORK.META_RR_MOB has 24 observations and 6 variables.
+3                                                                   The SAS System                                          19:24 Monday, July 7, 2025
+
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              805.81k
+      OS Memory           10660.00k
+      Timestamp           07/07/2025 07:24:54 PM
+      Step Count                        5  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     55
+      Page Swaps                        0
+      Voluntary Context Switches        32
+      Involuntary Context Switches      0
+      Block Input Operations            440
+      Block Output Operations           144
+      
+
+120        
+121        proc print data=meta_RR_mob;
+122        run;
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The PROCEDURE PRINT printed page 3.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              421.56k
+      OS Memory           10404.00k
+      Timestamp           07/07/2025 07:24:54 PM
+      Step Count                        6  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     9
+      Page Swaps                        0
+      Voluntary Context Switches        5
+      Involuntary Context Switches      0
+      Block Input Operations            160
+      Block Output Operations           0
+      
+
+123        
+124        /**********************************************************************
+125        CREATE MACRO TO METANALYZE ALL OF THE EXPOSURES FOR EACH GROUP
+126        **********************************************************************/
+127        
+128        /*have to metaanalyze each exposure separately, will create macro that can be used to run through each of the stratification groups
+128      ! (sex/age/materinal BMI)*/
+129        
+130        
+131        %macro metaanal_allexp (data=, group=);
+132        
+133        	/* chwestq1 exposure */
+134        	data chwestq1_&group.; set &data; if Parm = 'chwestq1'; run;
+135        	%metaanal(data=chwestq1_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+136        		explabel=chwestq1, outcomelabel=ob,
+137        			outdat= "RR_life_chwestq1_&group");
+138        
+139        	/* chwestq2 exposure */
+140        	data chwestq2_&group.; set &data; if Parm = 'chwestq2'; run;
+141        	%metaanal(data=chwestq2_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+142        		explabel=chwestq2, outcomelabel=ob,
+143        		outdat= "RR_life_chwestq2_&group");
+144        
+145        	/* chwestq3 exposure */
+146        	data chwestq3_&group.; set &data; if Parm = 'chwestq3'; run;
+147        	%metaanal(data=chwestq3_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+148        		explabel=chwestq3, outcomelabel=ob,
+149        		outdat= "RR_life_chwestq3_&group");
+150        
+151        	/* chstq1 exposure */
+152        	data chstq1_&group.; set &data; if Parm = 'chstq1'; run;
+153        	%metaanal(data=chstq1_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+154        		explabel=chstq1, outcomelabel=ob,
+155        		outdat= "RR_life_chstq1_&group");
+156        
+157        	/* chstq2 exposure */
+158        	data chstq2_&group.; set &data; if Parm = 'chstq2'; run;
+159        	%metaanal(data=chstq2_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+160        		explabel=chstq2, outcomelabel=ob,
+161        		outdat= "RR_life_chstq2_&group");
+162        
+163        	/* chstq3 exposure */
+164        	data chstq3_&group.; set &data; if Parm = 'chstq3'; run;
+165        	%metaanal(data=chstq3_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+166        		explabel=chstq3, outcomelabel=ob,
+167        		outdat= "RR_life_chstq3_&group");		
+168        
+169        	/* chpaq0 exposure */
+170        	data chpaq0_&group.; set &data; if Parm = 'chpaq0'; run;
+171        	%metaanal(data=chpaq0_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+172        		explabel=chpaq0, outcomelabel=ob,
+173        		outdat= "RR_life_chpaq0_&group");
+174        
+175        	/* chpaq1 exposure */
+176        	data chpaq1_&group.; set &data; if Parm = 'chpaq1'; run;
+177        	%metaanal(data=chpaq1_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+178        		explabel=chpaq1, outcomelabel=ob,
+179        		outdat= "RR_life_chpaq1_&group");
+180        
+181        	/* chpaq2 exposure */
+182        	data chpaq2_&group.; set &data; if Parm = 'chpaq2'; run;
+183        	%metaanal(data=chpaq2_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=T,
+184        		explabel=chpaq2, outcomelabel=ob,
+185        		outdat= "RR_life_chpaq2_&group");
+186        
+187        %mend metaanal_allexp;
+188        
+189        
+4                                                                   The SAS System                                          19:24 Monday, July 7, 2025
+
+190        /**********************************************************************
+191        RUN MACRO
+192        **********************************************************************/
+193        
+194        %let newpath = /udd/nhywa/GUTSOB/secondary_stratified/1.data;
+195        x "cd &newpath"
+195      !                ;
+196        
+197        
+198        %metaanal_allexp(data=meta_RR_sex, group=sex);
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHWESTQ1_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              568.71k
+      OS Memory           10404.00k
+      Timestamp           07/07/2025 07:24:54 PM
+      Step Count                        7  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        16
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chwestq1_sex"_d
+            ______________________
+            49
+
+198         "RR_life_chwestq1_sex"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              242.46k
+      OS Memory           11940.00k
+      Timestamp           07/07/2025 07:24:55 PM
+      Step Count                        26  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     66
+      Page Swaps                        0
+      Voluntary Context Switches        51
+      Involuntary Context Switches      0
+      Block Input Operations            24
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHWESTQ2_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              567.62k
+      OS Memory           11940.00k
+      Timestamp           07/07/2025 07:24:55 PM
+      Step Count                        27  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     19
+      Page Swaps                        0
+      Voluntary Context Switches        16
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chwestq2_sex"_d
+            ______________________
+            49
+
+198         "RR_life_chwestq2_sex"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.03k
+      OS Memory           11940.00k
+      Timestamp           07/07/2025 07:24:56 PM
+      Step Count                        46  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHWESTQ3_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              568.96k
+5                                                                   The SAS System                                          19:24 Monday, July 7, 2025
+
+      OS Memory           11940.00k
+      Timestamp           07/07/2025 07:24:56 PM
+      Step Count                        47  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chwestq3_sex"_d
+            ______________________
+            49
+
+198         "RR_life_chwestq3_sex"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              242.46k
+      OS Memory           12196.00k
+      Timestamp           07/07/2025 07:24:57 PM
+      Step Count                        66  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHSTQ1_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              567.93k
+      OS Memory           12196.00k
+      Timestamp           07/07/2025 07:24:57 PM
+      Step Count                        67  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chstq1_sex"_d
+            ____________________
+            49
+
+198         "RR_life_chstq1_sex"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              242.50k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:24:58 PM
+      Step Count                        86  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHSTQ2_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              569.65k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:24:58 PM
+      Step Count                        87  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        16
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chstq2_sex"_d
+            ____________________
+            49
+
+198         "RR_life_chstq2_sex"_p
+            ____________________
+6                                                                   The SAS System                                          19:24 Monday, July 7, 2025
+
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              242.50k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:24:58 PM
+      Step Count                        106  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHSTQ3_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              563.43k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:24:58 PM
+      Step Count                        107  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chstq3_sex"_d
+            ____________________
+            49
+
+198         "RR_life_chstq3_sex"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              242.46k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:24:59 PM
+      Step Count                        126  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHPAQ0_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              567.65k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:24:59 PM
+      Step Count                        127  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chpaq0_sex"_d
+            ____________________
+            49
+
+198         "RR_life_chpaq0_sex"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.04 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              242.46k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:00 PM
+      Step Count                        146  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+7                                                                   The SAS System                                          19:24 Monday, July 7, 2025
+
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHPAQ1_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              563.21k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:00 PM
+      Step Count                        147  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chpaq1_sex"_d
+            ____________________
+            49
+
+198         "RR_life_chpaq1_sex"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.04 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              242.50k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:00 PM
+      Step Count                        166  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_SEX.
+NOTE: The data set WORK.CHPAQ2_SEX has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              562.06k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:00 PM
+      Step Count                        167  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+198         "RR_life_chpaq2_sex"_d
+            ____________________
+            49
+
+198         "RR_life_chpaq2_sex"_p
+            ____________________
+            49
+
+199        
+200        %metaanal_allexp(data=meta_RR_age, group=age);
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.50k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:01 PM
+      Step Count                        186  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     10
+      Page Swaps                        0
+      Voluntary Context Switches        36
+      Involuntary Context Switches      0
+      Block Input Operations            8
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHWESTQ1_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              563.12k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:01 PM
+      Step Count                        187  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     19
+      Page Swaps                        0
+8                                                                   The SAS System                                          19:24 Monday, July 7, 2025
+
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chwestq1_age"_d
+            ______________________
+            49
+
+200         "RR_life_chwestq1_age"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              242.50k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:02 PM
+      Step Count                        206  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHWESTQ2_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              569.15k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:02 PM
+      Step Count                        207  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chwestq2_age"_d
+            ______________________
+            49
+
+200         "RR_life_chwestq2_age"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.04 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              242.46k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:02 PM
+      Step Count                        226  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHWESTQ3_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              562.00k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:02 PM
+      Step Count                        227  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chwestq3_age"_d
+            ______________________
+            49
+
+200         "RR_life_chwestq3_age"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+9                                                                   The SAS System                                          19:24 Monday, July 7, 2025
+
+      memory              242.46k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:03 PM
+      Step Count                        246  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHSTQ1_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              561.90k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:03 PM
+      Step Count                        247  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chstq1_age"_d
+            ____________________
+            49
+
+200         "RR_life_chstq1_age"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              242.46k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:04 PM
+      Step Count                        266  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHSTQ2_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              562.03k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:04 PM
+      Step Count                        267  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chstq2_age"_d
+            ____________________
+            49
+
+200         "RR_life_chstq2_age"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              242.81k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:05 PM
+      Step Count                        286  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     9
+      Page Swaps                        0
+      Voluntary Context Switches        36
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHSTQ3_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+10                                                                  The SAS System                                          19:24 Monday, July 7, 2025
+
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              561.31k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:05 PM
+      Step Count                        287  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chstq3_age"_d
+            ____________________
+            49
+
+200         "RR_life_chstq3_age"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              242.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:05 PM
+      Step Count                        306  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHPAQ0_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:05 PM
+      Step Count                        307  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chpaq0_age"_d
+            ____________________
+            49
+
+200         "RR_life_chpaq0_age"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              243.81k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:06 PM
+      Step Count                        326  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHPAQ1_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:06 PM
+      Step Count                        327  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chpaq1_age"_d
+            ____________________
+            49
+11                                                                  The SAS System                                          19:24 Monday, July 7, 2025
+
+
+200         "RR_life_chpaq1_age"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              243.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:07 PM
+      Step Count                        346  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_AGE.
+NOTE: The data set WORK.CHPAQ2_AGE has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:07 PM
+      Step Count                        347  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+200         "RR_life_chpaq2_age"_d
+            ____________________
+            49
+
+200         "RR_life_chpaq2_age"_p
+            ____________________
+            49
+
+201        
+202        %metaanal_allexp(data=meta_RR_mob, group=mob);
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.81k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:08 PM
+      Step Count                        366  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The data set WORK.CHWESTQ1_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:08 PM
+      Step Count                        367  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+202         "RR_life_chwestq1_mob"_d
+            ______________________
+            49
+
+202         "RR_life_chwestq1_mob"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:09 PM
+      Step Count                        386  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+12                                                                  The SAS System                                          19:24 Monday, July 7, 2025
+
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The data set WORK.CHWESTQ2_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:09 PM
+      Step Count                        387  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+202         "RR_life_chwestq2_mob"_d
+            ______________________
+            49
+
+202         "RR_life_chwestq2_mob"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              243.81k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:09 PM
+      Step Count                        406  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The data set WORK.CHWESTQ3_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:10 PM
+      Step Count                        407  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+202         "RR_life_chwestq3_mob"_d
+            ______________________
+            49
+
+202         "RR_life_chwestq3_mob"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.08 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              243.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:10 PM
+      Step Count                        426  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The data set WORK.CHSTQ1_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:10 PM
+      Step Count                        427  Switch Count  0
+13                                                                  The SAS System                                          19:24 Monday, July 7, 2025
+
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        17
+      Involuntary Context Switches      0
+      Block Input Operations            280
+      Block Output Operations           144
+      
+
+202         "RR_life_chstq1_mob"_d
+            ____________________
+            49
+
+202         "RR_life_chstq1_mob"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              243.81k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:11 PM
+      Step Count                        446  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The data set WORK.CHSTQ2_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.02 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:11 PM
+      Step Count                        447  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+202         "RR_life_chstq2_mob"_d
+            ____________________
+            49
+
+202         "RR_life_chstq2_mob"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:12 PM
+      Step Count                        466  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The data set WORK.CHSTQ3_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:12 PM
+      Step Count                        467  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+202         "RR_life_chstq3_mob"_d
+            ____________________
+            49
+
+202         "RR_life_chstq3_mob"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+14                                                                  The SAS System                                          19:24 Monday, July 7, 2025
+
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.81k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:12 PM
+      Step Count                        486  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The data set WORK.CHPAQ0_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:12 PM
+      Step Count                        487  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+202         "RR_life_chpaq0_mob"_d
+            ____________________
+            49
+
+202         "RR_life_chpaq0_mob"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:13 PM
+      Step Count                        506  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+NOTE: The data set WORK.CHPAQ1_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:13 PM
+      Step Count                        507  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+202         "RR_life_chpaq1_mob"_d
+            ____________________
+            49
+
+202         "RR_life_chpaq1_mob"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              243.81k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:14 PM
+      Step Count                        526  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 24 observations read from the data set WORK.META_RR_MOB.
+15                                                                  The SAS System                                          19:24 Monday, July 7, 2025
+
+NOTE: The data set WORK.CHPAQ2_MOB has 2 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.01 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              560.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:14 PM
+      Step Count                        527  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        17
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+202         "RR_life_chpaq2_mob"_d
+            ____________________
+            49
+
+202         "RR_life_chpaq2_mob"_p
+            ____________________
+            49
+
+203        
+204        
+205        
+206        
+207        
+208        
+209        
+210        
+211        
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.84k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 07:25:14 PM
+      Step Count                        546  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        35
+      Involuntary Context Switches      0
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           21.30 seconds
+      user cpu time       2.53 seconds
+      system cpu time     2.65 seconds
+      memory              15604.93k
+      OS Memory           17592.00k
+      Timestamp           07/07/2025 07:25:14 PM
+      Step Count                        546  Switch Count  1104
+      Page Faults                       11
+      Page Reclaims                     63843
+      Page Swaps                        0
+      Voluntary Context Switches        14850
+      Involuntary Context Switches      5
+      Block Input Operations            161120
+      Block Output Operations           88520
+      
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   1
+
+                                          Obs      Parm      mod     group     HRCI2       SE        beta
+
+                                            1    chwestq1    life    female      .      0.12748     0.15666
+                                            2    chwestq2    life    female      .      0.13827     0.33107
+                                            3    chwestq3    life    female      .      0.14644     0.63457
+                                            4    chstq1      life    female      .      0.13939     0.08147
+                                            5    chstq2      life    female      .      0.14055     0.13977
+                                            6    chstq3      life    female      .      0.13702     0.14078
+                                            7    chpaq0      life    female      .      0.11800     0.33760
+                                            8    chpaq1      life    female      .      0.12832     0.06045
+                                            9    chpaq2      life    female      .      0.13328     0.06945
+                                           10    chcalq1     life    female      .      0.11425    -0.22508
+                                           11    chcalq2     life    female      .      0.12973    -0.27721
+                                           12    chcalq3     life    female      .      0.17646    -0.47580
+                                           13    chwestq1    life    male        .      0.11378     0.04011
+                                           14    chwestq2    life    male        .      0.12564     0.19584
+                                           15    chwestq3    life    male        .      0.14699     0.25144
+                                           16    chstq1      life    male        .      0.15584     0.33780
+                                           17    chstq2      life    male        .      0.14995     0.31883
+                                           18    chstq3      life    male        .      0.13684     0.29880
+                                           19    chpaq0      life    male        .      0.10728     0.22024
+                                           20    chpaq1      life    male        .      0.12932     0.09552
+                                           21    chpaq2      life    male        .      0.12075    -0.01112
+                                           22    chcalq1     life    male        .      0.12178    -0.02905
+                                           23    chcalq2     life    male        .      0.12967    -0.22390
+                                           24    chcalq3     life    male        .      0.16142    -0.32836
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   2
+
+                                           Obs      Parm      mod     group    HRCI2       SE        beta
+
+                                             1    chwestq1    life    child      .      0.24599     0.06233
+                                             2    chwestq2    life    child      .      0.26095     0.45717
+                                             3    chwestq3    life    child      .      0.30998     0.83739
+                                             4    chstq1      life    child      .      0.23327    -0.28647
+                                             5    chstq2      life    child      .      0.22921    -0.31947
+                                             6    chstq3      life    child      .      0.20736    -0.53041
+                                             7    chpaq0      life    child      .      0.19326     0.33589
+                                             8    chpaq1      life    child      .      0.22904     0.13579
+                                             9    chpaq2      life    child      .      0.23575    -0.13859
+                                            10    chcalq1     life    child      .      0.21916    -0.01462
+                                            11    chcalq2     life    child      .      0.26488    -0.42084
+                                            12    chcalq3     life    child      .      0.31966    -0.57300
+                                            13    chwestq1    life    teen       .      0.09355     0.11531
+                                            14    chwestq2    life    teen       .      0.10571     0.23968
+                                            15    chwestq3    life    teen       .      0.11908     0.37380
+                                            16    chstq1      life    teen       .      0.11694     0.23295
+                                            17    chstq2      life    teen       .      0.11219     0.25187
+                                            18    chstq3      life    teen       .      0.10622     0.24216
+                                            19    chpaq0      life    teen       .      0.09044     0.24755
+                                            20    chpaq1      life    teen       .      0.09625     0.08410
+                                            21    chpaq2      life    teen       .      0.10353     0.05172
+                                            22    chcalq1     life    teen       .      0.08924    -0.12879
+                                            23    chcalq2     life    teen       .      0.09603    -0.22457
+                                            24    chcalq3     life    teen       .      0.12659    -0.39374
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   3
+
+                                          Obs      Parm      mod     group     HRCI2       SE        beta
+
+                                            1    chwestq1    life    moob        .      0.16941    -0.14191
+                                            2    chwestq2    life    moob        .      0.17693     0.04379
+                                            3    chwestq3    life    moob        .      0.19609     0.32708
+                                            4    chstq1      life    moob        .      0.17899     0.33795
+                                            5    chstq2      life    moob        .      0.17646     0.50618
+                                            6    chstq3      life    moob        .      0.18945     0.33991
+                                            7    chpaq0      life    moob        .      0.14880     0.10345
+                                            8    chpaq1      life    moob        .      0.14723     0.00158
+                                            9    chpaq2      life    moob        .      0.17052     0.03481
+                                           10    chcalq1     life    moob        .      0.15728    -0.06959
+                                           11    chcalq2     life    moob        .      0.18113    -0.02111
+                                           12    chcalq3     life    moob        .      0.22283    -0.39330
+                                           13    chwestq1    life    nomoob      .      0.09568     0.15071
+                                           14    chwestq2    life    nomoob      .      0.10842     0.28731
+                                           15    chwestq3    life    nomoob      .      0.13087     0.39949
+                                           16    chstq1      life    nomoob      .      0.13212     0.12924
+                                           17    chstq2      life    nomoob      .      0.12818     0.08302
+                                           18    chstq3      life    nomoob      .      0.11496     0.12390
+                                           19    chpaq0      life    nomoob      .      0.09610     0.33451
+                                           20    chpaq1      life    nomoob      .      0.09918     0.11006
+                                           21    chpaq2      life    nomoob      .      0.09971     0.01390
+                                           22    chcalq1     life    nomoob      .      0.10669    -0.10914
+                                           23    chcalq2     life    nomoob      .      0.11346    -0.29930
+                                           24    chcalq3     life    nomoob      .      0.14013    -0.37391
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   4
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.15666        0.12748       0.44339      0.44339 
+                                         2     male        0.04011        0.11378       0.55661      0.55661 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   5
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.10 (0.93, 1.29)    0.2795    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.46                 0.4952    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   6
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   7
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.33107        0.13827       0.45228      0.45228 
+                                         2     male        0.19584        0.12564       0.54772      0.54772 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   8
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.29 (1.08, 1.55)    0.0057    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.52                 0.4692    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025   9
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  10
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.63457        0.14644       0.50188      0.50055 
+                                         2     male        0.25144        0.14699       0.49812      0.49945 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  11
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+
+                       Obs    Statistic    Value (95% CI)               P                 Hypothesis being tested
+
+                        2     OR/RR (R)    1.56 (1.07, 2.27)       0.0207    Is OR/RR  different from 1? (Random effects model)
+                        3     Q            3.40                    0.0648    Is there heterogeneity among the studies?         
+                        4     tau2         0.0519                   .                                                          
+                        5     r(i)         70.7 (0.0, 100.0)        .                                                          
+                        6     CVB          0.514 (0.000, 1.612)     .                                                          
+                        7     r(b)         70.7 (0.0, 100.0)        .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  12
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  13
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.08147        0.13939       0.55557      0.53697 
+                                         2     male        0.33780        0.15584       0.44443      0.46303 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  14
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+
+                       Obs    Statistic    Value (95% CI)               P                 Hypothesis being tested
+
+                        2     OR/RR (R)    1.22 (0.95, 1.57)       0.1173    Is OR/RR  different from 1? (Random effects model)
+                        3     Q            1.50                    0.2202    Is there heterogeneity among the studies?         
+                        4     tau2         0.0110                   .                                                          
+                        5     r(i)         33.7 (0.0, 100.0)        .                                                          
+                        6     CVB          0.524 (0.000, 2.790)     .                                                          
+                        7     r(b)         33.6 (0.0, 100.0)        .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  15
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  16
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.13977        0.14055       0.53232      0.53232 
+                                         2     male        0.31883        0.14995       0.46768      0.46768 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  17
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.25 (1.02, 1.53)    0.0293    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.75                 0.3836    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  18
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  19
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.14078        0.13702       0.49933      0.49933 
+                                         2     male        0.29880        0.13684       0.50067      0.50067 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  20
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.25 (1.03, 1.51)    0.0231    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.66                 0.4145    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  21
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  22
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.33760        0.11800       0.45255      0.45255 
+                                         2     male        0.22024        0.10728       0.54745      0.54745 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  23
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.31 (1.12, 1.54)    0.0006    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.54                 0.4618    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  24
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  25
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.060454       0.12832       0.50387      0.50387 
+                                         2     male        0.095521       0.12932       0.49613      0.49613 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  26
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.08 (0.90, 1.29)    0.3927    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.03                 0.8474    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  27
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  28
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.069453       0.13328       0.45077      0.45077 
+                                         2     male       -0.011121       0.12075       0.54923      0.54923 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  29
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.03 (0.86, 1.22)    0.7782    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.20                 0.6541    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  30
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  31
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.06233        0.24599       0.12636      0.12636 
+                                          2     teen       0.11531        0.09355       0.87364      0.87364 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  32
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.11 (0.94, 1.32)    0.2142    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.04                 0.8404    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  33
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  34
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.45717        0.26095       0.14096      0.14096 
+                                          2     teen       0.23968        0.10571       0.85904      0.85904 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  35
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.31 (1.08, 1.59)    0.0058    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.59                 0.4398    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  36
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  37
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.83739        0.30998       0.12859      0.30943 
+                                          2     teen       0.37380        0.11908       0.87141      0.69057 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  38
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+
+                       Obs    Statistic    Value (95% CI)               P                 Hypothesis being tested
+
+                        2     OR/RR (R)    1.68 (1.10, 2.55)       0.0158    Is OR/RR  different from 1? (Random effects model)
+                        3     Q            1.94                    0.1627    Is there heterogeneity among the studies?         
+                        4     tau2         0.0523                   .                                                          
+                        5     r(i)         67.9 (0.0, 100.0)        .                                                          
+                        6     CVB          0.442 (0.000, 1.751)     .                                                          
+                        7     r(b)         57.0 (0.0, 100.0)        .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  39
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  40
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      -0.28647       0.23327       0.20085      0.42450 
+                                          2     teen        0.23295       0.11694       0.79915      0.57550 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  41
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+
+                     Obs    Statistic    Value (95% CI)                  P                 Hypothesis being tested
+
+                      2     OR/RR (R)    1.01 (0.61, 1.67)          0.9613    Is OR/RR  different from 1? (Random effects model)
+                      3     Q            3.96                       0.0465    Is there heterogeneity among the studies?         
+                      4     tau2         0.1009                      .                                                          
+                      5     r(i)         82.2 (27.9, 100.0)          .                                                          
+                      6     CVB          25.496 (0.000, 1056.56)     .                                                          
+                      7     r(b)         76.5 (14.8, 100.0)          .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  42
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  43
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      -0.31947       0.22921       0.19328      0.43881 
+                                          2     teen        0.25187       0.11219       0.80672      0.56119 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  44
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+
+                     Obs    Statistic    Value (95% CI)                  P                 Hypothesis being tested
+
+                      2     OR/RR (R)    1.00 (0.57, 1.75)          0.9967    Is OR/RR  different from 1? (Random effects model)
+                      3     Q            5.01                       0.0252    Is there heterogeneity among the studies?         
+                      4     tau2         0.1307                      .                                                          
+                      5     r(i)         86.5 (46.2, 100.0)          .                                                          
+                      6     CVB          311.416 (0.000, 149408)     .                                                          
+                      7     r(b)         81.3 (32.0, 100.0)          .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  45
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  46
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      -0.53041       0.20736       0.20784      0.47343 
+                                          2     teen        0.24216       0.10622       0.79216      0.52657 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  47
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+
+                      Obs    Statistic    Value (95% CI)                P                 Hypothesis being tested
+
+                       2     OR/RR (R)    0.88 (0.41, 1.88)        0.7486    Is OR/RR  different from 1? (Random effects model)
+                       3     Q            10.99                    0.0009    Is there heterogeneity among the studies?         
+                       4     tau2         0.2713                    .                                                          
+                       5     r(i)         93.8 (76.1, 100.0)        .                                                          
+                       6     CVB          4.214 (0.000, 30.780)     .                                                          
+                       7     r(b)         91.2 (67.3, 100.0)        .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  48
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  49
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.33589        0.19326       0.17966      0.17966 
+                                          2     teen       0.24755        0.09044       0.82034      0.82034 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  50
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.30 (1.11, 1.53)    0.0013    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.17                 0.6789    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  51
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  52
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.13579        0.22904       0.15009      0.15009 
+                                          2     teen       0.08410        0.09625       0.84991      0.84991 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  53
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.10 (0.92, 1.30)    0.3006    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.04                 0.8352    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  54
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  55
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      -0.13859       0.23575       0.16168      0.16168 
+                                          2     teen        0.05172       0.10353       0.83832      0.83832 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  56
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.02 (0.85, 1.23)    0.8251    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.54                 0.4598    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  57
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  58
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        -0.14191       0.16941       0.24183      0.38586 
+                                         2     nomoob       0.15071       0.09568       0.75817      0.61414 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  59
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+
+                      Obs    Statistic    Value (95% CI)                P                 Hypothesis being tested
+
+                       2     OR/RR (R)    1.04 (0.79, 1.37)        0.7907    Is OR/RR  different from 1? (Random effects model)
+                       3     Q            2.26                     0.1326    Is there heterogeneity among the studies?         
+                       4     tau2         0.0239                    .                                                          
+                       5     r(i)         63.2 (0.0, 100.0)         .                                                          
+                       6     CVB          4.089 (0.000, 35.948)     .                                                          
+                       7     r(b)         58.9 (0.0, 100.0)         .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  60
+                                                                           
+                                                                           
+                                                              Studies of chwestq1 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  61
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.04379        0.17693       0.27300      0.33518 
+                                         2     nomoob      0.28731        0.10842       0.72700      0.66482 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  62
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+
+                       Obs    Statistic    Value (95% CI)               P                 Hypothesis being tested
+
+                        2     OR/RR (R)    1.23 (0.98, 1.54)       0.0736    Is OR/RR  different from 1? (Random effects model)
+                        3     Q            1.37                    0.2406    Is there heterogeneity among the studies?         
+                        4     tau2         0.0081                   .                                                          
+                        5     r(i)         32.2 (0.0, 100.0)        .                                                          
+                        6     CVB          0.438 (0.000, 2.706)     .                                                          
+                        7     r(b)         30.7 (0.0, 100.0)        .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  63
+                                                                           
+                                                                           
+                                                              Studies of chwestq2 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  64
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.32708        0.19609       0.30815      0.30815 
+                                         2     nomoob      0.39949        0.13087       0.69185      0.69185 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  65
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.46 (1.18, 1.80)    0.0005    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.09                 0.7587    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  66
+                                                                           
+                                                                           
+                                                              Studies of chwestq3 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  67
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.33795        0.17899       0.35270      0.35270 
+                                         2     nomoob      0.12924        0.13212       0.64730      0.64730 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  68
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.22 (0.99, 1.51)    0.0563    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.88                 0.3482    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  69
+                                                                           
+                                                                           
+                                                               Studies of chstq1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  70
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.50618        0.17646       0.34542      0.45894 
+                                         2     nomoob      0.08302        0.12818       0.65458      0.54106 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  71
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+
+                       Obs    Statistic    Value (95% CI)               P                 Hypothesis being tested
+
+                        2     OR/RR (R)    1.32 (0.87, 1.99)       0.1886    Is OR/RR  different from 1? (Random effects model)
+                        3     Q            3.76                    0.0524    Is there heterogeneity among the studies?         
+                        4     tau2         0.0657                   .                                                          
+                        5     r(i)         75.3 (5.2, 100.0)        .                                                          
+                        6     CVB          0.925 (0.000, 3.149)     .                                                          
+                        7     r(b)         73.9 (2.6, 100.0)        .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  72
+                                                                           
+                                                                           
+                                                               Studies of chstq2 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  73
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.33991        0.18945       0.26911      0.26911 
+                                         2     nomoob      0.12390        0.11496       0.73089      0.73089 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  74
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.20 (0.99, 1.45)    0.0640    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.95                 0.3297    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  75
+                                                                           
+                                                                           
+                                                               Studies of chstq3 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  76
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.10345        0.14880       0.29436      0.37915 
+                                         2     nomoob      0.33451        0.09610       0.70564      0.62085 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  77
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+
+                       Obs    Statistic    Value (95% CI)               P                 Hypothesis being tested
+
+                        2     OR/RR (R)    1.28 (1.03, 1.59)       0.0276    Is OR/RR  different from 1? (Random effects model)
+                        3     Q            1.70                    0.1921    Is there heterogeneity among the studies?         
+                        4     tau2         0.0110                   .                                                          
+                        5     r(i)         45.8 (0.0, 100.0)        .                                                          
+                        6     CVB          0.425 (0.000, 1.902)     .                                                          
+                        7     r(b)         43.8 (0.0, 100.0)        .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  78
+                                                                           
+                                                                           
+                                                               Studies of chpaq0 and ob
+
+                              Obs    Statistic    Description
+
+                               2     OR/RR (R)    OR/RR from random effects model (95% CI)                             
+                               3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4     tau2         Estimate of between-studies variance (tau squared)                   
+                               5     r(i)         Between-studies variance as a percent of total variance (r(i))       
+                               6     CVB          SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7     r(b)         New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  79
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.00158        0.14723       0.31214      0.31214 
+                                         2     nomoob      0.11006        0.09918       0.68786      0.68786 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  80
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.08 (0.92, 1.27)    0.3543    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.37                 0.5411    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  81
+                                                                           
+                                                                           
+                                                               Studies of chpaq1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  82
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.034807       0.17052       0.25481      0.25481 
+                                         2     nomoob      0.013896       0.09971       0.74519      0.74519 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  83
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+
+                        Obs    Statistic    Value (95% CI)            P                 Hypothesis being tested
+
+                         2     OR/RR (R)    1.02 (0.86, 1.21)    0.8233    Is OR/RR  different from 1? (Random effects model)
+                         3     Q            0.01                 0.9157    Is there heterogeneity among the studies?         
+                         4     tau2         0.0000                .                                                          
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      19:24 Monday, July 7, 2025  84
+                                                                           
+                                                                           
+                                                               Studies of chpaq2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2     OR/RR (R)    OR/RR from random effects model (95% CI)                 
+                                     3     Q            Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4     tau2         Estimate of between-studies variance (tau squared)       
