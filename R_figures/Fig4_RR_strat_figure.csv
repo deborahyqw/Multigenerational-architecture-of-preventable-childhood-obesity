@@ -1,0 +1,223 @@
+﻿,parameter,exposure,group,subgroup,RR,LCI,UCI,Q_stat,p_het,category,mod
+7,rr,Western diet Q2 vs. Q1,age,child,1.06431,0.6521,1.73711,0.04,,Personal,life
+8,rr,Western diet Q3 vs. Q1,age,child,1.57959,0.9454,2.6392,0.59,,Personal,life
+9,rr,Western diet Q4 vs. Q1,age,child,2.31032,1.25093,4.26688,1.94,,Personal,life
+10,rr,Sedentary time Q2 vs. Q1,age,child,0.75091,0.47492,1.18728,3.96,,Personal,life
+11,rr,Sedentary time Q3 vs. Q1,age,child,0.72653,0.46192,1.14273,5.01,,Personal,life
+12,rr,Sedentary time Q4 vs. Q1,age,child,0.58836,0.39178,0.88359,10.99,,Personal,life
+13,rr,"Physical activity Q1 vs, Q4",age,child,1.39918,0.95757,2.04445,0.17,,Personal,life
+14,rr,Physical activity Q2 vs. Q4,age,child,1.14544,0.7288,1.80026,0.04,,Personal,life
+15,rr,Physical activity Q3 vs. Q4,age,child,0.87059,0.54701,1.38558,0.54,,Personal,life
+16,rr,Western diet Q2 vs. Q1,sex,female,1.1696,0.91017,1.50298,0.46,0.49518,Personal,life
+17,rr,Western diet Q3 vs. Q1,sex,female,1.39246,1.06019,1.82886,0.52,0.46916,Personal,life
+18,rr,Western diet Q4 vs. Q1,sex,female,1.88622,1.41548,2.5135,3.4,0.06481,Personal,life
+19,rr,Sedentary time Q2 vs. Q1,sex,female,1.08489,0.82024,1.43492,1.5,0.22021,Personal,life
+20,rr,Sedentary time Q3 vs. Q1,sex,female,1.15001,0.86429,1.53017,0.75,0.38361,Personal,life
+21,rr,Sedentary time Q4 vs. Q1,sex,female,1.15117,0.87365,1.51684,0.66,0.41449,Personal,life
+22,rr,"Physical activity Q1 vs, Q4",sex,female,1.40158,1.11166,1.76712,0.54,0.46177,Personal,life
+23,rr,Physical activity Q2 vs. Q4,sex,female,1.06232,0.8253,1.3674,0.03,0.84736,Personal,life
+24,rr,Physical activity Q3 vs. Q4,sex,female,1.07192,0.82349,1.3953,0.2,0.65414,Personal,life
+25,rr,Western diet Q2 vs. Q1,sex,male,1.04093,0.83221,1.302,0.46,,Personal,life
+26,rr,Western diet Q3 vs. Q1,sex,male,1.21633,0.95026,1.5569,0.52,,Personal,life
+27,rr,Western diet Q4 vs. Q1,sex,male,1.28588,0.96319,1.71668,3.4,,Personal,life
+28,rr,Sedentary time Q2 vs. Q1,sex,male,1.40186,1.02641,1.91464,1.5,,Personal,life
+29,rr,Sedentary time Q3 vs. Q1,sex,male,1.37552,1.01878,1.85719,0.75,,Personal,life
+30,rr,Sedentary time Q4 vs. Q1,sex,male,1.34824,1.02952,1.76562,0.66,,Personal,life
+31,rr,"Physical activity Q1 vs, Q4",sex,male,1.24637,1.00907,1.53948,0.54,,Personal,life
+32,rr,Physical activity Q2 vs. Q4,sex,male,1.10023,0.8436,1.43493,0.03,,Personal,life
+33,rr,Physical activity Q3 vs. Q4,sex,male,0.98894,0.7749,1.26209,0.2,,Personal,life
+34,rr,Western diet Q2 vs. Q1,mob,moob,0.8677,0.62059,1.21321,2.26,0.13259,Personal,life
+35,rr,Western diet Q3 vs. Q1,mob,moob,1.04476,0.73637,1.48232,1.37,0.24058,Personal,life
+36,rr,Western diet Q4 vs. Q1,mob,moob,1.38691,0.94037,2.04551,0.09,0.75873,Personal,life
+37,rr,Sedentary time Q2 vs. Q1,mob,moob,1.40207,0.9869,1.99188,0.88,0.34818,Personal,life
+38,rr,Sedentary time Q3 vs. Q1,mob,moob,1.65895,1.17208,2.34804,3.76,0.05235,Personal,life
+39,rr,Sedentary time Q4 vs. Q1,mob,moob,1.40482,0.96317,2.04899,0.95,0.32967,Personal,life
+40,rr,"Physical activity Q1 vs, Q4",mob,moob,1.10899,0.82658,1.48789,1.7,0.19209,Personal,life
+41,rr,Physical activity Q2 vs. Q4,mob,moob,1.00158,0.74951,1.33842,0.37,0.54112,Personal,life
+42,rr,Physical activity Q3 vs. Q4,mob,moob,1.03542,0.73096,1.4667,0.01,0.91569,Personal,life
+43,rr,Western diet Q2 vs. Q1,mob,nomoob,1.16266,0.96374,1.40264,2.26,,Personal,life
+44,rr,Western diet Q3 vs. Q1,mob,nomoob,1.33284,1.07716,1.6492,1.37,,Personal,life
+45,rr,Western diet Q4 vs. Q1,mob,nomoob,1.49107,1.15216,1.92966,0.09,,Personal,life
+46,rr,Sedentary time Q2 vs. Q1,mob,nomoob,1.13797,0.86636,1.49472,0.88,,Personal,life
+47,rr,Sedentary time Q3 vs. Q1,mob,nomoob,1.08657,0.83323,1.41693,3.76,,Personal,life
+48,rr,Sedentary time Q4 vs. Q1,mob,nomoob,1.1319,0.89794,1.42681,0.95,,Personal,life
+49,rr,"Physical activity Q1 vs, Q4",mob,nomoob,1.39725,1.15574,1.68923,1.7,,Personal,life
+50,rr,Physical activity Q2 vs. Q4,mob,nomoob,1.11635,0.91826,1.35717,0.37,,Personal,life
+51,rr,Physical activity Q3 vs. Q4,mob,nomoob,1.01399,0.83314,1.2341,0.01,,Personal,life
+52,rr,Western diet Q2 vs. Q1,age,teen,1.12223,0.93306,1.34974,0.04,0.84044,Personal,life
+53,rr,Western diet Q3 vs. Q1,age,teen,1.27084,1.02983,1.56826,0.59,0.43983,Personal,life
+54,rr,Western diet Q4 vs. Q1,age,teen,1.45325,1.14818,1.83937,1.94,0.1627,Personal,life
+55,rr,Sedentary time Q2 vs. Q1,age,teen,1.26232,0.99536,1.60088,3.96,0.04653,Personal,life
+56,rr,Sedentary time Q3 vs. Q1,age,teen,1.28643,1.02398,1.61615,5.01,0.02516,Personal,life
+57,rr,Sedentary time Q4 vs. Q1,age,teen,1.274,1.02868,1.57781,10.99,0.00091,Personal,life
+58,rr,"Physical activity Q1 vs, Q4",age,teen,1.28088,1.07102,1.53186,0.17,0.67887,Personal,life
+59,rr,Physical activity Q2 vs. Q4,age,teen,1.08774,0.89738,1.31849,0.04,0.8352,Personal,life
+60,rr,Physical activity Q3 vs. Q4,age,teen,1.05308,0.85227,1.30121,0.54,0.45984,Personal,life
+127,rr,Neighborhood SES Q1 vs. Q4,age,child,1.98046,1.23935,3.16473,1.17,,Social,socio
+128,rr,Neighborhood SES Q2 vs. Q4,age,child,1.4942,0.95863,2.32899,0.09,,Social,socio
+129,rr,Neighborhood SES Q3 vs. Q4,age,child,1.29472,0.79044,2.12071,0.04,,Social,socio
+130,rr,Neighborhood SES Q1 vs. Q4,sex,female,1.6507,1.23818,2.20065,0.2,0.6476,Social,socio
+131,rr,Neighborhood SES Q2 vs. Q4,sex,female,1.55072,1.17365,2.04893,0.79,0.37328,Social,socio
+132,rr,Neighborhood SES Q3 vs. Q4,sex,female,1.25598,0.94504,1.66923,0.01,0.89187,Social,socio
+133,rr,Neighborhood SES Q1 vs. Q4,sex,male,1.50302,1.12134,2.01462,0.2,,Social,socio
+134,rr,Neighborhood SES Q2 vs. Q4,sex,male,1.29943,0.98141,1.72052,0.79,,Social,socio
+135,rr,Neighborhood SES Q3 vs. Q4,sex,male,1.22315,0.94305,1.58644,0.01,,Social,socio
+136,rr,Neighborhood SES Q1 vs. Q4,mob,moob,1.63691,1.1206,2.3911,0.79,0.37391,Social,socio
+137,rr,Neighborhood SES Q2 vs. Q4,mob,moob,1.35091,0.92485,1.97323,0,0.9265,Social,socio
+138,rr,Neighborhood SES Q3 vs. Q4,mob,moob,1.34413,0.90102,2.00516,0.38,0.53755,Social,socio
+139,rr,Neighborhood SES Q1 vs. Q4,mob,nomoob,1.3393,1.0592,1.69345,0.79,,Social,socio
+140,rr,Neighborhood SES Q2 vs. Q4,mob,nomoob,1.32365,1.06916,1.63872,0,,Social,socio
+141,rr,Neighborhood SES Q3 vs. Q4,mob,nomoob,1.16794,0.94939,1.4368,0.38,,Social,socio
+142,rr,Neighborhood SES Q1 vs. Q4,age,teen,1.49319,1.21448,1.83586,1.17,0.27762,Social,socio
+143,rr,Neighborhood SES Q2 vs. Q4,age,teen,1.38173,1.12522,1.69673,0.09,0.75341,Social,socio
+144,rr,Neighborhood SES Q3 vs. Q4,age,teen,1.21961,0.99663,1.49249,0.04,0.82471,Social,socio
+149,rr,Paternal education high school and below vs. graduate school,age,child,1.858,1.17458,2.93907,1.29,,Social,socio
+150,rr,Paternal education college vs. graduate school,age,child,1.4075,0.96315,2.05685,0.93,,Social,socio
+151,rr,Household income <50 k vs. >=150 k,age,child,1.31949,0.7136,2.43981,0,,Social,socio
+152,rr,Household income 50-99 k vs. >=150 k,age,child,1.28052,0.79962,2.05063,0.03,,Social,socio
+153,rr,Household income 100-149 k vs. >=150 k,age,child,1.12582,0.67384,1.88096,0.03,,Social,socio
+154,rr,Paternal education high school and below vs. graduate school,sex,female,1.56698,1.22235,2.00877,0.48,0.48433,Social,socio
+155,rr,Paternal education college vs. graduate school,sex,female,1.23076,0.98725,1.53433,0.16,0.68861,Social,socio
+156,rr,Household income <50 k vs. >=150 k,sex,female,1.33713,0.84931,2.10515,0,0.97425,Social,socio
+157,rr,Household income 50-99 k vs. >=150 k,sex,female,1.33501,0.88807,2.00688,0.37,0.53964,Social,socio
+158,rr,Household income 100-149 k vs. >=150 k,sex,female,1.17029,0.79571,1.72121,0.32,0.5668,Social,socio
+159,rr,Paternal education high school and below vs. graduate school,sex,male,1.38486,1.08417,1.76894,0.48,,Social,socio
+160,rr,Paternal education college vs. graduate school,sex,male,1.15893,0.94795,1.41685,0.16,,Social,socio
+161,rr,Household income <50 k vs. >=150 k,sex,male,1.3253,0.94861,1.85157,0,,Social,socio
+162,rr,Household income 50-99 k vs. >=150 k,sex,male,1.15332,0.87235,1.5248,0.37,,Social,socio
+163,rr,Household income 100-149 k vs. >=150 k,sex,male,1.01711,0.74246,1.39336,0.32,,Social,socio
+164,rr,Paternal education high school and below vs. graduate school,mob,moob,0.97975,0.71964,1.33387,5.31,0.02111,Social,socio
+165,rr,Paternal education college vs. graduate school,mob,moob,0.98641,0.7673,1.26808,1.35,0.24476,Social,socio
+166,rr,Household income <50 k vs. >=150 k,mob,moob,1.1299,0.70542,1.80981,0.08,0.7767,Social,socio
+167,rr,Household income 50-99 k vs. >=150 k,mob,moob,0.96449,0.66104,1.40723,0.73,0.39271,Social,socio
+168,rr,Household income 100-149 k vs. >=150 k,mob,moob,0.90082,0.59264,1.36925,0.3,0.58172,Social,socio
+169,rr,Paternal education high school and below vs. graduate school,mob,nomoob,1.51731,1.22956,1.87241,5.31,,Social,socio
+170,rr,Paternal education college vs. graduate school,mob,nomoob,1.1744,1.00744,1.36903,1.35,,Social,socio
+171,rr,Household income <50 k vs. >=150 k,mob,nomoob,1.21958,0.94644,1.57155,0.08,,Social,socio
+172,rr,Household income 50-99 k vs. >=150 k,mob,nomoob,1.17901,0.8898,1.56223,0.73,,Social,socio
+173,rr,Household income 100-149 k vs. >=150 k,mob,nomoob,1.03479,0.7863,1.3618,0.3,,Social,socio
+174,rr,Paternal education high school and below vs. graduate school,age,teen,1.39782,1.16156,1.68213,1.29,0.25601,Social,socio
+175,rr,Paternal education college vs. graduate school,age,teen,1.15326,0.99661,1.33453,0.93,0.33415,Social,socio
+176,rr,Household income <50 k vs. >=150 k,age,teen,1.31778,1.04507,1.66164,0,0.99688,Social,socio
+177,rr,Household income 50-99 k vs. >=150 k,age,teen,1.21488,0.93698,1.5752,0.03,0.84612,Social,socio
+178,rr,Household income 100-149 k vs. >=150 k,age,teen,1.06621,0.83512,1.36124,0.03,0.85055,Social,socio
+145,rr,Obesity yes vs. no,age,child,3.6484,2.62232,5.07598,0.73,0.3916,Maternal,mom
+146,rr,Obesity yes vs. no,sex,female,3.72466,3.04881,4.55034,4.75,0.02924,Maternal,mom
+147,rr,Obesity yes vs. no,sex,male,2.74658,2.26693,3.32773,4.75,,Maternal,mom
+148,rr,Obesity yes vs. no,age,teen,3.10655,2.60689,3.70199,0.73,0.3916,Maternal,mom
+,rr,Obesity yes vs. no,mob,moob,,,,,,Maternal,mom
+,rr,Obesity yes vs. no,mob,nomoob,,,,,,Maternal,mom
+61,rr,Western diet (m) Q2 vs. Q1,age,child,1.04143,0.669,1.62119,0.08,,Maternal,mom
+62,rr,Western diet (m) Q3 vs. Q1,age,child,1.2726,0.7228,2.24062,0.05,,Maternal,mom
+63,rr,Western diet (m) Q4 vs. Q1,age,child,1.79085,0.96729,3.31558,0.31,,Maternal,mom
+64,rr,Physical activity (m) Q1 vs. Q4,age,child,1.18041,0.78195,1.78193,0.76,,Maternal,mom
+65,rr,Physical activity (m) Q2 vs. Q4,age,child,1.32213,0.88698,1.97076,0,,Maternal,mom
+66,rr,Physical activity (m) Q3 vs. Q4,age,child,1.07861,0.68361,1.70185,0.3,,Maternal,mom
+67,rr,Smoking past vs. never,age,child,1.05023,0.75327,1.46427,0.41,,Maternal,mom
+68,rr,Smoking current vs. never,age,child,0.78751,0.43072,1.43986,4.35,,Maternal,mom
+69,rr,Night-shift work Q2 vs. Q1,age,child,1.70236,1.15272,2.51406,3.14,,Maternal,mom
+70,rr,Night-shift work Q3 vs. Q1,age,child,1.15131,0.77647,1.7071,0.02,,Maternal,mom
+71,rr,Night-shift work Q4 vs. Q1,age,child,0.8996,0.5944,1.3615,2.38,,Maternal,mom
+72,rr,Western diet (m) Q2 vs. Q1,sex,female,1.24405,0.93241,1.65985,1.37,0.24041,Maternal,mom
+73,rr,Western diet (m) Q3 vs. Q1,sex,female,1.5746,1.11338,2.22687,5.83,0.01574,Maternal,mom
+74,rr,Western diet (m) Q4 vs. Q1,sex,female,2.05386,1.44085,2.92769,6.35,0.01169,Maternal,mom
+75,rr,Physical activity (m) Q1 vs. Q4,sex,female,1.36816,1.04867,1.78498,0.19,0.65782,Maternal,mom
+76,rr,Physical activity (m) Q2 vs. Q4,sex,female,1.17246,0.89276,1.5398,1.6,0.20475,Maternal,mom
+77,rr,Physical activity (m) Q3 vs. Q4,sex,female,1.14355,0.86602,1.51004,0.34,0.55972,Maternal,mom
+78,rr,Smoking past vs. never,sex,female,1.14695,0.93446,1.40775,0.1,0.74795,Maternal,mom
+79,rr,Smoking current vs. never,sex,female,1.36086,0.9717,1.90586,0.16,0.68153,Maternal,mom
+80,rr,Night-shift work Q2 vs. Q1,sex,female,1.09338,0.85268,1.40201,0.81,0.36651,Maternal,mom
+81,rr,Night-shift work Q3 vs. Q1,sex,female,1.23028,0.96354,1.57088,0.14,0.70319,Maternal,mom
+82,rr,Night-shift work Q4 vs. Q1,sex,female,1.32982,1.06591,1.65906,1.09,0.29544,Maternal,mom
+83,rr,Western diet (m) Q2 vs. Q1,sex,male,0.99383,0.77724,1.27079,1.37,,Maternal,mom
+84,rr,Western diet (m) Q3 vs. Q1,sex,male,0.9345,0.72207,1.20941,5.83,,Maternal,mom
+85,rr,Western diet (m) Q4 vs. Q1,sex,male,1.15397,0.86978,1.53102,6.35,,Maternal,mom
+86,rr,Physical activity (m) Q1 vs. Q4,sex,male,1.47822,1.18702,1.84085,0.19,,Maternal,mom
+87,rr,Physical activity (m) Q2 vs. Q4,sex,male,1.47298,1.17151,1.85202,1.6,,Maternal,mom
+88,rr,Physical activity (m) Q3 vs. Q4,sex,male,1.2706,1.01507,1.59046,0.34,,Maternal,mom
+89,rr,Smoking past vs. never,sex,male,1.19796,1.0103,1.42046,0.1,,Maternal,mom
+90,rr,Smoking current vs. never,sex,male,1.49072,1.12308,1.97871,0.16,,Maternal,mom
+91,rr,Night-shift work Q2 vs. Q1,sex,male,1.27261,1.02304,1.58305,0.81,,Maternal,mom
+92,rr,Night-shift work Q3 vs. Q1,sex,male,1.15387,0.92068,1.44611,0.14,,Maternal,mom
+93,rr,Night-shift work Q4 vs. Q1,sex,male,1.13244,0.92329,1.38897,1.09,,Maternal,mom
+94,rr,Western diet (m) Q2 vs. Q1,mob,moob,0.93072,0.56733,1.52685,0.3,0.58264,Maternal,mom
+95,rr,Western diet (m) Q3 vs. Q1,mob,moob,1.28724,0.84107,1.97008,1.17,0.27901,Maternal,mom
+96,rr,Western diet (m) Q4 vs. Q1,mob,moob,1.01604,0.63677,1.62121,0.93,0.33357,Maternal,mom
+97,rr,Physical activity (m) Q1 vs. Q4,mob,moob,1.41068,0.93632,2.12536,0.75,0.38409,Maternal,mom
+98,rr,Physical activity (m) Q2 vs. Q4,mob,moob,1.30729,0.87481,1.95358,0.16,0.68136,Maternal,mom
+99,rr,Physical activity (m) Q3 vs. Q4,mob,moob,1.3344,0.90338,1.97107,0.58,0.44257,Maternal,mom
+100,rr,Smoking past vs. never,mob,moob,1.14363,0.88611,1.47599,0,0.93668,Maternal,mom
+101,rr,Smoking current vs. never,mob,moob,1.14648,0.75427,1.74264,1.56,0.21036,Maternal,mom
+102,rr,Night-shift work Q2 vs. Q1,mob,moob,1.18672,0.87496,1.60957,0,0.97446,Maternal,mom
+103,rr,Night-shift work Q3 vs. Q1,mob,moob,1.13112,0.83922,1.52455,0.01,0.91092,Maternal,mom
+104,rr,Night-shift work Q4 vs. Q1,mob,moob,1.09466,0.81254,1.47474,0.02,0.88669,Maternal,mom
+105,rr,Western diet (m) Q2 vs. Q1,mob,nomoob,1.07402,0.87714,1.3151,0.3,,Maternal,mom
+106,rr,Western diet (m) Q3 vs. Q1,mob,nomoob,0.98726,0.7713,1.26369,1.17,,Maternal,mom
+107,rr,Western diet (m) Q4 vs. Q1,mob,nomoob,1.31907,1.00268,1.73531,0.93,,Maternal,mom
+108,rr,Physical activity (m) Q1 vs. Q4,mob,nomoob,1.15589,0.94204,1.41829,0.75,,Maternal,mom
+109,rr,Physical activity (m) Q2 vs. Q4,mob,nomoob,1.19012,0.9605,1.47463,0.16,,Maternal,mom
+110,rr,Physical activity (m) Q3 vs. Q4,mob,nomoob,1.12322,0.9104,1.38579,0.58,,Maternal,mom
+111,rr,Smoking past vs. never,mob,nomoob,1.15731,0.99628,1.34436,0,,Maternal,mom
+112,rr,Smoking current vs. never,mob,nomoob,1.57027,1.20442,2.04725,1.56,,Maternal,mom
+113,rr,Night-shift work Q2 vs. Q1,mob,nomoob,1.17985,0.98207,1.41746,0,,Maternal,mom
+114,rr,Night-shift work Q3 vs. Q1,mob,nomoob,1.15441,0.94577,1.40906,0.01,,Maternal,mom
+115,rr,Night-shift work Q4 vs. Q1,mob,nomoob,1.12291,0.92978,1.35615,0.02,,Maternal,mom
+116,rr,Western diet (m) Q2 vs. Q1,age,teen,1.11998,0.91836,1.36586,0.08,0.76791,Maternal,mom
+117,rr,Western diet (m) Q3 vs. Q1,age,teen,1.18748,0.9675,1.45749,0.05,0.81891,Maternal,mom
+118,rr,Western diet (m) Q4 vs. Q1,age,teen,1.48938,1.18975,1.86447,0.31,0.57426,Maternal,mom
+119,rr,Physical activity (m) Q1 vs. Q4,age,teen,1.44186,1.20797,1.72104,0.76,0.38041,Maternal,mom
+120,rr,Physical activity (m) Q2 vs. Q4,age,teen,1.31569,1.09066,1.58716,0,0.98268,Maternal,mom
+121,rr,Physical activity (m) Q3 vs. Q4,age,teen,1.23853,1.03263,1.48549,0.3,0.5783,Maternal,mom
+122,rr,Smoking past vs. never,age,teen,1.18079,1.02802,1.35625,0.41,0.5219,Maternal,mom
+123,rr,Smoking current vs. never,age,teen,1.5791,1.21796,2.04734,4.35,0.03698,Maternal,mom
+124,rr,Night-shift work Q2 vs. Q1,age,teen,1.15831,0.97472,1.37647,3.14,0.07638,Maternal,mom
+125,rr,Night-shift work Q3 vs. Q1,age,teen,1.19176,0.99794,1.42321,0.02,0.87496,Maternal,mom
+126,rr,Night-shift work Q4 vs. Q1,age,teen,1.27596,1.07995,1.50756,2.38,0.12225,Maternal,mom
+179,rr,Birth weight <=2.5 kg vs. 2.6-4.4 kg,age,child,0.91797,0.40385,2.0866,0.21,,Intrauterine,uter
+180,rr,Birth weight >=4.5 kg vs. 2.6-4.4 kg,age,child,2.20751,1.21685,4.00468,2.04,,Intrauterine,uter
+181,rr,Gestational age <37 weeks vs. 37-42 weeks,age,child,1.15839,0.59072,2.27159,0.6,,Intrauterine,uter
+182,rr,Gestational age  >=43 week vs. 37-42 weeks,age,child,1.41192,0.84116,2.36995,0.08,,Intrauterine,uter
+183,rr,Delivery mode C-section vs. vaginal,age,child,1.37442,1.00584,1.87807,0.62,,Intrauterine,uter
+184,rr,Pregnancy complication yes vs. no,age,child,1.53141,1.01898,2.30153,0.6,,Intrauterine,uter
+185,rr,Birth weight <=2.5 kg vs. 2.6-4.4 kg,sex,female,1.12402,0.66188,1.90883,0.04,0.82576,Intrauterine,uter
+186,rr,Birth weight >=4.5 kg vs. 2.6-4.4 kg,sex,female,1.14325,0.58865,2.22034,0.95,0.32772,Intrauterine,uter
+187,rr,Gestational age <37 weeks vs. 37-42 weeks,sex,female,0.98932,0.59907,1.6338,0.16,0.68135,Intrauterine,uter
+188,rr,Gestational age  >=43 week vs. 37-42 weeks,sex,female,1.33168,0.96837,1.8313,0.01,0.91269,Intrauterine,uter
+189,rr,Delivery mode C-section vs. vaginal,sex,female,1.14406,0.92218,1.41934,0.77,0.37939,Intrauterine,uter
+190,rr,Pregnancy complication yes vs. no,sex,female,1.26661,0.94928,1.69003,0.16,0.6882,Intrauterine,uter
+191,rr,Birth weight <=2.5 kg vs. 2.6-4.4 kg,sex,male,1.03744,0.63123,1.70504,0.04,,Intrauterine,uter
+192,rr,Birth weight >=4.5 kg vs. 2.6-4.4 kg,sex,male,1.64241,1.15957,2.32632,0.95,,Intrauterine,uter
+193,rr,Gestational age <37 weeks vs. 37-42 weeks,sex,male,0.85706,0.5036,1.45861,0.16,,Intrauterine,uter
+194,rr,Gestational age  >=43 week vs. 37-42 weeks,sex,male,1.30042,0.97761,1.72981,0.01,,Intrauterine,uter
+195,rr,Delivery mode C-section vs. vaginal,sex,male,1.29766,1.07823,1.56174,0.77,,Intrauterine,uter
+196,rr,Pregnancy complication yes vs. no,sex,male,1.36614,1.07443,1.73704,0.16,,Intrauterine,uter
+197,rr,Birth weight <=2.5 kg vs. 2.6-4.4 kg,mob,moob,1.10038,0.65031,1.86195,0,0.98751,Intrauterine,uter
+198,rr,Birth weight >=4.5 kg vs. 2.6-4.4 kg,mob,moob,1.09074,0.67073,1.77378,1.64,0.19972,Intrauterine,uter
+199,rr,Gestational age <37 weeks vs. 37-42 weeks,mob,moob,1.10449,0.66288,1.8403,0.69,0.40308,Intrauterine,uter
+200,rr,Gestational age  >=43 week vs. 37-42 weeks,mob,moob,1.28569,0.78872,2.0958,0,0.96978,Intrauterine,uter
+201,rr,Delivery mode C-section vs. vaginal,mob,moob,1.2648,0.992,1.61261,0.54,0.45864,Intrauterine,uter
+202,rr,Pregnancy complication yes vs. no,mob,moob,0.99008,0.74485,1.31606,3.26,0.07084,Intrauterine,uter
+203,rr,Birth weight <=2.5 kg vs. 2.6-4.4 kg,mob,nomoob,1.1064,0.71175,1.71988,0,,Intrauterine,uter
+204,rr,Birth weight >=4.5 kg vs. 2.6-4.4 kg,mob,nomoob,1.60537,1.1277,2.28536,1.64,,Intrauterine,uter
+205,rr,Gestational age <37 weeks vs. 37-42 weeks,mob,nomoob,0.8407,0.5508,1.28317,0.69,,Intrauterine,uter
+206,rr,Gestational age  >=43 week vs. 37-42 weeks,mob,nomoob,1.27278,0.98782,1.63996,0,,Intrauterine,uter
+207,rr,Delivery mode C-section vs. vaginal,mob,nomoob,1.13104,0.94889,1.34816,0.54,,Intrauterine,uter
+208,rr,Pregnancy complication yes vs. no,mob,nomoob,1.37757,1.10329,1.72004,3.26,,Intrauterine,uter
+209,rr,Birth weight <=2.5 kg vs. 2.6-4.4 kg,age,teen,1.13306,0.79057,1.62391,0.21,0.64493,Intrauterine,uter
+210,rr,Birth weight >=4.5 kg vs. 2.6-4.4 kg,age,teen,1.36521,1.01563,1.83512,2.04,0.15287,Intrauterine,uter
+211,rr,Gestational age <37 weeks vs. 37-42 weeks,age,teen,0.86749,0.63614,1.18297,0.6,0.43842,Intrauterine,uter
+212,rr,Gestational age  >=43 week vs. 37-42 weeks,age,teen,1.29896,0.99824,1.69027,0.08,0.77633,Intrauterine,uter
+213,rr,Delivery mode C-section vs. vaginal,age,teen,1.19008,0.99259,1.42686,0.62,0.42896,Intrauterine,uter
+214,rr,Pregnancy complication yes vs. no,age,teen,1.27717,1.02698,1.58831,0.6,0.4363,Intrauterine,uter
+215,rr,Pre-pregnancy obesity yes vs. no,age,child,3.16213,1.78582,5.59916,0.13,,Intrauterine,uter
+216,rr,Pre-pregnancy obesity yes vs. no,sex,female,4.27031,3.33763,5.46363,4.67,0.03052,Intrauterine,uter
+217,rr,Pre-pregnancy obesity yes vs. no,sex,male,2.86486,2.19372,3.74134,4.67,,Intrauterine,uter
+218,rr,Pre-pregnancy obesity yes vs. no,mob,moob,1.34738,1.03225,1.7587,3,0.08292,Intrauterine,uter
+219,rr,Pre-pregnancy obesity yes vs. no,mob,nomoob,2.85329,1.27144,6.4032,3,,Intrauterine,uter
+220,rr,Pre-pregnancy obesity yes vs. no,age,teen,3.53129,2.8041,4.44707,0.13,0.71507,Intrauterine,uter
+1,rr,Gestational weight gain excess vs. normal,age,child,1.60099,1.19579,2.1435,0.1,,Intrauterine,gwt
+2,rr,Gestational weight gain excess vs. normal,sex,female,1.68354,1.35458,2.09239,0,0.98713,Intrauterine,gwt
+3,rr,Gestational weight gain excess vs. normal,sex,male,1.67946,1.36297,2.06944,0,,Intrauterine,gwt
+4,rr,Gestational weight gain excess vs. normal,mob,moob,1.36537,1.0676,1.74618,0.38,0.53651,Intrauterine,gwt
+5,rr,Gestational weight gain excess vs. normal,mob,nomoob,1.50852,1.22154,1.86291,0.38,,Intrauterine,gwt
+6,rr,Gestational weight gain excess vs. normal,age,teen,1.69569,1.38855,2.07076,0.1,0.74529,Intrauterine,gwt

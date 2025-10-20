@@ -1,0 +1,33 @@
+﻿Label,PAR,LCI,UCI,category
+Western diet,17,7.5,26.4,Personal
+Sedentary time,15.6,2,29.3,Personal
+Physical activity time,9.5,0.1,18.9,Personal
+Combined personal risk factors,36.7,23.5,50,Personal
+Paternal education,15,7.1,23,Social
+Household income,14.4,-1.4,30.1,Social
+Neighborhood SES score,23.6,13.7,33.5,Social
+Combined social risk factors,37.7,24.5,50.9,Social
+Maternal obesity,19.5,16.3,22.9,Maternal
+Maternal Western diet,15.1,3.8,26.4,Maternal
+Maternal physical activity,19.7,10.3,29,Maternal
+Maternal smoking,6.3,2.2,10.3,Maternal
+Maternal night shift,12.4,4.3,20.5,Maternal
+Combined maternal risk factors,44.4,33.4,55.5,Maternal
+Maternal pre-pregnancy obesity,7.9,6.1,9.8,Intrauterine
+Birth weight,2,0.1,3.8,Intrauterine
+Gestational week,1.9,-0.7,4.6,Intrauterine
+Born by cesarean section,4.7,1.1,8.3,Intrauterine
+Maternal pregnancy complication,3.3,1,5.5,Intrauterine
+Maternal excess gestational weight gain†,18.4,12.4,24.3,Intrauterine
+Combined intrauterine risk factors,17.4,13.7,21.1,Intrauterine
+Total ,63.7,50.8,76.6,Total
+,,,,
+,,,,
+,,,,
+Cat,PAR,LCI,UCI,Pie_percent
+child,24.6,9.4,39.9,17.82730375
+soc,6.6,1.8,11.4,4.782935154
+mom,22.5,8.5,36.5,16.30546075
+uter,34.2,20.3,48,24.78430034
+other (unexplained),36.3,,,63.7
+total_noadj,87.9,,,
