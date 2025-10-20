@@ -1,0 +1,3150 @@
+This job's information: 
+Job name: 1a.meta_PAR
+Job ID: 3734103
+Partition: linux01
+Memory Requested (4 GB / 4000 MB is default): 4000 M
+Work directory: /d/q1/slurm/3734103
+Running on hostname: toque05.bwh.harvard.edu
+
+
+
+
+
+1                                                      The SAS System                              16:36 Monday, July 7, 2025
+
+NOTE: Unable to open SASUSER.REGSTRY. WORK.REGSTRY will be opened instead.
+NOTE: All registry changes will be lost at the end of the session.
+
+WARNING: Unable to copy SASUSER registry to WORK registry. Because of this, you will not see registry customizations during 
+         this session.
+NOTE: Unable to open SASUSER.PROFILE. WORK.PROFILE will be opened instead.
+NOTE: All profile changes will be lost at the end of the session.
+NOTE: Copyright (c) 2016 by SAS Institute Inc., Cary, NC, USA. 
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M6) 
+      Licensed to CHANNING DIVISION OF NETWORK MEDICINE - T&R, Site 70123069.
+NOTE: This session is executing on the Linux 3.10.0-1160.119.1.el7.x86_64 (LIN X64) platform.
+
+
+
+NOTE: Analytical products:
+      
+      SAS/STAT 15.1
+      SAS/ETS 15.1
+      SAS/OR 15.1
+      SAS/IML 15.1
+      SAS/QC 15.1
+
+NOTE: Additional host information:
+
+ Linux LIN X64 3.10.0-1160.119.1.el7.x86_64 #1 SMP Tue Jun 4 14:43:51 UTC 2024 x86_64 CentOS Linux release 7.9.2009 (Core) 
+
+You are running SAS 9. Some SAS 8 files will be automatically converted 
+by the V9 engine; others are incompatible.  Please see 
+http://support.sas.com/rnd/migration/planning/platform/64bit.html
+
+PROC MIGRATE will preserve current SAS file attributes and is 
+recommended for converting all your SAS libraries from any 
+SAS 8 release to SAS 9.  For details and examples, please see
+http://support.sas.com/rnd/migration/index.html
+
+
+This message is contained in the SAS news file, and is presented upon
+initialization.  Edit the file "news" in the "misc/base" directory to
+display site-specific news and information in the program log.
+The command line option "-nonews" will prevent this display.
+
+
+
+
+NOTE: SAS initialization used:
+      real time           0.50 seconds
+      cpu time            0.04 seconds
+      
+1          
+2          /**********************************************************************
+3           Read-in macros, data formats, and libraries
+4          **********************************************************************/
+5          
+6          /*path to library with datasets, MANUAL SPECIFICATION*/
+7          libname dat_lb '/udd/nhywa/GUTSOB/secondary_stratified/1.data';
+NOTE: Libref DAT_LB was successfully assigned as follows: 
+      Engine:        V9 
+      Physical Name: /udd/nhywa/GUTSOB/secondary_stratified/1.data
+8          
+9          /* Show full log, try to find which step is the slowest */
+10         options msglevel=i fullstimer;
+11         
+12         filename nhstools '/proj/nhsass/nhsas00/nhstools/sasautos/';
+13         filename channing '/usr/local/channing/sasautos/';
+14         filename ehmac '/udd/stleh/ehmac/';
+15         options  mautosource sasautos=(channing nhstools);
+16         libname  nhsfmt   "/proj/nhsass/nhsas00/formats";
+NOTE: Libref NHSFMT was successfully assigned as follows: 
+      Engine:        V9 
+      Physical Name: /proj/nhsass/nhsas00/formats
+17         options fmtsearch=(nhsfmt);
+18         * options  fmtsearch=(nhsfmt) nofmterr nocenter nonumber nodate formdlim=' ';
+19         
+20         options  linesize=150 pagesize=110;
+21         			
+22         %include '/udd/nhywa/macros/cumavg.macro.sas'; *macro for calculation of CV;
+72         
+73         /**********************************************************************
+74          Call in the RR data from each of the stratified groups, and combine
+75          the data from the respective group
+76         **********************************************************************/
+77         
+78         
+79         
+80         /**SEX************************************/
+81         
+82         data meta_PAR_sex;
+83            set dat_lb.uter_female_PAR dat_lb.uter_male_PAR;
+84         	length  HRCI2 $ 18;
+85         	HRCI2=.;
+86         	SE=StdErr*1;
+87             beta=Estimate*1;
+88         	keep beta SE group exposure HRCI2;
+89         run;
+
+NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
+      85:8   
+NOTE: There were 10 observations read from the data set DAT_LB.UTER_FEMALE_PAR.
+NOTE: There were 10 observations read from the data set DAT_LB.UTER_MALE_PAR.
+NOTE: The data set WORK.META_PAR_SEX has 20 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.12 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              1381.09k
+      OS Memory           8868.00k
+      Timestamp           07/07/2025 04:36:24 PM
+      Step Count                        1  Switch Count  0
+2                                                                   The SAS System                                          16:36 Monday, July 7, 2025
+
+      Page Faults                       0
+      Page Reclaims                     886
+      Page Swaps                        0
+      Voluntary Context Switches        93
+      Involuntary Context Switches      1
+      Block Input Operations            664
+      Block Output Operations           144
+      
+
+90         
+91         proc print data=meta_PAR_sex; run;
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The PROCEDURE PRINT printed page 1.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.11 seconds
+      user cpu time       0.02 seconds
+      system cpu time     0.00 seconds
+      memory              2399.34k
+      OS Memory           10148.00k
+      Timestamp           07/07/2025 04:36:24 PM
+      Step Count                        2  Switch Count  1
+      Page Faults                       0
+      Page Reclaims                     1019
+      Page Swaps                        0
+      Voluntary Context Switches        116
+      Involuntary Context Switches      1
+      Block Input Operations            2232
+      Block Output Operations           0
+      
+
+92         
+93         
+94         /**AGE************************************/
+95         
+96         data meta_PAR_age;
+97            set dat_lb.uter_child_PAR dat_lb.uter_teen_PAR;
+98         	length  HRCI2 $ 18;
+99         	HRCI2=.;
+100        	SE=StdErr*1;
+101            beta=Estimate*1;
+102        	keep beta SE group exposure HRCI2;
+103        run;
+
+NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
+      99:8   
+NOTE: There were 10 observations read from the data set DAT_LB.UTER_CHILD_PAR.
+NOTE: There were 10 observations read from the data set DAT_LB.UTER_TEEN_PAR.
+NOTE: The data set WORK.META_PAR_AGE has 20 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              807.96k
+      OS Memory           10660.00k
+      Timestamp           07/07/2025 04:36:24 PM
+      Step Count                        3  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     117
+      Page Swaps                        0
+      Voluntary Context Switches        32
+      Involuntary Context Switches      2
+      Block Input Operations            440
+      Block Output Operations           144
+      
+
+104        
+105        proc print data=meta_PAR_age; run;
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The PROCEDURE PRINT printed page 2.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              409.56k
+      OS Memory           10404.00k
+      Timestamp           07/07/2025 04:36:24 PM
+      Step Count                        4  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     11
+      Page Swaps                        0
+      Voluntary Context Switches        6
+      Involuntary Context Switches      1
+      Block Input Operations            160
+      Block Output Operations           0
+      
+
+106        
+107        /**MATERNAL BMI************************************/
+108        
+109        data meta_PAR_mob;
+110           set dat_lb.uter_moob_PAR dat_lb.uter_nomoob_PAR;
+111        	length  HRCI2 $ 18;
+112        	HRCI2=.;
+113        	SE=StdErr*1;
+114            beta=Estimate*1;
+115        	keep beta SE group exposure HRCI2;
+116        run;
+
+NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
+      112:8   
+NOTE: There were 10 observations read from the data set DAT_LB.UTER_MOOB_PAR.
+NOTE: There were 10 observations read from the data set DAT_LB.UTER_NOMOOB_PAR.
+NOTE: The data set WORK.META_PAR_MOB has 20 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+3                                                                   The SAS System                                          16:36 Monday, July 7, 2025
+
+      system cpu time     0.01 seconds
+      memory              802.34k
+      OS Memory           10660.00k
+      Timestamp           07/07/2025 04:36:24 PM
+      Step Count                        5  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     61
+      Page Swaps                        0
+      Voluntary Context Switches        30
+      Involuntary Context Switches      0
+      Block Input Operations            440
+      Block Output Operations           144
+      
+
+117        
+118        proc print data=meta_PAR_mob; run;
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The PROCEDURE PRINT printed page 3.
+NOTE: PROCEDURE PRINT used (Total process time):
+      real time           0.00 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              409.56k
+      OS Memory           10404.00k
+      Timestamp           07/07/2025 04:36:24 PM
+      Step Count                        6  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     9
+      Page Swaps                        0
+      Voluntary Context Switches        8
+      Involuntary Context Switches      0
+      Block Input Operations            160
+      Block Output Operations           0
+      
+
+119        
+120        
+121        
+122        /**********************************************************************
+123        CREATE MACRO TO METANALYZE ALL OF THE EXPOSURES FOR EACH GROUP
+124        **********************************************************************/
+125        
+126        
+127        /*have to metaanalyze each exposure separately, will create macro that can be used to run through each of the stratification groups
+127      ! (sex/age/materinal BMI)*/
+128        
+129        
+130        
+131        %macro metaanal_allexp (data=, group=);
+132        
+133        	/* abwt exposure */
+134        	data abwt_&group.; set &data; if exposure = 'abwt'; run;
+135        	%metaanal(data=abwt_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+136        		explabel=abwt, outcomelabel=ob,
+137        			outdat= "PAR_uter_abwt_&group");
+138        
+139        	/* abwt1 exposure */
+140        	data abwt1_&group.; set &data; if exposure = 'abwt1'; run;
+141        	%metaanal(data=abwt1_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+142        		explabel=abwt1, outcomelabel=ob,
+143        			outdat= "PAR_uter_abwt1_&group");
+144        
+145        	/* abwt3 exposure */
+146        	data abwt3_&group.; set &data; if exposure = 'abwt3'; run;
+147        	%metaanal(data=abwt3_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+148        		explabel=abwt3, outcomelabel=ob,
+149        		outdat= "PAR_uter_abwt3_&group");
+150        
+151        	/* gweek exposure */
+152        	data gweek_&group.; set &data; if exposure = 'gweek'; run;
+153        	%metaanal(data=gweek_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+154        		explabel=gweek, outcomelabel=ob,
+155        		outdat= "PAR_uter_gweek_&group");
+156        
+157        
+158        	/* gweek1 exposure */
+159        	data gweek1_&group.; set &data; if exposure = 'gweek1'; run;
+160        	%metaanal(data=gweek1_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+161        		explabel=gweek1, outcomelabel=ob,
+162        		outdat= "PAR_uter_gweek1_&group");
+163        
+164        	/* gweek3 exposure */
+165        	data gweek3_&group.; set &data; if exposure = 'gweek3'; run;
+166        	%metaanal(data=gweek3_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+167        		explabel=gweek3, outcomelabel=ob,
+168        		outdat= "PAR_uter_gweek3_&group");
+169        
+170        	/* Delivery exposure */
+171        	data Delivery_&group.; set &data; if exposure = 'Delivery'; run;
+172        	%metaanal(data=Delivery_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+173        		explabel=Delivery, outcomelabel=ob,
+174        		outdat= "PAR_uter_Delivery_&group");
+175        
+176        	/* pregcomp2 exposure */
+177        	data pregcomp2_&group.; set &data; if exposure = 'pregcomp2'; run;
+178        	%metaanal(data=pregcomp2_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+179        		explabel=pregcomp2, outcomelabel=ob,
+180        		outdat= "PAR_uter_pregcomp2_&group");	
+181        
+182        	/* bpregob exposure */
+183        	data bpregob_&group.; set &data; if exposure = 'bpregob'; run;
+184        	%metaanal(data=bpregob_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+185        		explabel=bpregob, outcomelabel=ob,
+186        		outdat= "PAR_uter_bpregob_&group");		
+187        
+188        	/* uter exposure */
+189        	data uter_&group.; set &data; if exposure = 'uter'; run;
+4                                                                   The SAS System                                          16:36 Monday, July 7, 2025
+
+190        	%metaanal(data=uter_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+191        		explabel=uter, outcomelabel=ob,
+192        		outdat= "PAR_uter_uter_&group");
+193        
+194        
+195        %mend metaanal_allexp;
+196        
+197        
+198        /**********************************************************************
+199        RUN MACRO
+200        **********************************************************************/
+201        
+202        %let newpath = /udd/nhywa/GUTSOB/secondary_stratified/1.data;
+203        x "cd &newpath"
+203      !                ;
+204        
+205        
+206        %metaanal_allexp(data=meta_PAR_sex, group=sex);
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.ABWT_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.08 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              567.46k
+      OS Memory           10404.00k
+      Timestamp           07/07/2025 04:36:25 PM
+      Step Count                        7  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     25
+      Page Swaps                        0
+      Voluntary Context Switches        17
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+206         "PAR_uter_abwt_sex"_d
+            ___________________
+            49
+
+206         "PAR_uter_abwt_sex"_p
+            ___________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.17 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           11940.00k
+      Timestamp           07/07/2025 04:36:27 PM
+      Step Count                        26  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     66
+      Page Swaps                        0
+      Voluntary Context Switches        55
+      Involuntary Context Switches      0
+      Block Input Operations            24
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.ABWT1_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              567.46k
+      OS Memory           11940.00k
+      Timestamp           07/07/2025 04:36:27 PM
+      Step Count                        27  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     19
+      Page Swaps                        0
+      Voluntary Context Switches        19
+      Involuntary Context Switches      0
+      Block Input Operations            280
+      Block Output Operations           144
+      
+
+206         "PAR_uter_abwt1_sex"_d
+            ____________________
+            49
+
+206         "PAR_uter_abwt1_sex"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.31 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12196.00k
+      Timestamp           07/07/2025 04:36:29 PM
+      Step Count                        46  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        41
+      Involuntary Context Switches      8
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+5                                                                   The SAS System                                          16:36 Monday, July 7, 2025
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.ABWT3_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              566.75k
+      OS Memory           12196.00k
+      Timestamp           07/07/2025 04:36:29 PM
+      Step Count                        47  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+206         "PAR_uter_abwt3_sex"_d
+            ____________________
+            49
+
+206         "PAR_uter_abwt3_sex"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.15 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 04:36:31 PM
+      Step Count                        66  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        54
+      Involuntary Context Switches      2
+      Block Input Operations            128
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.GWEEK_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.12 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              575.06k
+      OS Memory           12452.00k
+      Timestamp           07/07/2025 04:36:31 PM
+      Step Count                        67  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        16
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+206         "PAR_uter_gweek_sex"_d
+            ____________________
+            49
+
+206         "PAR_uter_gweek_sex"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.15 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              244.43k
+      OS Memory           12708.00k
+      Timestamp           07/07/2025 04:36:33 PM
+      Step Count                        86  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        42
+      Involuntary Context Switches      1
+      Block Input Operations            96
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.GWEEK1_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              569.65k
+      OS Memory           12708.00k
+      Timestamp           07/07/2025 04:36:34 PM
+      Step Count                        87  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+6                                                                   The SAS System                                          16:36 Monday, July 7, 2025
+
+      
+
+206         "PAR_uter_gweek1_sex"_d
+            _____________________
+            49
+
+206         "PAR_uter_gweek1_sex"_p
+            _____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.33 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.43k
+      OS Memory           12708.00k
+      Timestamp           07/07/2025 04:36:36 PM
+      Step Count                        106  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        48
+      Involuntary Context Switches      4
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.GWEEK3_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.08 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              572.59k
+      OS Memory           12708.00k
+      Timestamp           07/07/2025 04:36:36 PM
+      Step Count                        107  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+206         "PAR_uter_gweek3_sex"_d
+            _____________________
+            49
+
+206         "PAR_uter_gweek3_sex"_p
+            _____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.23 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.43k
+      OS Memory           12708.00k
+      Timestamp           07/07/2025 04:36:39 PM
+      Step Count                        126  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        44
+      Involuntary Context Switches      2
+      Block Input Operations            32
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.DELIVERY_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.46k
+      OS Memory           12708.00k
+      Timestamp           07/07/2025 04:36:39 PM
+      Step Count                        127  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        18
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+206         "PAR_uter_Delivery_sex"_d
+            _______________________
+            49
+
+206         "PAR_uter_Delivery_sex"_p
+            _______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.28 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12708.00k
+      Timestamp           07/07/2025 04:36:41 PM
+      Step Count                        146  Switch Count  0
+7                                                                   The SAS System                                          16:36 Monday, July 7, 2025
+
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        38
+      Involuntary Context Switches      2
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.PREGCOMP2_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.08 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              568.90k
+      OS Memory           12708.00k
+      Timestamp           07/07/2025 04:36:41 PM
+      Step Count                        147  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        16
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+206         "PAR_uter_pregcomp2_sex"_d
+            ________________________
+            49
+
+206         "PAR_uter_pregcomp2_sex"_p
+            ________________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.24 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:44 PM
+      Step Count                        166  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        46
+      Involuntary Context Switches      2
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.BPREGOB_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.09 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              568.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:44 PM
+      Step Count                        167  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+206         "PAR_uter_bpregob_sex"_d
+            ______________________
+            49
+
+206         "PAR_uter_bpregob_sex"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.17 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:45 PM
+      Step Count                        186  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        37
+      Involuntary Context Switches      3
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_SEX.
+NOTE: The data set WORK.UTER_SEX has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.03 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              567.21k
+      OS Memory           12964.00k
+8                                                                   The SAS System                                          16:36 Monday, July 7, 2025
+
+      Timestamp           07/07/2025 04:36:45 PM
+      Step Count                        187  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        18
+      Involuntary Context Switches      2
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+206         "PAR_uter_uter_sex"_d
+            ___________________
+            49
+
+206         "PAR_uter_uter_sex"_p
+            ___________________
+            49
+
+207        %metaanal_allexp(data=meta_PAR_age, group=age);
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.17 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:48 PM
+      Step Count                        206  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     10
+      Page Swaps                        0
+      Voluntary Context Switches        50
+      Involuntary Context Switches      1
+      Block Input Operations            8
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.ABWT_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              570.56k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:48 PM
+      Step Count                        207  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        21
+      Involuntary Context Switches      0
+      Block Input Operations            280
+      Block Output Operations           144
+      
+
+207         "PAR_uter_abwt_age"_d
+            ___________________
+            49
+
+207         "PAR_uter_abwt_age"_p
+            ___________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.17 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:51 PM
+      Step Count                        226  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        45
+      Involuntary Context Switches      2
+      Block Input Operations            128
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.ABWT1_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              569.40k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:51 PM
+      Step Count                        227  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        17
+      Involuntary Context Switches      2
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_abwt1_age"_d
+            ____________________
+            49
+
+207         "PAR_uter_abwt1_age"_p
+9                                                                   The SAS System                                          16:36 Monday, July 7, 2025
+
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.08 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:53 PM
+      Step Count                        246  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        42
+      Involuntary Context Switches      3
+      Block Input Operations            96
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.ABWT3_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              566.93k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:53 PM
+      Step Count                        247  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     19
+      Page Swaps                        0
+      Voluntary Context Switches        16
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_abwt3_age"_d
+            ____________________
+            49
+
+207         "PAR_uter_abwt3_age"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.31 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:55 PM
+      Step Count                        266  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        45
+      Involuntary Context Switches      0
+      Block Input Operations            128
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.GWEEK_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.09 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.65k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:55 PM
+      Step Count                        267  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        19
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_gweek_age"_d
+            ____________________
+            49
+
+207         "PAR_uter_gweek_age"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.28 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:58 PM
+      Step Count                        286  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     9
+      Page Swaps                        0
+      Voluntary Context Switches        42
+      Involuntary Context Switches      1
+      Block Input Operations            64
+      Block Output Operations           16
+10                                                                  The SAS System                                          16:36 Monday, July 7, 2025
+
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.GWEEK1_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              567.75k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:36:58 PM
+      Step Count                        287  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        18
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_gweek1_age"_d
+            _____________________
+            49
+
+207         "PAR_uter_gweek1_age"_p
+            _____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.11 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:00 PM
+      Step Count                        306  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        43
+      Involuntary Context Switches      3
+      Block Input Operations            64
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.GWEEK3_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              567.59k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:00 PM
+      Step Count                        307  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_gweek3_age"_d
+            _____________________
+            49
+
+207         "PAR_uter_gweek3_age"_p
+            _____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.24 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:02 PM
+      Step Count                        326  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        47
+      Involuntary Context Switches      3
+      Block Input Operations            32
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.DELIVERY_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.75k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:02 PM
+      Step Count                        327  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+11                                                                  The SAS System                                          16:36 Monday, July 7, 2025
+
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_Delivery_age"_d
+            _______________________
+            49
+
+207         "PAR_uter_Delivery_age"_p
+            _______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.25 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:04 PM
+      Step Count                        346  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        44
+      Involuntary Context Switches      2
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.PREGCOMP2_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.12 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              567.96k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:04 PM
+      Step Count                        347  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        22
+      Involuntary Context Switches      3
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_pregcomp2_age"_d
+            ________________________
+            49
+
+207         "PAR_uter_pregcomp2_age"_p
+            ________________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.12 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:06 PM
+      Step Count                        366  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        50
+      Involuntary Context Switches      4
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.BPREGOB_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              568.90k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:06 PM
+      Step Count                        367  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        24
+      Involuntary Context Switches      2
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_bpregob_age"_d
+            ______________________
+            49
+
+207         "PAR_uter_bpregob_age"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.16 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+12                                                                  The SAS System                                          16:36 Monday, July 7, 2025
+
+      Timestamp           07/07/2025 04:37:08 PM
+      Step Count                        386  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        48
+      Involuntary Context Switches      1
+      Block Input Operations            160
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_AGE.
+NOTE: The data set WORK.UTER_AGE has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.68k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:09 PM
+      Step Count                        387  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        18
+      Involuntary Context Switches      2
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+207         "PAR_uter_uter_age"_d
+            ___________________
+            49
+
+207         "PAR_uter_uter_age"_p
+            ___________________
+            49
+
+208        %metaanal_allexp(data=meta_PAR_mob, group=mob);
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.11 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:10 PM
+      Step Count                        406  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        49
+      Involuntary Context Switches      3
+      Block Input Operations            96
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.ABWT_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              568.90k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:10 PM
+      Step Count                        407  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        17
+      Involuntary Context Switches      2
+      Block Input Operations            280
+      Block Output Operations           144
+      
+
+208         "PAR_uter_abwt_mob"_d
+            ___________________
+            49
+
+208         "PAR_uter_abwt_mob"_p
+            ___________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.11 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:12 PM
+      Step Count                        426  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        39
+      Involuntary Context Switches      2
+      Block Input Operations            32
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.ABWT1_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+13                                                                  The SAS System                                          16:36 Monday, July 7, 2025
+
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.68k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:12 PM
+      Step Count                        427  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        17
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+_TYPE_=0 _FREQ_=2 sumf=16010.612934 sumr=16010.612934 w1=16010.612934 w2=139882150 w3=1.3073204E12 numstud=2 BETAF=0.004516957 BETAR=0.004516957
+SEF=0.0079030735 SER=0.0079030735 BLOWF=-0.010973067 BHIGHF=0.0200069811 BLOWR=-0.010973067 BHIGHR=0.0200069811 ZSCOREF=0.5715443508
+ZSCORER=0.5715443508 CHI2F=0.326662945 CHI2R=0.326662945 PCHI2F=0.5676307056 PCHI2R=0.5676307056 SQSUMW=139882150 SUMW=16010.612934 W=5585.3594906
+TAU2=0 ORF=1.0045271738 ORR=1.0045271738 ORLOWF=0.9890869175 ORLOWR=0.9890869175 ORHIGHF=1.0202084621 ORHIGHR=1.0202084621 Q=0.0001065946 DF=1
+PHET=0.9917624135 RB=0 DGQ_B=10.940868295 FWT=. RWT=. VSRF=0.0000624586 VSRR=0.0000624586 DIM=2 study_01=moob study_02=nomoob r_i=0 pr_i=0 cv_betaw=0
+pcv_betaw=0 betahat=0.004516957 betahat2=0.0000204029 betahatr=0.004516957 betahatr2=0.0000204029 varq=2 seq=1.4142135624 varlogq=176019015.35
+selogq=13267.21581 lclq=0 uclq=. qlow=0 qhi=2.7719651769 c1=1 c2=0.0913809724 rilow=131.73513212 rihi=66.103693886 varri=23790.201768
+lcri=-302.3118243 ucri=302.3118243 lclri=0 uclri=100 vartau2=3.780162E-8 vartau=. varcvb=. cvblow=0 cvbhi=. varrb=239.40519809 lcrb=-30.32653968
+ucrb=30.32653968 lclrb=0 uclrb=100 lrb=0 _ERROR_=1 _N_=1
+208         "PAR_uter_abwt1_mob"_d
+            ____________________
+            49
+
+208         "PAR_uter_abwt1_mob"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.15 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:14 PM
+      Step Count                        446  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        40
+      Involuntary Context Switches      1
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.ABWT3_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.10 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              568.90k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:15 PM
+      Step Count                        447  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+208         "PAR_uter_abwt3_mob"_d
+            ____________________
+            49
+
+208         "PAR_uter_abwt3_mob"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.25 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:17 PM
+      Step Count                        466  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        49
+      Involuntary Context Switches      1
+      Block Input Operations            96
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.GWEEK_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.68k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:17 PM
+      Step Count                        467  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+14                                                                  The SAS System                                          16:36 Monday, July 7, 2025
+
+      Voluntary Context Switches        14
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+208         "PAR_uter_gweek_mob"_d
+            ____________________
+            49
+
+208         "PAR_uter_gweek_mob"_p
+            ____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.20 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:19 PM
+      Step Count                        486  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        40
+      Involuntary Context Switches      2
+      Block Input Operations            64
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.GWEEK1_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              568.90k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:19 PM
+      Step Count                        487  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      2
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+208         "PAR_uter_gweek1_mob"_d
+            _____________________
+            49
+
+208         "PAR_uter_gweek1_mob"_p
+            _____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.21 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:21 PM
+      Step Count                        506  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        52
+      Involuntary Context Switches      1
+      Block Input Operations            32
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.GWEEK3_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.07 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.68k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:21 PM
+      Step Count                        507  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+208         "PAR_uter_gweek3_mob"_d
+            _____________________
+            49
+
+208         "PAR_uter_gweek3_mob"_p
+            _____________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.15 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+15                                                                  The SAS System                                          16:36 Monday, July 7, 2025
+
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:23 PM
+      Step Count                        526  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     9
+      Page Swaps                        0
+      Voluntary Context Switches        40
+      Involuntary Context Switches      1
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.DELIVERY_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              568.90k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:23 PM
+      Step Count                        527  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+208         "PAR_uter_Delivery_mob"_d
+            _______________________
+            49
+
+208         "PAR_uter_Delivery_mob"_p
+            _______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.24 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.01 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:26 PM
+      Step Count                        546  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        43
+      Involuntary Context Switches      2
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.PREGCOMP2_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.06 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.68k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:26 PM
+      Step Count                        547  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        14
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+208         "PAR_uter_pregcomp2_mob"_d
+            ________________________
+            49
+
+208         "PAR_uter_pregcomp2_mob"_p
+            ________________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.10 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:27 PM
+      Step Count                        566  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        40
+      Involuntary Context Switches      3
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.BPREGOB_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.05 seconds
+16                                                                  The SAS System                                          16:36 Monday, July 7, 2025
+
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              568.90k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:27 PM
+      Step Count                        567  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      1
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+208         "PAR_uter_bpregob_mob"_d
+            ______________________
+            49
+
+208         "PAR_uter_bpregob_mob"_p
+            ______________________
+            49
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.17 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:29 PM
+      Step Count                        586  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        42
+      Involuntary Context Switches      2
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+
+NOTE: There were 20 observations read from the data set WORK.META_PAR_MOB.
+NOTE: The data set WORK.UTER_MOB has 2 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      user cpu time       0.00 seconds
+      system cpu time     0.00 seconds
+      memory              566.68k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:29 PM
+      Step Count                        587  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     18
+      Page Swaps                        0
+      Voluntary Context Switches        15
+      Involuntary Context Switches      0
+      Block Input Operations            120
+      Block Output Operations           144
+      
+
+208         "PAR_uter_uter_mob"_d
+            ___________________
+            49
+
+208         "PAR_uter_uter_mob"_p
+            ___________________
+            49
+
+209        
+210        
+211        
+212        
+213        
+214        
+215        
+216        
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.15 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.00 seconds
+      memory              243.43k
+      OS Memory           12964.00k
+      Timestamp           07/07/2025 04:37:30 PM
+      Step Count                        606  Switch Count  0
+      Page Faults                       0
+      Page Reclaims                     8
+      Page Swaps                        0
+      Voluntary Context Switches        40
+      Involuntary Context Switches      5
+      Block Input Operations            0
+      Block Output Operations           16
+      
+
+NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
+NOTE: The SAS System used:
+      real time           1:06.78
+      user cpu time       1.54 seconds
+      system cpu time     1.33 seconds
+      memory              15610.59k
+      OS Memory           18104.00k
+      Timestamp           07/07/2025 04:37:30 PM
+      Step Count                        606  Switch Count  1224
+      Page Faults                       0
+      Page Reclaims                     70016
+      Page Swaps                        0
+      Voluntary Context Switches        18056
+      Involuntary Context Switches      546
+      Block Input Operations            161792
+17                                                                  The SAS System                                          16:36 Monday, July 7, 2025
+
+      Block Output Operations           98344
+      
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   1
+
+                                              Obs    exposure     group     HRCI2       SE         beta
+
+                                                1    abwt         female      .      0.017298    0.01030
+                                                2    abwt1        female      .      0.013656    0.00642
+                                                3    abwt3        female      .      0.007904    0.00389
+                                                4    gweek        female      .      0.020559    0.02431
+                                                5    gweek1       female      .      0.014821    0.00389
+                                                6    gweek3       female      .      0.012788    0.02042
+                                                7    Delivery     female      .      0.025493    0.03072
+                                                8    pregcomp2    female      .      0.019039    0.02916
+                                                9    bpregob      female      .      0.015503    0.10721
+                                               10    uter         female      .      0.027735    0.17939
+                                               11    abwt         male        .      0.014852    0.02678
+                                               12    abwt1        male        .      0.009838    0.00230
+                                               13    abwt3        male        .      0.010253    0.02448
+                                               14    gweek        male        .      0.018213    0.02010
+                                               15    gweek1       male        .      0.013650    0.00144
+                                               16    gweek3       male        .      0.011396    0.01866
+                                               17    Delivery     male        .      0.022785    0.06052
+                                               18    pregcomp2    male        .      0.015016    0.03483
+                                               19    bpregob      male        .      0.011162    0.05737
+                                               20    uter         male        .      0.024924    0.17561
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   2
+
+                                              Obs    exposure     group    HRCI2       SE         beta
+
+                                                1    abwt         child      .      0.027539    0.03839
+                                                2    abwt1        child      .      0.019001    0.00000
+                                                3    abwt3        child      .      0.019601    0.03839
+                                                4    gweek        child      .      0.037092    0.03834
+                                                5    gweek1       child      .      0.026403    0.01215
+                                                6    gweek3       child      .      0.022736    0.02619
+                                                7    Delivery     child      .      0.042543    0.08066
+                                                8    pregcomp2    child      .      0.030115    0.05504
+                                                9    bpregob      child      .      0.027021    0.07090
+                                               10    uter         child      .      0.047028    0.23522
+                                               11    abwt         teen       .      0.010567    0.01680
+                                               12    abwt1        teen       .      0.008409    0.00562
+                                               13    abwt3        teen       .      0.006221    0.01118
+                                               14    gweek        teen       .      0.014889    0.01839
+                                               15    gweek1       teen       .      0.010514    0.00000
+                                               16    gweek3       teen       .      0.010138    0.01839
+                                               17    Delivery     teen       .      0.020709    0.03945
+                                               18    pregcomp2    teen       .      0.013410    0.02803
+                                               19    bpregob      teen       .      0.011343    0.08063
+                                               20    uter         teen       .      0.019982    0.16339
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   3
+
+                                              Obs    exposure     group     HRCI2       SE         beta
+
+                                                1    abwt         moob        .      0.019551    0.01134
+                                                2    abwt1        moob        .      0.013381    0.00463
+                                                3    abwt3        moob        .      0.013985    0.00671
+                                                4    gweek        moob        .      0.024691    0.03010
+                                                5    gweek1       moob        .      0.019198    0.00861
+                                                6    gweek3       moob        .      0.021400    0.02149
+                                                7    Delivery     moob        .      0.039422    0.07414
+                                                8    pregcomp2    moob        .      0.026252    0.00279
+                                                9    bpregob      moob        .      0.044055    0.09649
+                                               10    uter         moob        .      0.055702    0.19444
+                                               11    abwt         nomoob      .      0.011656    0.01939
+                                               12    abwt1        nomoob      .      0.009794    0.00446
+                                               13    abwt3        nomoob      .      0.006904    0.01493
+                                               14    gweek        nomoob      .      0.015470    0.01625
+                                               15    gweek1       nomoob      .      0.011779    0.00000
+                                               16    gweek3       nomoob      .      0.009511    0.01625
+                                               17    Delivery     nomoob      .      0.018538    0.02501
+                                               18    pregcomp2    nomoob      .      0.011858    0.03026
+                                               19    bpregob      nomoob      .      0.002654    0.00421
+                                               20    uter         nomoob      .      0.023789    0.09027
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   4
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.010305       0.017298      0.42434      0.42434 
+                                         2     male        0.026782       0.014852      0.57566      0.57566 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   5
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0198 (0.0113)    0.0790                                             
+                               3       Q          0.52               0.4699    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   6
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   7
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female     .006417418      0.013656      0.34165      0.34165 
+                                         2     male       .002297128      0.009838      0.65835      0.65835 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   8
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0037 (0.0080)    0.6425                                             
+                               3       Q          0.05               0.8066    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025   9
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  10
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.003887       0.007904      0.62728      0.55028 
+                                         2     male        0.024485       0.010253      0.37272      0.44972 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  11
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+
+                           Obs    Statistic    Value (95% CI)               P             Hypothesis being tested
+
+                            2       Coeff      0.0132 (0.0102)         0.1994                                             
+                            3       Q          2.53                    0.1116    Is there heterogeneity among the studies?
+                            4       tau2       0.0001                   .                                                 
+                            5       r(i)       62.1 (0.0, 100.0)        .                                                 
+                            6       CVB        0.861 (0.000, 3.233)     .                                                 
+                            7       r(b)       61.1 (0.0, 100.0)        .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  12
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+
+                              Obs    Statistic    Description
+
+                               2       Coeff      Coefficient from random effects model (SE)                           
+                               3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4       tau2       Estimate of between-studies variance (tau squared)                   
+                               5       r(i)       Between-studies variance as a percent of total variance (r(i))       
+                               6       CVB        SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7       r(b)       New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  13
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.024306       0.020559      0.43971      0.43971 
+                                         2     male        0.020098       0.018213      0.56029      0.56029 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  14
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0219 (0.0136)    0.1074                                             
+                               3       Q          0.02               0.8782    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  15
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  16
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female     .003886590      0.014821      0.45894      0.45894 
+                                         2     male       .001437526      0.013650      0.54106      0.54106 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  17
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0026 (0.0100)    0.7986                                             
+                               3       Q          0.01               0.9033    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  18
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  19
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.020419       0.012788      0.44263      0.44263 
+                                         2     male        0.018660       0.011396      0.55737      0.55737 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  20
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0194 (0.0085)    0.0223                                             
+                               3       Q          0.01               0.9182    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  21
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  22
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.030721       0.025493      0.44409      0.44409 
+                                         2     male        0.060520       0.022785      0.55591      0.55591 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  23
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0473 (0.0170)    0.0054                                             
+                               3       Q          0.75               0.3835    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  24
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  25
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.029164       0.019039      0.38347      0.38347 
+                                         2     male        0.034835       0.015016      0.61653      0.61653 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  26
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0327 (0.0118)    0.0056                                             
+                               3       Q          0.05               0.8151    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  27
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  28
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.10721        0.015503      0.34139      0.47670 
+                                         2     male        0.05737        0.011162      0.65861      0.52330 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  29
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+
+                           Obs    Statistic    Value (95% CI)               P             Hypothesis being tested
+
+                            2       Coeff      0.0811 (0.0249)         0.0011                                             
+                            3       Q          6.80                    0.0091    Is there heterogeneity among the studies?
+                            4       tau2       0.0011                   .                                                 
+                            5       r(i)       86.6 (48.9, 100.0)       .                                                 
+                            6       CVB        0.401 (0.000, 1.096)     .                                                 
+                            7       r(b)       85.5 (45.7, 100.0)       .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  30
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+
+                              Obs    Statistic    Description
+
+                               2       Coeff      Coefficient from random effects model (SE)                           
+                               3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4       tau2       Estimate of between-studies variance (tau squared)                   
+                               5       r(i)       Between-studies variance as a percent of total variance (r(i))       
+                               6       CVB        SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7       r(b)       New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  31
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     female      0.17939        0.027735      0.44677      0.44677 
+                                         2     male        0.17561        0.024924      0.55323      0.55323 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  32
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.1773 (0.0185)    <.0001                                             
+                               3       Q          0.01               0.9193    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  33
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  34
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.038389       0.027539      0.12834      0.12834 
+                                          2     teen       0.016801       0.010567      0.87166      0.87166 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  35
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0196 (0.0099)    0.0473                                             
+                               3       Q          0.53               0.4642    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  36
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  37
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child     .000000000      0.019001      0.16379      0.16379 
+                                          2     teen      .005621629      0.008409      0.83621      0.83621 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  38
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0047 (0.0077)    0.5410                                             
+                               3       Q          0.07               0.7867    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  39
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  40
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.038389       0.019601      0.09152      0.26667 
+                                          2     teen       0.011179       0.006221      0.90848      0.73333 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  41
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+
+                           Obs    Statistic    Value (95% CI)               P             Hypothesis being tested
+
+                            2       Coeff      0.0184 (0.0120)         0.1255                                             
+                            3       Q          1.75                    0.1858    Is there heterogeneity among the studies?
+                            4       tau2       0.0002                   .                                                 
+                            5       r(i)       69.3 (0.0, 100.0)        .                                                 
+                            6       CVB        0.683 (0.000, 3.059)     .                                                 
+                            7       r(b)       54.8 (0.0, 100.0)        .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  42
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+
+                              Obs    Statistic    Description
+
+                               2       Coeff      Coefficient from random effects model (SE)                           
+                               3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4       tau2       Estimate of between-studies variance (tau squared)                   
+                               5       r(i)       Between-studies variance as a percent of total variance (r(i))       
+                               6       CVB        SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7       r(b)       New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  43
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.038338       0.037092      0.13876      0.13876 
+                                          2     teen       0.018393       0.014889      0.86124      0.86124 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  44
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0212 (0.0138)    0.1256                                             
+                               3       Q          0.24               0.6178    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  45
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  46
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.012149       0.026403      0.13687      0.13687 
+                                          2     teen       0.000000       0.010514      0.86313      0.86313 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  47
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0017 (0.0098)    0.8648                                             
+                               3       Q          0.18               0.6690    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  48
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  49
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.026188       0.022736      0.16585      0.16585 
+                                          2     teen       0.018393       0.010138      0.83415      0.83415 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  50
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0197 (0.0093)    0.0335                                             
+                               3       Q          0.09               0.7542    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  51
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  52
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.080665       0.042543      0.19156      0.19156 
+                                          2     teen       0.039448       0.020709      0.80844      0.80844 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  53
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0473 (0.0186)    0.0110                                             
+                               3       Q          0.75               0.3837    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  54
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  55
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.055036       0.030115      0.16548      0.16548 
+                                          2     teen       0.028031       0.013410      0.83452      0.83452 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  56
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0325 (0.0123)    0.0080                                             
+                               3       Q          0.67               0.4127    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  57
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  58
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.070902       0.027021      0.14982      0.14982 
+                                          2     teen       0.080626       0.011343      0.85018      0.85018 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  59
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0792 (0.0105)    <.0001                                             
+                               3       Q          0.11               0.7400    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  60
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  61
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                         Obs    group    coefficient    coefficient      model        model
+
+                                          1     child      0.23522        0.047028      0.15292      0.32434 
+                                          2     teen       0.16339        0.019982      0.84708      0.67566 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  62
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+
+                           Obs    Statistic    Value (95% CI)               P             Hypothesis being tested
+
+                            2       Coeff      0.1867 (0.0336)         <.0001                                             
+                            3       Q          1.97                    0.1598    Is there heterogeneity among the studies?
+                            4       tau2       0.0013                   .                                                 
+                            5       r(i)       65.3 (0.0, 100.0)        .                                                 
+                            6       CVB        0.191 (0.000, 0.732)     .                                                 
+                            7       r(b)       56.3 (0.0, 100.0)        .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  63
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+
+                              Obs    Statistic    Description
+
+                               2       Coeff      Coefficient from random effects model (SE)                           
+                               3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4       tau2       Estimate of between-studies variance (tau squared)                   
+                               5       r(i)       Between-studies variance as a percent of total variance (r(i))       
+                               6       CVB        SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7       r(b)       New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  64
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.011342       0.019551      0.26222      0.26222 
+                                         2     nomoob      0.019390       0.011656      0.73778      0.73778 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  65
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0173 (0.0100)    0.0844                                             
+                               3       Q          0.12               0.7237    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  66
+                                                                           
+                                                                           
+                                                                Studies of abwt and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  67
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob       .004628433      0.013381      0.34885      0.34885 
+                                         2     nomoob     .004457233      0.009794      0.65115      0.65115 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  68
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0045 (0.0079)    0.5676                                             
+                               3       Q          0.00               0.9918    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  69
+                                                                           
+                                                                           
+                                                               Studies of abwt1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  70
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.006713       0.013985      0.19597      0.19597 
+                                         2     nomoob      0.014932       0.006904      0.80403      0.80403 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  71
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0133 (0.0062)    0.0314                                             
+                               3       Q          0.27               0.5982    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  72
+                                                                           
+                                                                           
+                                                               Studies of abwt3 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  73
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.030105       0.024691      0.28191      0.28191 
+                                         2     nomoob      0.016246       0.015470      0.71809      0.71809 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  74
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0202 (0.0131)    0.1242                                             
+                               3       Q          0.22               0.6343    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  75
+                                                                           
+                                                                           
+                                                               Studies of gweek and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  76
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob       .008614280      0.019198      0.27351      0.27351 
+                                         2     nomoob     .000000000      0.011779      0.72649      0.72649 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  77
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0024 (0.0100)    0.8145                                             
+                               3       Q          0.14               0.7021    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  78
+                                                                           
+                                                                           
+                                                               Studies of gweek1 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  79
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.021490       0.021400      0.16494      0.16494 
+                                         2     nomoob      0.016246       0.009511      0.83506      0.83506 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  80
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0171 (0.0087)    0.0490                                             
+                               3       Q          0.05               0.8228    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  81
+                                                                           
+                                                                           
+                                                               Studies of gweek3 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  82
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.074140       0.039422      0.18109      0.24927 
+                                         2     nomoob      0.025009       0.018538      0.81891      0.75073 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  83
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+
+                           Obs    Statistic    Value (95% CI)               P             Hypothesis being tested
+
+                            2       Coeff      0.0373 (0.0213)         0.0796                                             
+                            3       Q          1.27                    0.2594    Is there heterogeneity among the studies?
+                            4       tau2       0.0003                   .                                                 
+                            5       r(i)       31.4 (0.0, 100.0)        .                                                 
+                            6       CVB        0.431 (0.000, 3.267)     .                                                 
+                            7       r(b)       28.6 (0.0, 100.0)        .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  84
+                                                                           
+                                                                           
+                                                              Studies of Delivery and ob
+
+                              Obs    Statistic    Description
+
+                               2       Coeff      Coefficient from random effects model (SE)                           
+                               3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4       tau2       Estimate of between-studies variance (tau squared)                   
+                               5       r(i)       Between-studies variance as a percent of total variance (r(i))       
+                               6       CVB        SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7       r(b)       New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  85
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.002793       0.026252      0.16945      0.16945 
+                                         2     nomoob      0.030262       0.011858      0.83055      0.83055 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  86
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+
+                              Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
+
+                               2       Coeff      0.0256 (0.0108)    0.0178                                             
+                               3       Q          0.90               0.3403    Is there heterogeneity among the studies?
+                               4       tau2       0.0000              .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  87
+                                                                           
+                                                                           
+                                                             Studies of pregcomp2 and ob
+
+                                    Obs    Statistic                           Description
+
+                                     2       Coeff      Coefficient from random effects model (SE)               
+                                     3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom
+                                     4       tau2       Estimate of between-studies variance (tau squared)       
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  88
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.096494       0.044055      0.00362      0.38646 
+                                         2     nomoob      0.004210       0.002654      0.99638      0.61354 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  89
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+
+                           Obs    Statistic    Value (95% CI)               P             Hypothesis being tested
+
+                            2       Coeff      0.0399 (0.0449)         0.3749                                             
+                            3       Q          4.37                    0.0365    Is there heterogeneity among the studies?
+                            4       tau2       0.0033                   .                                                 
+                            5       r(i)       99.6 (98.1, 100.0)       .                                                 
+                            6       CVB        1.437 (0.000, 5.530)     .                                                 
+                            7       r(b)       81.3 (39.0, 100.0)       .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  90
+                                                                           
+                                                                           
+                                                              Studies of bpregob and ob
+
+                              Obs    Statistic    Description
+
+                               2       Coeff      Coefficient from random effects model (SE)                           
+                               3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4       tau2       Estimate of between-studies variance (tau squared)                   
+                               5       r(i)       Between-studies variance as a percent of total variance (r(i))       
+                               6       CVB        SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7       r(b)       New between-studies variance as a percent of total variance (r(b))   
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  91
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+                                                                listing of input data
+
+                                                                                       weight in    weight in
+                                                                         std error       fixed        random
+                                                            study         of study      effects      effects
+                                        Obs    group     coefficient    coefficient      model        model
+
+                                         1     moob        0.19444        0.055702      0.15426      0.38312 
+                                         2     nomoob      0.09027        0.023789      0.84574      0.61688 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  92
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+
+                           Obs    Statistic    Value (95% CI)               P             Hypothesis being tested
+
+                            2       Coeff      0.1302 (0.0506)         0.0102                                             
+                            3       Q          2.95                    0.0855    Is there heterogeneity among the studies?
+                            4       tau2       0.0036                   .                                                 
+                            5       r(i)       79.0 (9.4, 100.0)        .                                                 
+                            6       CVB        0.460 (0.000, 1.486)     .                                                 
+                            7       r(b)       70.0 (0.0, 100.0)        .                                                 
+ 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+                                                                    The SAS System                                      16:36 Monday, July 7, 2025  93
+                                                                           
+                                                                           
+                                                                Studies of uter and ob
+
+                              Obs    Statistic    Description
+
+                               2       Coeff      Coefficient from random effects model (SE)                           
+                               3       Q          Q-statistic for heterogeneity with 1 degree(s) of freedom            
+                               4       tau2       Estimate of between-studies variance (tau squared)                   
+                               5       r(i)       Between-studies variance as a percent of total variance (r(i))       
+                               6       CVB        SQRT(Between-studies variance)/coeff. from random-effects model (CVB)
+                               7       r(b)       New between-studies variance as a percent of total variance (r(b))   
