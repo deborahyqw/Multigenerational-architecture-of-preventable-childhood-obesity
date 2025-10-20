@@ -1,0 +1,133 @@
+analysis,Parm,mod,group,RR,UCI,LCI,exposure
+unadjusted,chchwestq1,ch,life,1,1.62,0.62,Western Diet Q2 vs. Q1
+unadjusted,chchwestq2,ch,life,1,2.11,0.47,Western Diet Q3 vs. Q1
+unadjusted,chchwestq3,ch,life,1.16,2.23,0.6,Western Diet Q4 vs. Q1
+unadjusted,chchstq1,ch,life,0.82,1.27,0.53,Sedentary time Q2 vs. Q1
+unadjusted,chchstq2,ch,life,1.01,1.78,0.57,Sedentary time Q3 vs. Q1
+unadjusted,chchstq3,ch,life,1.12,1.8,0.7,Sedentary time Q4 vs. Q1
+unadjusted,chchpaq0,ch,life,1.18,1.99,0.7,Physical activity Q1 vs. Q4
+unadjusted,chchpaq1,ch,life,1.1,1.8,0.68,Physical activity Q2 vs. Q4
+unadjusted,chchpaq2,ch,life,0.94,1.77,0.5,Physical activity Q3 vs. Q4
+unadjusted,adolchwestq1,adol,life,1.35,2.28,0.8,Western Diet Q2 vs. Q1
+unadjusted,adolchwestq2,adol,life,1.18,2.01,0.69,Western Diet Q3 vs. Q1
+unadjusted,adolchwestq3,adol,life,1.39,2.34,0.83,Western Diet Q4 vs. Q1
+unadjusted,adolchstq1,adol,life,1.04,1.91,0.57,Sedentary time Q2 vs. Q1
+unadjusted,adolchstq2,adol,life,1.53,2.5,0.94,Sedentary time Q3 vs. Q1
+unadjusted,adolchstq3,adol,life,1.86,2.93,1.18,Sedentary time Q4 vs. Q1
+unadjusted,adolchpaq0,adol,life,0.88,1.84,0.43,Physical activity Q1 vs. Q4
+unadjusted,adolchpaq1,adol,life,0.69,1.23,0.39,Physical activity Q2 vs. Q4
+unadjusted,adolchpaq2,adol,life,0.87,1.79,0.42,Physical activity Q3 vs. Q4
+adjusted,chchwestq1,ch,life,1,1.62,0.62,Western Diet Q2 vs. Q1
+adjusted,chchwestq2,ch,life,1,2.11,0.47,Western Diet Q3 vs. Q1
+adjusted,chchwestq3,ch,life,1.16,2.23,0.6,Western Diet Q4 vs. Q1
+adjusted,chchstq1,ch,life,0.82,1.27,0.53,Sedentary time Q2 vs. Q1
+adjusted,chchstq2,ch,life,1.01,1.78,0.57,Sedentary time Q3 vs. Q1
+adjusted,chchstq3,ch,life,1.12,1.8,0.7,Sedentary time Q4 vs. Q1
+adjusted,chchpaq0,ch,life,1.18,1.99,0.7,Physical activity Q1 vs. Q4
+adjusted,chchpaq1,ch,life,1.1,1.8,0.68,Physical activity Q2 vs. Q4
+adjusted,chchpaq2,ch,life,0.94,1.77,0.5,Physical activity Q3 vs. Q4
+adjusted,adolchwestq1,adol,life,1.35,2.33,0.79,Western Diet Q2 vs. Q1
+adjusted,adolchwestq2,adol,life,1.17,2.01,0.68,Western Diet Q3 vs. Q1
+adjusted,adolchwestq3,adol,life,1.37,2.26,0.83,Western Diet Q4 vs. Q1
+adjusted,adolchstq1,adol,life,1.02,1.86,0.56,Sedentary time Q2 vs. Q1
+adjusted,adolchstq2,adol,life,1.49,2.46,0.91,Sedentary time Q3 vs. Q1
+adjusted,adolchstq3,adol,life,1.77,2.82,1.11,Sedentary time Q4 vs. Q1
+adjusted,adolchpaq0,adol,life,0.89,1.73,0.46,Physical activity Q1 vs. Q4
+adjusted,adolchpaq1,adol,life,0.69,1.22,0.39,Physical activity Q2 vs. Q4
+adjusted,adolchpaq2,adol,life,0.85,1.73,0.42,Physical activity Q3 vs. Q4
+unadjusted,pregmowestq1,preg,mom,1.19,2.27,0.62,Maternal Western Diet Q2 vs. Q1
+unadjusted,pregmowestq2,preg,mom,1.28,2.53,0.65,Maternal Western Diet Q3 vs. Q1
+unadjusted,pregmowestq3,preg,mom,1.03,2.69,0.4,Maternal Western Diet Q4 vs. Q1
+unadjusted,pregmopaq0,preg,mom,1.73,3.3,0.91,Maternal physical activity Q1 vs. Q4
+unadjusted,pregmopaq1,preg,mom,1.4,2.88,0.68,Maternal physical activity Q2 vs. Q4
+unadjusted,pregmopaq2,preg,mom,1.2,2.33,0.62,Maternal physical activity Q3 vs. Q4
+unadjusted,mosmkv_preg,preg,mom,1.13,2.16,0.6,Maternal smoking Ever vs. Never
+unadjusted,moshiftb_preg,preg,mom,1.3,2.13,0.79,Maternal Shiftwork Some vs. None
+unadjusted,earlychmowestq1,earlych,mom,1.19,2.23,0.63,Maternal Western Diet Q2 vs. Q1
+unadjusted,earlychmowestq2,earlych,mom,1.33,2.64,0.67,Maternal Western Diet Q3 vs. Q1
+unadjusted,earlychmowestq3,earlych,mom,1.47,3.68,0.58,Maternal Western Diet Q4 vs. Q1
+unadjusted,earlychmopaq0,earlych,mom,1.45,2.7,0.78,Maternal physical activity Q1 vs. Q4
+unadjusted,earlychmopaq1,earlych,mom,1.34,2.42,0.74,Maternal physical activity Q2 vs. Q4
+unadjusted,earlychmopaq2,earlych,mom,1.1,2.01,0.6,Maternal physical activity Q3 vs. Q4
+unadjusted,mosmkv_earlych,earlych,mom,1.1,2.1,0.58,Maternal smoking Ever vs. Never
+unadjusted,moshiftb_earlych,earlych,mom,1.42,2.1,0.96,Maternal Shiftwork Some vs. None
+unadjusted,chmowestq1,ch,mom,1.54,2.83,0.84,Maternal Western Diet Q2 vs. Q1
+unadjusted,chmowestq2,ch,mom,1.26,2.83,0.56,Maternal Western Diet Q3 vs. Q1
+unadjusted,chmowestq3,ch,mom,1.84,4.43,0.76,Maternal Western Diet Q4 vs. Q1
+unadjusted,chmopaq0,ch,mom,1.44,2.75,0.75,Maternal physical activity Q1 vs. Q4
+unadjusted,chmopaq1,ch,mom,1.67,3.59,0.78,Maternal physical activity Q2 vs. Q4
+unadjusted,chmopaq2,ch,mom,1.24,2.64,0.58,Maternal physical activity Q3 vs. Q4
+unadjusted,mosmkv_ch,ch,mom,1.15,2.08,0.63,Maternal smoking Ever vs. Never
+unadjusted,moshiftb_ch,ch,mom,1.36,2.03,0.9,Maternal Shiftwork Some vs. None
+unadjusted,adolmowestq1,adol,mom,1.11,2.07,0.6,Maternal Western Diet Q2 vs. Q1
+unadjusted,adolmowestq2,adol,mom,1.16,2.69,0.5,Maternal Western Diet Q3 vs. Q1
+unadjusted,adolmowestq3,adol,mom,1.07,2.47,0.47,Maternal Western Diet Q4 vs. Q1
+unadjusted,adolmopaq0,adol,mom,1.8,3.72,0.87,Maternal physical activity Q1 vs. Q4
+unadjusted,adolmopaq1,adol,mom,1.76,3.04,1.02,Maternal physical activity Q2 vs. Q4
+unadjusted,adolmopaq2,adol,mom,1.21,2.25,0.65,Maternal physical activity Q3 vs. Q4
+unadjusted,mosmkv_adol,adol,mom,1.15,2.05,0.65,Maternal smoking Ever vs. Never
+unadjusted,moshiftb_adol,adol,mom,1.14,1.93,0.67,Maternal Shiftwork Some vs. None
+adjusted,pregmowestq1,preg,mom,1.19,2.27,0.62,Maternal Western Diet Q2 vs. Q1
+adjusted,pregmowestq2,preg,mom,1.28,2.53,0.65,Maternal Western Diet Q3 vs. Q1
+adjusted,pregmowestq3,preg,mom,1.03,2.69,0.4,Maternal Western Diet Q4 vs. Q1
+adjusted,pregmopaq0,preg,mom,1.73,3.3,0.91,Maternal physical activity Q1 vs. Q4
+adjusted,pregmopaq1,preg,mom,1.4,2.88,0.68,Maternal physical activity Q2 vs. Q4
+adjusted,pregmopaq2,preg,mom,1.2,2.33,0.62,Maternal physical activity Q3 vs. Q4
+adjusted,mosmkv_preg,preg,mom,1.13,2.16,0.6,Maternal smoking Ever vs. Never
+adjusted,moshiftb_preg,preg,mom,1.3,2.13,0.79,Maternal Shiftwork Some vs. None
+adjusted,earlychmowestq1,earlych,mom,1.1,2.22,0.54,Maternal Western Diet Q2 vs. Q1
+adjusted,earlychmowestq2,earlych,mom,1.15,2.43,0.54,Maternal Western Diet Q3 vs. Q1
+adjusted,earlychmowestq3,earlych,mom,1.15,3.42,0.38,Maternal Western Diet Q4 vs. Q1
+adjusted,earlychmopaq0,earlych,mom,1.72,3.3,0.9,Maternal physical activity Q1 vs. Q4
+adjusted,earlychmopaq1,earlych,mom,1.59,2.94,0.85,Maternal physical activity Q2 vs. Q4
+adjusted,earlychmopaq2,earlych,mom,1.24,2.39,0.65,Maternal physical activity Q3 vs. Q4
+adjusted,mosmkv_earlych,earlych,mom,1.1,2.09,0.58,Maternal smoking Ever vs. Never
+adjusted,moshiftb_earlych,earlych,mom,1.37,2.13,0.89,Maternal Shiftwork Some vs. None
+adjusted,chmowestq1,ch,mom,1.37,2.57,0.73,Maternal Western Diet Q2 vs. Q1
+adjusted,chmowestq2,ch,mom,1,2.28,0.44,Maternal Western Diet Q3 vs. Q1
+adjusted,chmowestq3,ch,mom,1.22,3.42,0.44,Maternal Western Diet Q4 vs. Q1
+adjusted,chmopaq0,ch,mom,1.43,2.71,0.75,Maternal physical activity Q1 vs. Q4
+adjusted,chmopaq1,ch,mom,1.69,3.69,0.78,Maternal physical activity Q2 vs. Q4
+adjusted,chmopaq2,ch,mom,1.26,2.62,0.61,Maternal physical activity Q3 vs. Q4
+adjusted,mosmkv_ch,ch,mom,1.15,2.07,0.64,Maternal smoking Ever vs. Never
+adjusted,moshiftb_ch,ch,mom,1.21,1.91,0.76,Maternal Shiftwork Some vs. None
+adjusted,adolmowestq1,adol,mom,1.03,1.95,0.54,Maternal Western Diet Q2 vs. Q1
+adjusted,adolmowestq2,adol,mom,1,2.36,0.43,Maternal Western Diet Q3 vs. Q1
+adjusted,adolmowestq3,adol,mom,0.84,2.09,0.34,Maternal Western Diet Q4 vs. Q1
+adjusted,adolmopaq0,adol,mom,1.43,3.72,0.55,Maternal physical activity Q1 vs. Q4
+adjusted,adolmopaq1,adol,mom,1.5,2.88,0.78,Maternal physical activity Q2 vs. Q4
+adjusted,adolmopaq2,adol,mom,1.07,2.07,0.55,Maternal physical activity Q3 vs. Q4
+adjusted,mosmkv_adol,adol,mom,1.13,2.04,0.62,Maternal smoking Ever vs. Never
+adjusted,moshiftb_adol,adol,mom,0.97,1.81,0.52,Maternal Shiftwork Some vs. None
+unadjusted,moob_preg,preg,mom,2.14,3.97,1.16,Maternal Obesity
+unadjusted,moob_earlych,earlych,mom,2.78,5.16,1.49,Maternal Obesity
+unadjusted,moob_ch,ch,mom,2.75,5.1,1.49,Maternal Obesity
+unadjusted,moob_adol,adol,mom,2.88,4.29,1.93,Maternal Obesity
+adjusted,moob_preg,preg,mom,2.14,3.97,1.16,Maternal Obesity
+adjusted,moob_earlych,earlych,mom,3.13,7.7,1.27,Maternal Obesity
+adjusted,moob_ch,ch,mom,2.43,5.2,1.14,Maternal Obesity
+adjusted,moob_adol,adol,mom,2.07,4.23,1.02,Maternal Obesity
+unadjusted,pregsesq0,preg,socio,1.26,2.09,0.76,nSES Q1 vs. Q4
+unadjusted,pregsesq1,preg,socio,1.25,2.07,0.75,nSES Q2 vs. Q4
+unadjusted,pregsesq2,preg,socio,1.06,2.03,0.55,nSES Q3 vs. Q4
+unadjusted,earlychsesq0,earlych,socio,1.53,2.62,0.89,nSES Q1 vs. Q4
+unadjusted,earlychsesq1,earlych,socio,1.45,2.48,0.84,nSES Q2 vs. Q4
+unadjusted,earlychsesq2,earlych,socio,1.36,2.3,0.8,nSES Q3 vs. Q4
+unadjusted,chsesq0,ch,socio,1.33,2.11,0.83,nSES Q1 vs. Q4
+unadjusted,chsesq1,ch,socio,1.06,1.93,0.58,nSES Q2 vs. Q4
+unadjusted,chsesq2,ch,socio,0.93,1.51,0.57,nSES Q3 vs. Q4
+unadjusted,adolsesq0,adol,socio,1.7,2.83,1.03,nSES Q1 vs. Q4
+unadjusted,adolsesq1,adol,socio,1.32,2.47,0.7,nSES Q2 vs. Q4
+unadjusted,adolsesq2,adol,socio,1.12,1.85,0.68,nSES Q3 vs. Q4
+adjusted,pregsesq0,preg,socio,1.26,2.09,0.76,nSES Q1 vs. Q4
+adjusted,pregsesq1,preg,socio,1.25,2.07,0.75,nSES Q2 vs. Q4
+adjusted,pregsesq2,preg,socio,1.06,2.03,0.55,nSES Q3 vs. Q4
+adjusted,earlychsesq0,earlych,socio,1.34,2.69,0.66,nSES Q1 vs. Q4
+adjusted,earlychsesq1,earlych,socio,1.32,2.36,0.73,nSES Q2 vs. Q4
+adjusted,earlychsesq2,earlych,socio,1.28,2.24,0.73,nSES Q3 vs. Q4
+adjusted,chsesq0,ch,socio,1.11,2.06,0.6,nSES Q1 vs. Q4
+adjusted,chsesq1,ch,socio,0.94,1.85,0.48,nSES Q2 vs. Q4
+adjusted,chsesq2,ch,socio,0.86,1.49,0.5,nSES Q3 vs. Q4
+adjusted,adolsesq0,adol,socio,1.46,4.45,0.48,nSES Q1 vs. Q4
+adjusted,adolsesq1,adol,socio,1.19,3.66,0.39,nSES Q2 vs. Q4
+adjusted,adolsesq2,adol,socio,1.05,2.04,0.54,nSES Q3 vs. Q4
