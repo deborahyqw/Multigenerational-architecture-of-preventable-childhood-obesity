@@ -1,67 +1,68 @@
-10169:WARNING: An effect for variable f291 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10170:WARNING: An effect for variable f295 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10171:WARNING: An effect for variable f299 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10172:WARNING: An effect for variable f203 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10173:WARNING: An effect for variable calor91n is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10175:WARNING: An effect for variable calor95n is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10177:WARNING: An effect for variable calor99n is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10179:WARNING: An effect for variable calor03n is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10181:WARNING: An effect for variable act89m is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10182:WARNING: An effect for variable act91m is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10183:WARNING: An effect for variable bmi89 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10184:WARNING: An effect for variable bmi91 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10185:WARNING: An effect for variable bmi93 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10186:WARNING: An effect for variable bmi95 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10187:WARNING: An effect for variable bmi97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10188:WARNING: An effect for variable bmi99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10189:WARNING: An effect for variable bmi01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10190:WARNING: An effect for variable bmi03 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10191:WARNING: An effect for variable bmi05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10192:WARNING: An effect for variable shi89_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10194:WARNING: An effect for variable shi8991_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10196:WARNING: An effect for variable shi9193_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10198:WARNING: An effect for variable shi9395_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10200:WARNING: An effect for variable shi9597_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10202:WARNING: An effect for variable shi9799_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10204:WARNING: An effect for variable shi9901_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10206:WARNING: An effect for variable shi0103_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10208:WARNING: An effect for variable shi0305_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10210:WARNING: An effect for variable nSES_89 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10213:WARNING: An effect for variable nSES_91 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10214:WARNING: An effect for variable nSES_93 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10215:WARNING: An effect for variable nSES_95 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10216:WARNING: An effect for variable nSES_97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10217:WARNING: An effect for variable nSES_99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10218:WARNING: An effect for variable nSES_01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10219:WARNING: An effect for variable nSES_03 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10220:WARNING: An effect for variable nSES_05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10221:WARNING: An effect for variable chbmi97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10222:WARNING: An effect for variable chbmi98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10223:WARNING: An effect for variable chbmi99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10224:WARNING: An effect for variable chbmi00 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10225:WARNING: An effect for variable chbmi01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10226:WARNING: An effect for variable chbmi03 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10227:WARNING: An effect for variable chbmi05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10228:WARNING: An effect for variable bmibpreg is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10230:WARNING: An effect for variable chwest_96 is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10232:WARNING: An effect for variable chwest_97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10234:WARNING: An effect for variable chwest_98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10236:WARNING: An effect for variable chwest_01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
-10238:WARNING: An effect for variable chcal96 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10239:WARNING: An effect for variable chcal97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10240:WARNING: An effect for variable chcal98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10241:WARNING: An effect for variable chcal01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10242:WARNING: An effect for variable chst96 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10243:WARNING: An effect for variable chst97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10244:WARNING: An effect for variable chst98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10245:WARNING: An effect for variable chst99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10246:WARNING: An effect for variable chst00 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10247:WARNING: An effect for variable chst01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10248:WARNING: An effect for variable chst05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10249:WARNING: An effect for variable chpa96 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10250:WARNING: An effect for variable chpa97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10251:WARNING: An effect for variable chpa98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10252:WARNING: An effect for variable chpa99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10253:WARNING: An effect for variable chpa00 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10254:WARNING: An effect for variable chpa01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
-10255:WARNING: An effect for variable chpa05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+18:WARNING: Unable to copy SASUSER registry to WORK registry. Because of this, you will not see registry customizations during 
+10280:WARNING: An effect for variable f291 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10281:WARNING: An effect for variable f295 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10282:WARNING: An effect for variable f299 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10283:WARNING: An effect for variable f203 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10284:WARNING: An effect for variable calor91n is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10286:WARNING: An effect for variable calor95n is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10288:WARNING: An effect for variable calor99n is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10290:WARNING: An effect for variable calor03n is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10292:WARNING: An effect for variable act89m is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10293:WARNING: An effect for variable act91m is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10294:WARNING: An effect for variable bmi89 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10295:WARNING: An effect for variable bmi91 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10296:WARNING: An effect for variable bmi93 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10297:WARNING: An effect for variable bmi95 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10298:WARNING: An effect for variable bmi97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10299:WARNING: An effect for variable bmi99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10300:WARNING: An effect for variable bmi01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10301:WARNING: An effect for variable bmi03 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10302:WARNING: An effect for variable bmi05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10303:WARNING: An effect for variable shi89_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10305:WARNING: An effect for variable shi8991_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10307:WARNING: An effect for variable shi9193_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10309:WARNING: An effect for variable shi9395_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10311:WARNING: An effect for variable shi9597_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10313:WARNING: An effect for variable shi9799_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10315:WARNING: An effect for variable shi9901_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10317:WARNING: An effect for variable shi0103_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10319:WARNING: An effect for variable shi0305_con is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10323:WARNING: An effect for variable nSES_89 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10324:WARNING: An effect for variable nSES_91 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10325:WARNING: An effect for variable nSES_93 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10326:WARNING: An effect for variable nSES_95 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10327:WARNING: An effect for variable nSES_97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10328:WARNING: An effect for variable nSES_99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10329:WARNING: An effect for variable nSES_01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10330:WARNING: An effect for variable nSES_03 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10331:WARNING: An effect for variable nSES_05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10332:WARNING: An effect for variable chbmi97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10333:WARNING: An effect for variable chbmi98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10334:WARNING: An effect for variable chbmi99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10335:WARNING: An effect for variable chbmi00 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10336:WARNING: An effect for variable chbmi01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10337:WARNING: An effect for variable chbmi03 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10338:WARNING: An effect for variable chbmi05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10339:WARNING: An effect for variable bmibpreg is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10341:WARNING: An effect for variable chwest_96 is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10343:WARNING: An effect for variable chwest_97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10345:WARNING: An effect for variable chwest_98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10347:WARNING: An effect for variable chwest_01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the 
+10349:WARNING: An effect for variable chcal96 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10350:WARNING: An effect for variable chcal97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10351:WARNING: An effect for variable chcal98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10352:WARNING: An effect for variable chcal01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10353:WARNING: An effect for variable chst96 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10354:WARNING: An effect for variable chst97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10355:WARNING: An effect for variable chst98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10356:WARNING: An effect for variable chst99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10357:WARNING: An effect for variable chst00 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10358:WARNING: An effect for variable chst01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10359:WARNING: An effect for variable chst05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10360:WARNING: An effect for variable chpa96 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10361:WARNING: An effect for variable chpa97 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10362:WARNING: An effect for variable chpa98 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10363:WARNING: An effect for variable chpa99 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10364:WARNING: An effect for variable chpa00 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10365:WARNING: An effect for variable chpa01 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.
+10366:WARNING: An effect for variable chpa05 is a linear combination of other effects. The coefficient of the effect will be set to zero in the imputation.

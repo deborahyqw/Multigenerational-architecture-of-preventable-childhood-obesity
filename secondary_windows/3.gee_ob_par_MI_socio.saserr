@@ -1,6 +1,7 @@
-1503:WARNING: A class or frequency variable is missing on every observation.
-1589:WARNING: A class or frequency variable is missing on every observation.
-1853:WARNING: A class or frequency variable is missing on every observation.
-1941:WARNING: A class or frequency variable is missing on every observation.
-2205:WARNING: A class or frequency variable is missing on every observation.
-2293:WARNING: A class or frequency variable is missing on every observation.
+18:WARNING: Unable to copy SASUSER registry to WORK registry. Because of this, you will not see registry customizations during 
+1969:WARNING: A class or frequency variable is missing on every observation.
+2055:WARNING: A class or frequency variable is missing on every observation.
+2319:WARNING: A class or frequency variable is missing on every observation.
+2407:WARNING: A class or frequency variable is missing on every observation.
+2673:WARNING: A class or frequency variable is missing on every observation.
+2759:WARNING: A class or frequency variable is missing on every observation.

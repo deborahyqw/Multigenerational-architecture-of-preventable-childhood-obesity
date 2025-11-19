@@ -286,23 +286,23 @@ rr <- rbind(life_tidy, mom_tidy, mom_mob_tidy, socio_tidy) %>%
 #write_csv(rr, "2.output/rr_exposure_windows.csv")
 
 
-# rr_tidy <- rr %>% 
-#   mutate(RR_CI = paste0(
-#     sprintf("%.2f", RR), " (",
-#     sprintf("%.2f", LCI), ", ",
-#     sprintf("%.2f", UCI), ")"), 
-#     group=case_when(group=="life" ~ "Personal", 
-#                     group=="mom" ~ "Maternal", 
-#                     group=="socio" ~ "Social"))%>% 
-#   select(analysis, mod, group, exposure, RR_CI) %>% 
-#   pivot_wider(values_from = "RR_CI", names_from = "mod") %>% 
-#   select(analysis, group, exposure, preg, earlych, ch, adol) %>% 
-#   rename("Pregnancy to <1yr"="preg", 
-#          "1yr to <5yrs" = "earlych", 
-#          "5yrs to <11yrs"="ch", 
-#          "12yrs to <18yrs" = "adol") %>% 
-#   filter(analysis==
-#            "unadjusted")
+rr_tidy <- rr %>%
+  mutate(RR_CI = paste0(
+    sprintf("%.2f", RR), " (",
+    sprintf("%.2f", LCI), ", ",
+    sprintf("%.2f", UCI), ")"),
+    group=case_when(group=="life" ~ "Personal",
+                    group=="mom" ~ "Maternal",
+                    group=="socio" ~ "Social"))%>%
+  select(analysis, mod, group, exposure, RR_CI) %>%
+  pivot_wider(values_from = "RR_CI", names_from = "mod") %>%
+  select(analysis, group, exposure, preg, earlych, ch, adol) %>%
+  rename("Pregnancy to <1yr"="preg",
+         "1yr to <5yrs" = "earlych",
+         "5yrs to <11yrs"="ch",
+         "12yrs to <18yrs" = "adol") %>%
+  filter(analysis==
+           "unadjusted")
 
 #write_csv(rr_tidy, "2.output/rr_exposure_windows.csv")
 

@@ -33,7 +33,7 @@ options  linesize=150 pagesize=110;
 
 *path to data;
 libname here '/udd/nhywa/GUTSOB/';
-libname herelb '/udd/nhywa/GUTSOB/secondary_windows/';
+libname heredat '/udd/nhywa/GUTSOB/secondary_windows/1.data';
 
 
 %include '/udd/nhywa/GUTSOB/guts1_vars.sas';
@@ -236,7 +236,7 @@ fcs reg(chage96 chage97 chage98 chage99 chage00 chage01 chage03 chage05
 	 nbiter =10 ; 
 run;
 
-proc sort data=all1nomiss out=herelb.all1_mi; by _imputation_ id; run; 
+proc sort data=all1nomiss out=heredat.all1_mi; by _imputation_ id; run; 
 
 proc means data=all1nomiss n nmiss mean std min median max nolabels ;
  where _Imputation_ = 1 ;

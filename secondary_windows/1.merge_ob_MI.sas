@@ -270,7 +270,7 @@ if time=8 then do;	*83055;
     %exclude(exrec eq 1); *exclude those not in GUTS1 5;
     %exclude(chob eq 1); *baseline ob 3705;
 	%exclude(chbmi eq .); * baseline bmi missing - should be 0, already excluded; 
-    %exclude(lastq eq irt{1});  /*only returned baseline 1996Q 4370*/
+    *%exclude(lastq eq irt{1});  /*only returned baseline 1996Q 4370 - not needed for GEE*/
     *%exclude(id ne ., nodelete=t);
     %exclude(momid ne ., nodelete=t); *74975;
   %output();
@@ -280,7 +280,7 @@ end;
 *Follow-up;
   else if time>8 then do;
   	*%exclude(irt{time} eq .); * no need to censor observations if not returning questionnaires because of imputation x42278;
-  	%exclude(0 lt lastq lt irt{time}); 	 *censor lost to follow up ;
+  	*%exclude(0 lt lastq lt irt{time}); 	 *censor lost to follow up - not needed for GEE ;
   	%exclude(0 lt obyear lt qyear{time} );  *censor observations after becoming OB 5003 ;
   	%exclude(bmi{time} eq .); 	   *censor missing bmi - should be 0;
   	%exclude(age{time} gt 18); 	   *censor age>18 61582;
@@ -548,7 +548,7 @@ array mcal(12) XXX1 calor91n calor91n calor95n calor95n calor95n calor95n calor0
 array msmk(12) smk89 smk91 smk93 smk95 smk97 smk99 smk01 smk03 smk05 smk07 smk11 smk13;
 array mpa(12) act89m act91m act91m act91m act97m act97m act01m act01m act05m act05m act09m act13m;
 array mbmi(12) bmi89 bmi91 bmi93 bmi95 bmi97 bmi99 bmi01 bmi03 bmi05 bmi07 bmi11 bmi13;
-array mshift(12) shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi0305_con shi11_con shi13_con;
+array mshift(12) shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi07_con shi11_con shi13_con;
 
 array mses(12) nSES_89 nSES_91 nSES_93 nSES_95 nSES_97 nSES_99 nSES_01 nSES_03 nSES_05 nSES_07 nSES_11 nSES_13;
 
@@ -608,7 +608,7 @@ if time=8 then do;
     %exclude(exrec eq 1); *exclude those not in GUTS2;
     %exclude(chob eq 1); *baseline ob 2550;
 	%exclude(chbmi eq .); * baseline bmi missing - should be 0, already excluded; 
-    %exclude(lastq eq irt{1});  /*only returned baseline 2004Q 5070 */
+    *%exclude(lastq eq irt{1});  /*only returned baseline 2004Q 5070 - not needed for GEE*/
     *%exclude(id ne ., nodelete=t);
     %exclude(momid ne ., nodelete=t); *43825;
   %output();
@@ -618,7 +618,7 @@ end;
 *Follow-up;
   else if time>8 then do;
   	*%exclude(irt{time} eq .); * cesnor observations if not returning questionnaires;
-  	%exclude(0 lt lastq lt irt{time}); 	 *censor lost to follow up ;
+  	*%exclude(0 lt lastq lt irt{time}); 	 *censor lost to follow up - not needed for GEE;
   	%exclude(0 lt obyear lt qyear{time} );  *censor observations after becoming OB 1578 ;
   	%exclude(bmi{time} eq .); 	   *censor missing bmi - should be 0;
   	%exclude(age{time} gt 18); 	   *censor age>18 40165;
@@ -684,7 +684,7 @@ proc means data=all2;
 	smk89 smk91 smk93 smk95 smk97 smk99 smk01 smk03 smk05 smk07 smk11 smk13
 	act89m act91m act91m act91m act97m act97m act01m act01m act05m act05m act09m act13m
 	bmi89 bmi91 bmi93 bmi95 bmi97 bmi99 bmi01 bmi03 bmi05 bmi07 bmi11 bmi13
-	shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi0305_con shi11_con shi13_con
+	shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi07_con shi11_con shi13_con
 
 	nSES_89 nSES_91 nSES_93 nSES_95 nSES_97 nSES_99 nSES_01 nSES_03 nSES_05 nSES_07 nSES_11 nSES_13
 

@@ -32,7 +32,7 @@ options  linesize=150 pagesize=110;
 
 *path to data;
 libname here '/udd/nhywa/GUTSOB/';
-libname herelb '/udd/nhywa/GUTSOB/secondary_windows/';
+libname heredat '/udd/nhywa/GUTSOB/secondary_windows/1.data';
 
 %include '/udd/nhywa/GUTSOB/guts2_vars.sas';
 *Read in NHS2 data prepared by Bethsaida with adjustment by Yiqing;
@@ -111,7 +111,7 @@ data all2;
 			/*calor03v calor07v calor11v*/
 			act89m act91m act97m act01m act05m act09m act13m /*exposure window addition*/
 			/*act01v act05v act09v act13v*/       
-			shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi11_con shi13_con /*exposure window addition*/
+			shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi07_con shi11_con shi13_con /*exposure window addition*/
 			/*shi0103v shi0305v shi11v shi13v*/   
 			incom01 
 			/*sleep06 sleep08 sleep11*/
@@ -170,12 +170,12 @@ var chage04 chage06 chage08 chage11 chage13
 	f291  f295  f299 f203  f207 f211 /*exposure window addition*/
 	/*f203v  f207v  f211v*/           
 	calor91n calor95n calor99n calor03n calor07n calor11n /*exposure window addition*/
-	/*calor03v calor07v calor11v*/ /*BCAR NOTE THAT YIQING'S ORIGINAL CODE DID NOT IMPUTE CUMULATIVE EXPOSURE VALUES*/
+	/*calor03v calor07v calor11v*/
 	act89m act91m act97m act01m act05m act09m act13m /*exposure window addition*/
 	/*act01v act05v act09v act13v*/    
 	bmi89    bmi91    bmi93    bmi95   bmi97   bmi99   bmi01   bmi03  bmi05 bmi07 bmi11 bmi13 /*exposure window addition*/
 	/*bmi03v bmi05v bmi07v bmi11v bmi13v*/
-	shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi11_con shi13_con /*exposure window addition*/
+	shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi07_con shi11_con shi13_con /*exposure window addition*/
 	/*shi0103v shi0305v shi11v shi13v*/
 
 	nSES_89 nSES_91 nSES_93 nSES_95 nSES_97 nSES_99 nSES_01 nSES_03 nSES_05 nSES_07 nSES_09 nSES_11 nSES_13 /*exposure window addition*/
@@ -216,7 +216,7 @@ fcs reg(chage04 chage06 chage08 chage11 chage13
 		/*act01v act05v act09v act13v*/    
 		bmi89    bmi91    bmi93    bmi95   bmi97   bmi99   bmi01   bmi03  bmi05 bmi07 bmi11 bmi13 /*exposure window addition*/
 		/*bmi03v bmi05v bmi07v bmi11v bmi13v*/
-		shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi11_con shi13_con /*exposure window addition*/
+		shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi07_con shi11_con shi13_con /*exposure window addition*/
 		/*shi0103v shi0305v shi11v shi13v*/
 
 		nSES_89 nSES_91 nSES_93 nSES_95 nSES_97 nSES_99 nSES_01 nSES_03 nSES_05 nSES_07 nSES_09 nSES_11 nSES_13 /*exposure window addition*/
@@ -239,7 +239,7 @@ fcs reg(chage04 chage06 chage08 chage11 chage13
 	 nbiter =10 ; 
 run;
 
-proc sort data=all2nomiss out=herelb.all2_mi; by _imputation_ id; run; /*BCAR CHANGED THE OUTPUT LOCATION FROM HERE TO THE FOLDER SCRIPT IS IN*/
+proc sort data=all2nomiss out=heredat.all2_mi; by _imputation_ id; run; /*BCAR CHANGED THE OUTPUT LOCATION FROM HERE TO THE FOLDER SCRIPT IS IN*/
 
 proc means data=all2nomiss n nmiss mean std min median max nolabels ;
  where _Imputation_ = 1 ;
