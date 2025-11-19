@@ -188,7 +188,7 @@ run;
 		otherwise;
 	end;
 		
-	* Only OUTPUT once per _imputation_, after we've assigned all param columns ;
+	/*Only OUTPUT once per _imputation_, after we've assigned all param columns */
 	if last._imputation_ then output;
 	
 		/*set negative beta to 0 to avoid errors in PAR, only main exposures*/
@@ -458,7 +458,7 @@ run;
 		otherwise;
 	end;
 		
-	* Only OUTPUT once per _imputation_, after we've assigned all param columns ;
+	/*Only OUTPUT once per _imputation_, after we've assigned all param columns */
 	if last._imputation_ then output;
 
 	if bpregob<0 then bpregob=0;
