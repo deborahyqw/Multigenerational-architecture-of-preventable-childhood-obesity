@@ -1,21 +1,21 @@
 This job's information: 
 Job name: 1a.meta_PAR
-Job ID: 3734074
+Job ID: 4107439
 Partition: linux01
 Memory Requested (4 GB / 4000 MB is default): 4000 M
-Work directory: /d/q1/slurm/3734074
-Running on hostname: toque02.bwh.harvard.edu
+Work directory: /d/q1/slurm/4107439
+Running on hostname: derby06.bwh.harvard.edu
 
 
 
 
 
-1                                                      The SAS System                              16:12 Monday, July 7, 2025
+1                                                      The SAS System                        11:15 Tuesday, November 18, 2025
 
 NOTE: Copyright (c) 2016 by SAS Institute Inc., Cary, NC, USA. 
 NOTE: SAS (r) Proprietary Software 9.4 (TS1M6) 
       Licensed to CHANNING DIVISION OF NETWORK MEDICINE - T&R, Site 70123069.
-NOTE: This session is executing on the Linux 3.10.0-1160.108.1.el7.x86_64 (LIN X64) platform.
+NOTE: This session is executing on the Linux 3.10.0-1160.114.2.el7.x86_64 (LIN X64) platform.
 
 
 
@@ -29,7 +29,7 @@ NOTE: Analytical products:
 
 NOTE: Additional host information:
 
- Linux LIN X64 3.10.0-1160.108.1.el7.x86_64 #1 SMP Thu Jan 25 16:17:31 UTC 2024 x86_64 CentOS Linux release 7.9.2009 (Core) 
+ Linux LIN X64 3.10.0-1160.114.2.el7.x86_64 #1 SMP Wed Mar 20 15:54:52 UTC 2024 x86_64 CentOS Linux release 7.9.2009 (Core) 
 
 You are running SAS 9. Some SAS 8 files will be automatically converted 
 by the V9 engine; others are incompatible.  Please see 
@@ -50,141 +50,156 @@ The command line option "-nonews" will prevent this display.
 
 
 NOTE: SAS initialization used:
-      real time           0.26 seconds
-      cpu time            0.05 seconds
+      real time           0.43 seconds
+      cpu time            0.12 seconds
       
 1          
-2          /**********************************************************************
-3           Read-in macros, data formats, and libraries
-4          **********************************************************************/
-5          
-6          /*path to library with datasets, MANUAL SPECIFICATION*/
-7          libname dat_lb '/udd/nhywa/GUTSOB/secondary_stratified/1.data';
+2          /********************************************************************************
+3          CODE DOCUMENTATION
+4          ********************************************************************************/
+5          /*
+6          Program name: /udd/nhywa/GUTSOB/secondary_stratified/gwt
+7          Pogrammer: Bethsaida Cardona (n2bca)
+8          Date started: 07/2025
+9          Program Purpose: Metanalyze PARs within stratified groups (male and female, maternal obesity and none, child
+10         and teen) to obtain the Q for heterogeneity
+11         Statistical Analyses: %metaanal for metanalysis
+12         */
+13         
+14         
+15         /**********************************************************************
+16          Read-in macros, data formats, and libraries
+17         **********************************************************************/
+18         
+19         /*path to library with datasets, MANUAL SPECIFICATION*/
+20         libname dat_lb '/udd/nhywa/GUTSOB/secondary_stratified/1.data';
 NOTE: Libref DAT_LB was successfully assigned as follows: 
       Engine:        V9 
       Physical Name: /udd/nhywa/GUTSOB/secondary_stratified/1.data
-8          
-9          /* Show full log, try to find which step is the slowest */
-10         options msglevel=i fullstimer;
-11         
-12         filename nhstools '/proj/nhsass/nhsas00/nhstools/sasautos/';
-13         filename channing '/usr/local/channing/sasautos/';
-14         filename ehmac '/udd/stleh/ehmac/';
-15         options  mautosource sasautos=(channing nhstools);
-16         libname  nhsfmt   "/proj/nhsass/nhsas00/formats";
+21         
+22         /* Show full log, try to find which step is the slowest */
+23         options msglevel=i fullstimer;
+24         
+25         filename nhstools '/proj/nhsass/nhsas00/nhstools/sasautos/';
+26         filename channing '/usr/local/channing/sasautos/';
+27         filename ehmac '/udd/stleh/ehmac/';
+28         options  mautosource sasautos=(channing nhstools);
+29         libname  nhsfmt   "/proj/nhsass/nhsas00/formats";
 NOTE: Libref NHSFMT was successfully assigned as follows: 
       Engine:        V9 
       Physical Name: /proj/nhsass/nhsas00/formats
-17         options fmtsearch=(nhsfmt);
-18         * options  fmtsearch=(nhsfmt) nofmterr nocenter nonumber nodate formdlim=' ';
-19         
-20         options  linesize=150 pagesize=110;
-21         			
-22         %include '/udd/nhywa/macros/cumavg.macro.sas'; *macro for calculation of CV;
-72         
-73         /**********************************************************************
-74          Call in the RR data from each of the stratified groups, and combine
-75          the data from the respective group
-76         **********************************************************************/
-77         
-78         
-79         
-80         /**SEX************************************/
-81         
-82         data meta_PAR_sex;
-83            set dat_lb.gwt_female_PAR dat_lb.gwt_male_PAR;
-84         	length  HRCI2 $ 18;
-85         	HRCI2=.;
-86         	SE=StdErr*1;
-87             beta=Estimate*1;
-88         	keep beta SE group exposure HRCI2;
-89         run;
+2                                                      The SAS System                        11:15 Tuesday, November 18, 2025
+
+30         options fmtsearch=(nhsfmt);
+31         * options  fmtsearch=(nhsfmt) nofmterr nocenter nonumber nodate formdlim=' ';
+32         
+33         options  linesize=150 pagesize=110;
+34         			
+35         %include '/udd/nhywa/macros/cumavg.macro.sas'; *macro for calculation of CV;
+85         
+86         /**********************************************************************
+87          Call in the RR data from each of the stratified groups, and combine
+88          the data from the respective group
+89         **********************************************************************/
+90         
+91         
+92         
+93         /**SEX************************************/
+94         
+95         data meta_PAR_sex;
+96            set dat_lb.gwt_female_PAR dat_lb.gwt_male_PAR;
+97         	length  HRCI2 $ 18;
+98         	HRCI2=.;
+99         	SE=StdErr*1;
+100            beta=Estimate*1;
+101        	keep beta SE group exposure HRCI2;
+102        run;
 
 NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
-      85:8   
+      98:8   
 NOTE: There were 1 observations read from the data set DAT_LB.GWT_FEMALE_PAR.
 NOTE: There were 1 observations read from the data set DAT_LB.GWT_MALE_PAR.
 NOTE: The data set WORK.META_PAR_SEX has 2 observations and 5 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.05 seconds
-      user cpu time       0.00 seconds
+      real time           0.07 seconds
+      user cpu time       0.01 seconds
       system cpu time     0.01 seconds
       memory              1389.71k
       OS Memory           8868.00k
-      Timestamp           07/07/2025 04:12:24 PM
+      Timestamp           11/18/2025 11:15:52 AM
       Step Count                        1  Switch Count  0
       Page Faults                       0
-      Page Reclaims                     887
+      Page Reclaims                     886
       Page Swaps                        0
-      Voluntary Context Switches        81
+      Voluntary Context Switches        92
       Involuntary Context Switches      0
       Block Input Operations            664
       Block Output Operations           144
-2                                                                   The SAS System                                          16:12 Monday, July 7, 2025
-
       
 
-90         
-91         proc print data=meta_PAR_sex; run;
+103        
+104        proc print data=meta_PAR_sex; run;
 
 NOTE: There were 2 observations read from the data set WORK.META_PAR_SEX.
 NOTE: The PROCEDURE PRINT printed page 1.
 NOTE: PROCEDURE PRINT used (Total process time):
-      real time           0.06 seconds
-      user cpu time       0.02 seconds
-      system cpu time     0.00 seconds
+      real time           0.14 seconds
+      user cpu time       0.03 seconds
+      system cpu time     0.03 seconds
       memory              2399.75k
       OS Memory           10148.00k
-      Timestamp           07/07/2025 04:12:24 PM
+      Timestamp           11/18/2025 11:15:52 AM
       Step Count                        2  Switch Count  1
       Page Faults                       0
       Page Reclaims                     1025
       Page Swaps                        0
-      Voluntary Context Switches        100
-      Involuntary Context Switches      0
+      Voluntary Context Switches        111
+      Involuntary Context Switches      3
       Block Input Operations            2232
       Block Output Operations           0
       
 
-92         
-93         
-94         /**AGE************************************/
-95         
-96         data meta_PAR_age;
-97            set dat_lb.gwt_child_PAR dat_lb.gwt_teen_PAR;
-98         	length  HRCI2 $ 18;
-99         	HRCI2=.;
-100        	SE=StdErr*1;
-101            beta=Estimate*1;
-102        	keep beta SE group exposure HRCI2;
-103        run;
+105        
+106        
+107        /**AGE************************************/
+108        
+109        data meta_PAR_age;
+110           set dat_lb.gwt_child_PAR dat_lb.gwt_teen_PAR;
+111        	length  HRCI2 $ 18;
+112        	HRCI2=.;
+113        	SE=StdErr*1;
+114            beta=Estimate*1;
+115        	keep beta SE group exposure HRCI2;
+116        run;
 
 NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
-      99:8   
+      112:8   
 NOTE: There were 1 observations read from the data set DAT_LB.GWT_CHILD_PAR.
 NOTE: There were 1 observations read from the data set DAT_LB.GWT_TEEN_PAR.
 NOTE: The data set WORK.META_PAR_AGE has 2 observations and 5 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.02 seconds
+      real time           0.03 seconds
       user cpu time       0.00 seconds
-      system cpu time     0.01 seconds
+      system cpu time     0.00 seconds
       memory              806.18k
       OS Memory           10660.00k
-      Timestamp           07/07/2025 04:12:24 PM
+      Timestamp           11/18/2025 11:15:52 AM
       Step Count                        3  Switch Count  0
       Page Faults                       0
       Page Reclaims                     124
       Page Swaps                        0
-      Voluntary Context Switches        33
+      Voluntary Context Switches        29
       Involuntary Context Switches      0
       Block Input Operations            440
       Block Output Operations           144
       
 
-104        
-105        proc print data=meta_PAR_age; run;
+117        
+118        proc print data=meta_PAR_age; run;
 
 NOTE: There were 2 observations read from the data set WORK.META_PAR_AGE.
+3                                                                   The SAS System                                    11:15 Tuesday, November 18, 2025
+
 NOTE: The PROCEDURE PRINT printed page 2.
 NOTE: PROCEDURE PRINT used (Total process time):
       real time           0.00 seconds
@@ -192,7 +207,7 @@ NOTE: PROCEDURE PRINT used (Total process time):
       system cpu time     0.00 seconds
       memory              409.37k
       OS Memory           10404.00k
-      Timestamp           07/07/2025 04:12:24 PM
+      Timestamp           11/18/2025 11:15:52 AM
       Step Count                        4  Switch Count  0
       Page Faults                       0
       Page Reclaims                     10
@@ -203,44 +218,42 @@ NOTE: PROCEDURE PRINT used (Total process time):
       Block Output Operations           0
       
 
-106        
-107        /**MATERNAL BMI************************************/
-108        
-109        data meta_PAR_mob;
-110           set dat_lb.gwt_moob_PAR dat_lb.gwt_nomoob_PAR;
-111        	length  HRCI2 $ 18;
-112        	HRCI2=.;
-113        	SE=StdErr*1;
-114            beta=Estimate*1;
-115        	keep beta SE group exposure HRCI2;
-116        run;
+119        
+120        /**MATERNAL BMI************************************/
+121        
+122        data meta_PAR_mob;
+123           set dat_lb.gwt_moob_PAR dat_lb.gwt_nomoob_PAR;
+124        	length  HRCI2 $ 18;
+125        	HRCI2=.;
+126        	SE=StdErr*1;
+127            beta=Estimate*1;
+128        	keep beta SE group exposure HRCI2;
+129        run;
 
 NOTE: Numeric values have been converted to character values at the places given by: (Line):(Column).
-      112:8   
+      125:8   
 NOTE: There were 1 observations read from the data set DAT_LB.GWT_MOOB_PAR.
 NOTE: There were 1 observations read from the data set DAT_LB.GWT_NOMOOB_PAR.
 NOTE: The data set WORK.META_PAR_MOB has 2 observations and 5 variables.
 NOTE: DATA statement used (Total process time):
-      real time           0.02 seconds
-      user cpu time       0.00 seconds
-      system cpu time     0.00 seconds
+      real time           0.03 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
       memory              803.81k
       OS Memory           10660.00k
-      Timestamp           07/07/2025 04:12:24 PM
+      Timestamp           11/18/2025 11:15:52 AM
       Step Count                        5  Switch Count  0
       Page Faults                       0
       Page Reclaims                     59
-3                                                                   The SAS System                                          16:12 Monday, July 7, 2025
-
       Page Swaps                        0
-      Voluntary Context Switches        32
+      Voluntary Context Switches        29
       Involuntary Context Switches      0
       Block Input Operations            440
       Block Output Operations           144
       
 
-117        
-118        proc print data=meta_PAR_mob; run;
+130        
+131        proc print data=meta_PAR_mob; run;
 
 NOTE: There were 2 observations read from the data set WORK.META_PAR_MOB.
 NOTE: The PROCEDURE PRINT printed page 3.
@@ -250,7 +263,7 @@ NOTE: PROCEDURE PRINT used (Total process time):
       system cpu time     0.00 seconds
       memory              409.37k
       OS Memory           10404.00k
-      Timestamp           07/07/2025 04:12:24 PM
+      Timestamp           11/18/2025 11:15:52 AM
       Step Count                        6  Switch Count  0
       Page Faults                       0
       Page Reclaims                     9
@@ -261,94 +274,94 @@ NOTE: PROCEDURE PRINT used (Total process time):
       Block Output Operations           0
       
 
-119        
-120        
-121        /**********************************************************************
-122        CREATE MACRO TO METANALYZE ALL OF THE EXPOSURES FOR EACH GROUP
-123        **********************************************************************/
-124        
-125        
-126        /*have to metaanalyze each exposure separately, will create macro that can be used to run through each of the stratification groups
-126      ! (sex/age/materinal BMI)*/
-127        
-128        
-129        %macro metaanal_allexp (data=, group=);
-130        
-131        
-132        	/* gotweight exposure */
-133        	data gotweight_&group.; set &data; if exposure = 'gotweight'; run;
-134        	%metaanal(data=gotweight_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
-135        		explabel=gotweight, outcomelabel=ob,
-136        			outdat= "PAR_gwt_gotweight_&group");
+132        
+133        
+134        /**********************************************************************
+135        CREATE MACRO TO METANALYZE ALL OF THE EXPOSURES FOR EACH GROUP
+136        **********************************************************************/
 137        
-138        	
-139        
-140        %mend metaanal_allexp;
+138        
+139        /*have to metaanalyze each exposure separately, will create macro that can be used to run through each of the stratification groups
+139      ! (sex/age/materinal BMI)*/
+140        
 141        
-142        
-143        /**********************************************************************
-144        RUN MACRO
-145        **********************************************************************/
-146        
-147        %let newpath = /udd/nhywa/GUTSOB/secondary_stratified/1.data;
-148        x "cd &newpath"
-148      !                ;
-149        
+142        %macro metaanal_allexp (data=, group=);
+143        
+144        
+145        	/* gotweight exposure */
+146        	data gotweight_&group.; set &data; if exposure = 'gotweight'; run;
+147        	%metaanal(data=gotweight_&group., beta=beta, se_or_var=s, se=SE, studylab=group, loglinear=F,
+148        		explabel=gotweight, outcomelabel=ob,
+149        			outdat= "PAR_gwt_gotweight_&group");
 150        
-151        %metaanal_allexp(data=meta_PAR_sex, group=sex);
+151        	
+152        
+153        %mend metaanal_allexp;
+154        
+155        
+156        /**********************************************************************
+157        RUN MACRO
+158        **********************************************************************/
+159        
+160        %let newpath = /udd/nhywa/GUTSOB/secondary_stratified/1.data;
+161        x "cd &newpath"
+161      !                ;
+162        
+163        
+4                                                                   The SAS System                                    11:15 Tuesday, November 18, 2025
+
+164        %metaanal_allexp(data=meta_PAR_sex, group=sex);
 
 NOTE: There were 2 observations read from the data set WORK.META_PAR_SEX.
 NOTE: The data set WORK.GOTWEIGHT_SEX has 2 observations and 5 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.01 seconds
-      user cpu time       0.00 seconds
+      user cpu time       0.01 seconds
       system cpu time     0.00 seconds
       memory              567.81k
       OS Memory           10404.00k
-      Timestamp           07/07/2025 04:12:24 PM
+      Timestamp           11/18/2025 11:15:52 AM
       Step Count                        7  Switch Count  0
       Page Faults                       0
       Page Reclaims                     26
       Page Swaps                        0
-      Voluntary Context Switches        16
+      Voluntary Context Switches        15
       Involuntary Context Switches      0
       Block Input Operations            120
       Block Output Operations           144
       
 
-_TYPE_=0 _FREQ_=2 sumf=1299.6010972 sumr=1299.6010972 w1=1299.6010972 w2=847489.97992 w3=554609270.05 numstud=2 BETAF=0.1838321366 BETAR=0.1838321366
-SEF=0.027739266 SER=0.027739266 BLOWF=0.1294631753 BHIGHF=0.238201098 BLOWR=0.1294631753 BHIGHR=0.238201098 ZSCOREF=6.6271449492 ZSCORER=6.6271449492
-CHI2F=43.919050178 CHI2R=43.919050178 PCHI2F=3.422418E-11 PCHI2R=3.422418E-11 SQSUMW=847489.97992 SUMW=1299.6010972 W=611.01605393 TAU2=0
-ORF=1.2018140656 ORR=1.2018140656 ORLOWF=1.1382171961 ORLOWR=1.1382171961 ORHIGHF=1.2689643534 ORHIGHR=1.2689643534 Q=0.0013889954 DF=1
-PHET=0.9702703402 RB=0 DGQ_B=280.37677398 FWT=. RWT=. VSRF=0.0007694669 VSRR=0.0007694669 DIM=2 study_01=female study_02=male r_i=0 pr_i=0 cv_betaw=0
-pcv_betaw=0 betahat=0.1838321366 betahat2=0.0337942545 betahatr=0.1838321366 betahatr2=0.0337942545 varq=2 seq=1.4142135624 varlogq=1036640.9981
-selogq=1018.1556846 lclq=0 uclq=. qlow=0 qhi=2.7732475777 c1=1 c2=0.0035625102 rilow=135.92018603 rihi=64.023437123 varri=88977395253
-lcri=-584649.9479 ucri=584649.94792 lclri=0 uclri=100 vartau2=4.770564E-6 vartau=. varcvb=. cvblow=0 cvbhi=. varrb=157222.27077 lcrb=-777.1647672
-ucrb=777.16476721 lclrb=0 uclrb=100 lrb=0 _ERROR_=1 _N_=1
-151         "PAR_gwt_gotweight_sex"_d
+_TYPE_=0 _FREQ_=2 sumf=1395.6565814 sumr=1395.6565814 w1=1395.6565814 w2=976794.9594 w3=685635545.14 numstud=2 BETAF=0.186530006 BETAR=0.186530006
+SEF=0.026767679 SER=0.026767679 BLOWF=0.1340653551 BHIGHF=0.2389946569 BLOWR=0.1340653551 BHIGHR=0.2389946569 ZSCOREF=6.9684788819
+ZSCORER=6.9684788819 CHI2F=48.559697927 CHI2R=48.559697927 PCHI2F=3.203882E-12 PCHI2R=3.203882E-12 SQSUMW=976794.9594 SUMW=1395.6565814 W=659.97123898
+TAU2=0 ORF=1.2050607806 ORR=1.2050607806 ORLOWF=1.1434675487 ORLOWR=1.1434675487 ORHIGHF=1.269971751 ORHIGHR=1.269971751 Q=0.0021873512 DF=1
+PHET=0.9626972359 RB=0 DGQ_B=339.95486572 FWT=. RWT=. VSRF=0.0007165086 VSRR=0.0007165086 DIM=2 study_01=female study_02=male r_i=0 pr_i=0 cv_betaw=0
+pcv_betaw=0 betahat=0.186530006 betahat2=0.0347934432 betahatr=0.186530006 betahatr2=0.0347934432 varq=2 seq=1.4142135624 varlogq=418016.05103
+selogq=646.54160812 lclq=0 uclq=. qlow=0 qhi=2.7740459335 c1=1 c2=0.0029430419 rilow=135.96089683 rihi=64.019489816 varri=6.0966837E12
+lcri=-4839526.841 ucri=4839526.8415 lclri=0 uclri=100 vartau2=4.1313588E-6 vartau=. varcvb=. cvblow=0 cvbhi=. varrb=231138.62145 lcrb=-942.3068121
+ucrb=942.30681212 lclrb=0 uclrb=100 lrb=0 _ERROR_=1 _N_=1
+164         "PAR_gwt_gotweight_sex"_d
             _______________________
             49
 
-151         "PAR_gwt_gotweight_sex"_p
+164         "PAR_gwt_gotweight_sex"_p
             _______________________
             49
 
-152        %metaanal_allexp(data=meta_PAR_age, group=age);
+165        %metaanal_allexp(data=meta_PAR_age, group=age);
 
 NOTE: PROCEDURE DATASETS used (Total process time):
       real time           0.06 seconds
       user cpu time       0.00 seconds
-      system cpu time     0.01 seconds
+      system cpu time     0.00 seconds
       memory              243.43k
-4                                                                   The SAS System                                          16:12 Monday, July 7, 2025
-
       OS Memory           11940.00k
-      Timestamp           07/07/2025 04:12:25 PM
+      Timestamp           11/18/2025 11:15:53 AM
       Step Count                        26  Switch Count  0
       Page Faults                       0
       Page Reclaims                     67
       Page Swaps                        0
-      Voluntary Context Switches        52
+      Voluntary Context Switches        54
       Involuntary Context Switches      0
       Block Input Operations            32
       Block Output Operations           16
@@ -359,38 +372,38 @@ NOTE: There were 2 observations read from the data set WORK.META_PAR_AGE.
 NOTE: The data set WORK.GOTWEIGHT_AGE has 2 observations and 5 variables.
 NOTE: DATA statement used (Total process time):
       real time           0.01 seconds
-      user cpu time       0.00 seconds
-      system cpu time     0.00 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
       memory              567.34k
       OS Memory           11940.00k
-      Timestamp           07/07/2025 04:12:25 PM
+      Timestamp           11/18/2025 11:15:53 AM
       Step Count                        27  Switch Count  0
       Page Faults                       0
       Page Reclaims                     19
       Page Swaps                        0
-      Voluntary Context Switches        16
+      Voluntary Context Switches        17
       Involuntary Context Switches      0
       Block Input Operations            120
       Block Output Operations           144
       
 
-152         "PAR_gwt_gotweight_age"_d
+165         "PAR_gwt_gotweight_age"_d
             _______________________
             49
 
-152         "PAR_gwt_gotweight_age"_p
+165         "PAR_gwt_gotweight_age"_p
             _______________________
             49
 
-153        %metaanal_allexp(data=meta_PAR_mob, group=mob);
+166        %metaanal_allexp(data=meta_PAR_mob, group=mob);
 
 NOTE: PROCEDURE DATASETS used (Total process time):
-      real time           0.03 seconds
+      real time           0.05 seconds
       user cpu time       0.00 seconds
-      system cpu time     0.00 seconds
+      system cpu time     0.01 seconds
       memory              242.46k
       OS Memory           12196.00k
-      Timestamp           07/07/2025 04:12:25 PM
+      Timestamp           11/18/2025 11:15:54 AM
       Step Count                        46  Switch Count  0
       Page Faults                       0
       Page Reclaims                     8
@@ -405,96 +418,96 @@ NOTE: PROCEDURE DATASETS used (Total process time):
 NOTE: There were 2 observations read from the data set WORK.META_PAR_MOB.
 NOTE: The data set WORK.GOTWEIGHT_MOB has 2 observations and 5 variables.
 NOTE: DATA statement used (Total process time):
+5                                                                   The SAS System                                    11:15 Tuesday, November 18, 2025
+
       real time           0.01 seconds
       user cpu time       0.00 seconds
       system cpu time     0.00 seconds
       memory              570.18k
       OS Memory           12196.00k
-      Timestamp           07/07/2025 04:12:25 PM
+      Timestamp           11/18/2025 11:15:54 AM
       Step Count                        47  Switch Count  0
       Page Faults                       0
       Page Reclaims                     18
       Page Swaps                        0
-      Voluntary Context Switches        15
+      Voluntary Context Switches        17
       Involuntary Context Switches      0
       Block Input Operations            120
       Block Output Operations           144
       
 
-153         "PAR_gwt_gotweight_mob"_d
+166         "PAR_gwt_gotweight_mob"_d
             _______________________
             49
 
-153         "PAR_gwt_gotweight_mob"_p
+166         "PAR_gwt_gotweight_mob"_p
             _______________________
             49
 
-154        
-155        
-156        
-157        
-158        
-159        
-160        
-161        
+167        
+168        
+169        
+170        
+171        
+172        
+173        
+174        
 NOTE: PROCEDURE DATASETS used (Total process time):
       real time           0.04 seconds
-      user cpu time       0.00 seconds
-      system cpu time     0.00 seconds
+      user cpu time       0.01 seconds
+      system cpu time     0.01 seconds
       memory              247.50k
       OS Memory           12708.00k
-      Timestamp           07/07/2025 04:12:25 PM
+      Timestamp           11/18/2025 11:15:54 AM
       Step Count                        66  Switch Count  0
       Page Faults                       0
       Page Reclaims                     8
       Page Swaps                        0
       Voluntary Context Switches        35
       Involuntary Context Switches      0
-5                                                                   The SAS System                                          16:12 Monday, July 7, 2025
-
       Block Input Operations            0
       Block Output Operations           16
       
 
 NOTE: SAS Institute Inc., SAS Campus Drive, Cary, NC USA 27513-2414
 NOTE: The SAS System used:
-      real time           2.02 seconds
-      user cpu time       0.14 seconds
-      system cpu time     0.22 seconds
+      real time           2.84 seconds
+      user cpu time       0.37 seconds
+      system cpu time     0.48 seconds
       memory              15549.90k
       OS Memory           17848.00k
-      Timestamp           07/07/2025 04:12:25 PM
+      Timestamp           11/18/2025 11:15:54 AM
       Step Count                        66  Switch Count  142
       Page Faults                       0
-      Page Reclaims                     16187
+      Page Reclaims                     16174
       Page Swaps                        0
-      Voluntary Context Switches        2504
-      Involuntary Context Switches      0
-      Block Input Operations            22320
+      Voluntary Context Switches        2696
+      Involuntary Context Switches      13
+      Block Input Operations            22224
       Block Output Operations           10680
       
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   1
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   1
 
                                               Obs    exposure     group     HRCI2       SE         beta
 
-                                               1     gotweight    female      .      0.040455    0.18493
-                                               2     gotweight    male        .      0.038108    0.18286
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   2
+                                               1     gotweight    female      .      0.038926    0.18521
+                                               2     gotweight    male        .      0.036868    0.18772
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   2
 
                                               Obs    exposure     group    HRCI2       SE         beta
 
-                                               1     gotweight    child      .      0.054363    0.16554
-                                               2     gotweight    teen       .      0.035657    0.18722
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   3
+                                               1     gotweight    child      .      0.053585    0.17313
+                                               2     gotweight    teen       .      0.032058    0.18897
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   3
 
                                               Obs    exposure     group     HRCI2       SE         beta
 
-                                               1     gotweight    moob        .      0.067106    0.17482
-                                               2     gotweight    nomoob      .      0.033235    0.12615
+                                               1     gotweight    moob        .      0.078790    0.14524
+                                               2     gotweight    nomoob      .      0.028046    0.13360
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   4
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   4
                                                                            
                                                                            
                                                              Studies of gotweight and ob
@@ -505,25 +518,25 @@ NOTE: The SAS System used:
                                                             study         of study      effects      effects
                                         Obs    group     coefficient    coefficient      model        model
 
-                                         1     female      0.18493        0.040455      0.47016      0.47016 
-                                         2     male        0.18286        0.038108      0.52984      0.52984 
+                                         1     female      0.18521        0.038926      0.47288      0.47288 
+                                         2     male        0.18772        0.036868      0.52712      0.52712 
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   5
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   5
                                                                            
                                                                            
                                                              Studies of gotweight and ob
 
                               Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
 
-                               2       Coeff      0.1838 (0.0277)    <.0001                                             
-                               3       Q          0.00               0.9703    Is there heterogeneity among the studies?
+                               2       Coeff      0.1865 (0.0268)    <.0001                                             
+                               3       Q          0.00               0.9627    Is there heterogeneity among the studies?
                                4       tau2       0.0000              .                                                 
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   6
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   6
                                                                            
                                                                            
                                                              Studies of gotweight and ob
@@ -536,7 +549,7 @@ NOTE: The SAS System used:
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   7
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   7
                                                                            
                                                                            
                                                              Studies of gotweight and ob
@@ -547,25 +560,25 @@ NOTE: The SAS System used:
                                                             study         of study      effects      effects
                                          Obs    group    coefficient    coefficient      model        model
 
-                                          1     child      0.16554        0.054363      0.30080      0.30080 
-                                          2     teen       0.18722        0.035657      0.69920      0.69920 
+                                          1     child      0.17313        0.053585      0.26358      0.26358 
+                                          2     teen       0.18897        0.032058      0.73642      0.73642 
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   8
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   8
                                                                            
                                                                            
                                                              Studies of gotweight and ob
 
                               Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
 
-                               2       Coeff      0.1807 (0.0298)    <.0001                                             
-                               3       Q          0.11               0.7387    Is there heterogeneity among the studies?
+                               2       Coeff      0.1848 (0.0275)    <.0001                                             
+                               3       Q          0.06               0.7997    Is there heterogeneity among the studies?
                                4       tau2       0.0000              .                                                 
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025   9
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025   9
                                                                            
                                                                            
                                                              Studies of gotweight and ob
@@ -578,7 +591,7 @@ NOTE: The SAS System used:
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025  10
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025  10
                                                                            
                                                                            
                                                              Studies of gotweight and ob
@@ -589,25 +602,25 @@ NOTE: The SAS System used:
                                                             study         of study      effects      effects
                                         Obs    group     coefficient    coefficient      model        model
 
-                                         1     moob        0.17482        0.067106      0.19697      0.19697 
-                                         2     nomoob      0.12615        0.033235      0.80303      0.80303 
+                                         1     moob        0.14524        0.078790      0.11246      0.11246 
+                                         2     nomoob      0.13360        0.028046      0.88754      0.88754 
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025  11
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025  11
                                                                            
                                                                            
                                                              Studies of gotweight and ob
 
                               Obs    Statistic    Value (95% CI)          P             Hypothesis being tested
 
-                               2       Coeff      0.1357 (0.0298)    <.0001                                             
-                               3       Q          0.42               0.5157    Is there heterogeneity among the studies?
+                               2       Coeff      0.1349 (0.0264)    <.0001                                             
+                               3       Q          0.01               0.8893    Is there heterogeneity among the studies?
                                4       tau2       0.0000              .                                                 
  
 ------------------------------------------------------------------------------------------------------------------------------------------------------
  
-                                                                    The SAS System                                      16:12 Monday, July 7, 2025  12
+                                                                    The SAS System                                11:15 Tuesday, November 18, 2025  12
                                                                            
                                                                            
                                                              Studies of gotweight and ob
