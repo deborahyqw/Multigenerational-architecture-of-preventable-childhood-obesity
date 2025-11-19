@@ -77,11 +77,7 @@ run;
 proc means data=offspring n mean std min p25 median p75 max;	
 	class cohort;	
 	var agebirth obyear chage chbmi chbmibase chwest chcal chst chpa bmibpreg  
-		moage  mowest    mocal  mopa    mobmi  moshift  ses  
-  				   foodswamp supermarket restaurant fastfood convenience
-  				   foodswampz supermarketz restaurantz fastfoodz conveniencez
-  				   foodswampa supermarketa restauranta fastfooda conveniencea
-  				   physician food_desert ; 
+		moage  mowest    mocal  mopa    mobmi  moshift  ses  ; 
 run;
 
 proc freq data=offspring;
@@ -127,10 +123,6 @@ run;
 %table1(data     = moms2,
 		exposure = cohort,
   		varlist  = moage  mowest    mocal  mopa    mobmi  moshift  ses  
-  				   foodswamp supermarket restaurant fastfood convenience
-  				   foodswampz supermarketz restaurantz fastfoodz conveniencez
-  				   foodswampa supermarketa restauranta fastfooda conveniencea
-  				   physician food_desert 
   				   heduc1 heduc2  fincome1 fincome2 fincome3 mosmk2 mosmk3
   				   midwest south west moob,
   		cat      = heduc1 heduc2  fincome1 fincome2 fincome3 mosmk2 mosmk3
@@ -146,11 +138,7 @@ run;
 
 proc means data=moms2 n mean std min p25 median p75 max;	
 	class cohort;	
-	var moage  mowest    mocal  mopa    mobmi  moshift  ses  
-  				   foodswamp supermarket restaurant fastfood convenience
-  				   foodswampz supermarketz restaurantz fastfoodz conveniencez
-  				   foodswampa supermarketa restauranta fastfooda conveniencea
-  				   physician food_desert   ; 
+	var moage  mowest    mocal  mopa    mobmi  moshift  ses   ; 
 run;
 
 proc freq data=moms2;
@@ -168,82 +156,44 @@ proc corr data=offspring noprint Spearman outs=correlation;
 		Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery pregcomp pregcomp2
 		husbeduc mosmk agebirth 
 		chwest chcal chst chpa  
-		moage  mowest   mocal  mopa    mobmi    moshift  ses  
-		supermarket restaurant fastfood convenience foodswamp 
-		supermarketz restaurantz fastfoodz conveniencez foodswampz
-		supermarketa restauranta fastfooda conveniencea foodswampa ;
+		moage  mowest   mocal  mopa    mobmi    moshift  ses   ;
 	with cohort white sex chage  chob chbmi  chbmibase 
 		bmibpreg  abwt gweek prev_preg
 		incom01 income
 		Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery pregcomp pregcomp2
 		husbeduc mosmk agebirth 
 		chwest chcal chst chpa  
-		moage  mowest   mocal  mopa    mobmi    moshift  ses  
-		supermarket restaurant fastfood convenience foodswamp 
-		supermarketz restaurantz fastfoodz conveniencez foodswampz
-		supermarketa restauranta fastfooda conveniencea foodswampa;
+		moage  mowest   mocal  mopa    mobmi    moshift  ses  ;
 run;
 
-proc corr data=offspring noprint Spearman outs=correlation1;
-where  cohort=1;
-	var gotweight chob chbmi 
-		bmibpreg  abwt gweek prev_preg
-		incom01 income
-		Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery pregcomp pregcomp2
-		husbeduc mosmk agebirth 
-		chwest chcal chst chpa  
-		moage  mowest   mocal  mopa    mobmi    moshift  ses  
-		supermarket restaurant fastfood convenience foodswamp 
-		supermarketz restaurantz fastfoodz conveniencez foodswampz
-		supermarketa restauranta fastfooda conveniencea foodswampa;
-	with gotweight chob chbmi 
-		bmibpreg  abwt gweek prev_preg
-		incom01 income
-		Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery pregcomp pregcomp2
-		husbeduc mosmk agebirth 
-		chwest chcal chst chpa  
-		moage  mowest   mocal  mopa    mobmi    moshift  ses  
-		supermarket restaurant fastfood convenience foodswamp 
-		supermarketz restaurantz fastfoodz conveniencez foodswampz
-		supermarketa restauranta fastfooda conveniencea foodswampa;
-run;
-
-proc corr data=offspring noprint Spearman outs=correlation2;
-where cohort=2;
-	var physician food_desert chob chbmi 
-		bmibpreg  abwt gweek prev_preg
-		incom01 income
-		Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery pregcomp pregcomp2
-		husbeduc mosmk agebirth 
-		chwest chcal chst chpa  
-		moage  mowest   mocal  mopa    mobmi    moshift  ses  
-		supermarket restaurant fastfood convenience foodswamp 
-		supermarketz restaurantz fastfoodz conveniencez foodswampz
-		supermarketa restauranta fastfooda conveniencea foodswampa ;
-	with physician food_desert chob chbmi 
-		bmibpreg  abwt gweek prev_preg
-		incom01 income
-		Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery pregcomp pregcomp2
-		husbeduc mosmk agebirth 
-		chwest chcal chst chpa  
-		moage  mowest   mocal  mopa    mobmi    moshift  ses  
-		supermarket restaurant fastfood convenience foodswamp 
-		supermarketz restaurantz fastfoodz conveniencez foodswampz
-		supermarketa restauranta fastfooda conveniencea foodswampa ;
-run;
 	
 proc export data=correlation
   outfile='corr_exposure.csv'
   dbms=csv
   replace;
 run;
-proc export data=correlation1
-  outfile='corr_exposure1.csv'
-  dbms=csv
-  replace;
+
+proc corr data=offspring noprint Spearman outs=correlation;
+	where cohort=1;
+	var cohort white sex chage  chob chbmi  chbmibase 
+		bmibpreg  abwt gweek prev_preg
+	    incom01 income
+		Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery pregcomp pregcomp2
+		husbeduc mosmk agebirth 
+		chwest chcal chst chpa  
+		moage  mowest   mocal  mopa    mobmi    moshift  ses gotweight  ;
+	with cohort white sex chage  chob chbmi  chbmibase 
+		bmibpreg  abwt gweek prev_preg
+		incom01 income
+		Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery pregcomp pregcomp2
+		husbeduc mosmk agebirth 
+		chwest chcal chst chpa  
+		moage  mowest   mocal  mopa    mobmi    moshift  ses gotweight ;
 run;
-proc export data=correlation2
-  outfile='corr_exposure2.csv'
+
+	
+proc export data=correlation
+  outfile='corr_exposure_guts1.csv'
   dbms=csv
   replace;
 run;

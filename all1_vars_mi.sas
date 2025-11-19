@@ -107,22 +107,22 @@ data all1;
 			agebirth moagebase age97 age98 age99 age00 age01 age03 age05
 			bmi95v bmi97v bmi99v bmi01v bmi03v bmi05v
 			smk95 smk97 smk99 smk01 smk03 smk05  white  husbeduc
-			ahei95v ahei99v  ahei03v   f295v  f299v  f203v
-			alco95v alco99v  alco03v     calor95v calor99v calor03v
-			act91v act97v act01v act05v    incom01 sleep99 sleep01
+			/* ahei95v ahei99v  ahei03v */   f295v  f299v  f203v
+			/* alco95v alco99v  alco03v */     calor95v calor99v calor03v
+			act91v act97v act01v act05v    incom01 /* sleep99 sleep01 */
 			shi9395v shi9597v shi9799v shi9901v shi0103v shi0305v 
 			nSES_95v nSES_97v nSES_99v nSES_01v nSES_03v nSES_05v 
-  			supermarket1500_1999v supermarket1500_2001v supermarket1500_2003v supermarket1500_2005v
+  			/* supermarket1500_1999v supermarket1500_2001v supermarket1500_2003v supermarket1500_2005v
   			restaurant1500_1999v  restaurant1500_2001v  restaurant1500_2003v  restaurant1500_2005v  
 	        fastfood1500_1999v    fastfood1500_2001v    fastfood1500_2003v    fastfood1500_2005v    
-	        convenience1500_1999v convenience1500_2001v convenience1500_2003v convenience1500_2005v 
+	        convenience1500_1999v convenience1500_2001v convenience1500_2003v convenience1500_2005v */
         		midwest95 midwest97 midwest99 midwest01 midwest03 midwest05
 	 		  	south95 south97 south99 south01 south03 south05
 			  	west95 west97 west99 west01 west03 west05
 			chage96 chage97 chage98 chage99 chage00 chage01 chage03 chage05
-			chdiet96v chdiet97v chdiet98v chdiet01v   chwest96 chwest97 chwest98 chwest01  
+			/* chdiet96v chdiet97v chdiet98v chdiet01v */  chwest96 chwest97 chwest98 chwest01  
 			chcal96v chcal97v chcal98v chcal01v 
-			chcig96 chcig97 chcig98 chcig99 chcig00 chcig01 chcig03 chcig05
+			/* chcig96 chcig97 chcig98 chcig99 chcig00 chcig01 chcig03 chcig05 */
 			chst96v chst97v chst98v chst99v chst00v chst01v chst05v
 			chpa96v chpa97v chpa98v chpa99v chpa00v chpa01v chpa05v
 			chbmi96 chbmi97 chbmi98 chbmi99 chbmi00 chbmi01 chbmi03 chbmi05
@@ -142,7 +142,7 @@ class white natal_sex Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery
     		  midwest95 midwest97 midwest99 midwest01 midwest03 midwest05
 	 		  south95 south97 south99 south01 south03 south05
 			  west95 west97 west99 west01 west03 west05
-				gotweight prev_preg  bwg gestweek husbeduc incom01 sleep99 sleep01;
+				gotweight prev_preg  bwg gestweek husbeduc incom01 ;
 	    
 var chage96 chage97 chage98 chage99 chage00 chage01 chage03 chage05
 	chwest96 chwest97 chwest98 chwest01
@@ -151,15 +151,11 @@ var chage96 chage97 chage98 chage99 chage00 chage01 chage03 chage05
 	chpa96v chpa97v chpa98v chpa99v chpa00v chpa01v chpa05v
 
 	agebirth moagebase age97 age98 age99 age00 age01 age03 age05
-	f295v  f299v  f203v              calor95v calor99v calor03v
+	f295v  f299v  f203v             calor95v calor99v calor03v
 	act91v act97v act01v act05v      bmi95v bmi97v bmi99v bmi01v bmi03v bmi05v
 	shi9395v shi9597v shi9799v shi9901v shi0103v shi0305v
 
     nSES_95v nSES_97v nSES_99v nSES_01v nSES_03v nSES_05v 
-    supermarket1500_1999v supermarket1500_2001v supermarket1500_2003v supermarket1500_2005v
-  			restaurant1500_1999v  restaurant1500_2001v  restaurant1500_2003v  restaurant1500_2005v  
-	        fastfood1500_1999v    fastfood1500_2001v    fastfood1500_2003v    fastfood1500_2005v    
-	        convenience1500_1999v convenience1500_2001v convenience1500_2003v convenience1500_2005v 
         chbmi96 chbmi97 chbmi98 chbmi99 chbmi00 chbmi01 chbmi03 chbmi05
 	bmibpreg
 	
@@ -167,7 +163,7 @@ var chage96 chage97 chage98 chage99 chage00 chage01 chage03 chage05
     		  midwest95 midwest97 midwest99 midwest01 midwest03 midwest05
 	 		  south95 south97 south99 south01 south03 south05
 			  west95 west97 west99 west01 west03 west05
-				gotweight prev_preg  bwg gestweek husbeduc incom01 sleep99 sleep01;
+				gotweight prev_preg  bwg gestweek husbeduc incom01 ;
 	
 fcs reg( chage96 chage97 chage98 chage99 chage00 chage01 chage03 chage05
 	 chwest96 chwest97 chwest98 chwest01
@@ -181,10 +177,6 @@ fcs reg( chage96 chage97 chage98 chage99 chage00 chage01 chage03 chage05
 	shi9395v shi9597v shi9799v shi9901v shi0103v shi0305v
 
     nSES_95v nSES_97v nSES_99v nSES_01v nSES_03v nSES_05v 
-    supermarket1500_1999v supermarket1500_2001v supermarket1500_2003v supermarket1500_2005v
-  			restaurant1500_1999v  restaurant1500_2001v  restaurant1500_2003v  restaurant1500_2005v  
-	        fastfood1500_1999v    fastfood1500_2001v    fastfood1500_2003v    fastfood1500_2005v    
-	        convenience1500_1999v convenience1500_2001v convenience1500_2003v convenience1500_2005v 
         chbmi96 chbmi97 chbmi98 chbmi99 chbmi00 chbmi01 chbmi03 chbmi05
 	bmibpreg) 
 
@@ -192,7 +184,7 @@ fcs reg( chage96 chage97 chage98 chage99 chage00 chage01 chage03 chage05
     		  midwest95 midwest97 midwest99 midwest01 midwest03 midwest05
 	 		  south95 south97 south99 south01 south03 south05
 			  west95 west97 west99 west01 west03 west05
-				gotweight prev_preg  bwg gestweek husbeduc incom01 sleep99 sleep01/ likelihood=augment) 
+				gotweight prev_preg  bwg gestweek husbeduc incom01 / likelihood=augment) 
 				
      nbiter =10 ; 
 run;

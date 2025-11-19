@@ -20,7 +20,7 @@
 \red128\green128\blue128;
 \red192\green192\blue192;
 }{\stylesheet{\widctlpar\adjustright\fs20\cgrid\snext0 Normal;}{\*\cs10\additive Default Paragraph Font;}
-}{\info{\title Version 9.4 SAS System Output}{\author SAS Version 9.4}{\operator SAS Version 9.4}{\version1}{\creatim\yr2025\mo6\dy25\hr9\min38\sec0}}
+}{\info{\title Version 9.4 SAS System Output}{\author SAS Version 9.4}{\operator SAS Version 9.4}{\version1}{\creatim\yr2025\mo11\dy17\hr13\min14\sec10}}
 \widowctrl\ftnbj\aenddoc\formshade\viewkind1\viewscale100\pgbrdrhead\pgbrdrfoot\fet0\paperw11905\paperh16837\margl360\margr360\margt360\margb360
 \sectd\linex0\endnhere\headery720\footery360\marglsxn360\margrsxn360\margtsxn360\margbsxn360
 {\header\pard\plain\qc\pvmrg\phmrg\posxr\posy0{
@@ -30,35 +30,35 @@
 \pard}}
 {\footer\pard\plain\qc{
 }}{\*\bkmkstart IDX}{\*\bkmkend IDX}\trowd\trkeep\trhdr\trqc
-\clbrdrt\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\clbrdrt\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{{\b Table 1 \b0 Moms Baseline}\cell}
 {\row}
 \trowd\trkeep\trhdr\trqc
 \cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{\cell}
 \pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{Original cohort: Guts I or II\cell}
 {\row}
 \trowd\trkeep\trhdr\trqc
 \clbrdrb\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \clbrdrb\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\clbrdrb\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\clbrdrb\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalb\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{\cell}
-\pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{' (n=11585)\cell}
-\pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{' (n=5273)\cell}
+\pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{' (n=12119)\cell}
+\pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{' (n=5764)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{moage{\super }\cell}
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{40.7 (3.6)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{45.5 (3.7)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{45.6 (3.7)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{mowest{\super }\cell}
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.1 (0.9)\cell}
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.1 (0.8)\cell}
@@ -66,39 +66,39 @@
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{mocal{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1860.4 (496.3)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1904.3 (574.2)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1859.1 (497.6)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1894.8 (469.8)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{mopa{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{20 (22.3)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{22 (20.8)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{20 (22.6)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{22 (21)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{mobmi{\super }\cell}
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{24.2 (4.6)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{24.3 (4.4)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{24.4 (4.4)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{moshift{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{9 (11.6)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{5.2 (6.4)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{9 (11.7)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{5.2 (6.5)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{ses{\super }\cell}
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.2 (3.5)\cell}
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.6 (3.5)\cell}
@@ -106,226 +106,90 @@
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{foodswamp{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{31.7 (45.5)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{23.9 (41.6)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{supermarket{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1.6 (5.5)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1.6 (5.5)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{restaurant{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{7 (29.2)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{7.5 (23.7)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{fastfood{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{4.9 (10.6)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{5 (8.5)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{convenience{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.7 (1.3)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.7 (1.2)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{foodswampz{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{31.7 (45.5)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{23.9 (41.6)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{supermarketz{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1.6 (5.5)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1.6 (5.5)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{restaurantz{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{7 (29.2)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{7.5 (23.7)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{fastfoodz{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{4.9 (10.6)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{5 (8.4)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{conveniencez{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.7 (1.3)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.7 (1.2)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{foodswampa{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{31.7 (45.5)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{23.9 (41.6)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{supermarketa{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1.6 (5.5)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1.6 (5.5)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{restauranta{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{7 (29.2)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{7.5 (23.7)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{fastfooda{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{4.9 (10.6)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{5 (8.4)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{conveniencea{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.7 (1.3)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{0.7 (1.2)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{physician{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{1273.5 (1104.6)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{food_desert{\super }\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{5.2 (3)\cell}
-{\row}
-\trowd\trkeep\trqc
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{'<college'{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{17.8 (2064)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{15.0 (793)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{17.7 (2145)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{15.3 (883)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{'college'{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{50.2 (5812)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{51.4 (2708)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{50.6 (6135)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{51.2 (2952)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{'<50k'{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{12.9 (1499)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{12.5 (657)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{13.4 (1630)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{12.3 (707)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{'50-99k'{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{46.3 (5366)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{48.9 (2579)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{46.2 (5600)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{48.6 (2803)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{'100-149k'{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{26.3 (3049)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{22.3 (1174)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{26.0 (3152)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{22.6 (1301)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{'mom past smoking'{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{23.6 (2734)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{23.7 (1248)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{23.6 (2860)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{24.2 (1393)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{'mom current smoking'{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{7.8 (901)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{4.6 (241)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{7.8 (948)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{4.7 (272)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{midwest{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{34.9 (4038)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{35.8 (1889)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{34.9 (4232)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{35.7 (2056)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{south{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{15.4 (1780)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{15.6 (821)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{15.4 (1864)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{15.8 (908)\cell}
 {\row}
 \trowd\trkeep\trqc
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{west{\super }, %(n)\cell}
-\pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{14.2 (1650)\cell}
-\pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{16.2 (854)\cell}
+\pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{14.1 (1714)\cell}
+\pard\plain\intbl\keepn\sb60\sa60\ql\f1\fs24\cf1{16.0 (923)\cell}
 {\row}
 \trowd\trkeep\trqc
 \clbrdrb\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx3206
 \clbrdrb\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx4788
-\clbrdrb\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6493
+\clbrdrb\brdrs\brdrw15\brdrcf1\cltxlrtb\clvertalt\clcbpat8\clpadt60\clpadft3\clpadr60\clpadfr3\cellx6370
 \pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{moob{\super }, %(n)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{10.1 (1167)\cell}
-\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{10.6 (561)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{10.0 (1211)\cell}
+\pard\plain\intbl\sb60\sa60\ql\f1\fs24\cf1{10.7 (615)\cell}
 {\row}
 \pard\trowd\trkeep\trql
 \cltxlrtb\clvertalt\clcbpat8\cellx11185

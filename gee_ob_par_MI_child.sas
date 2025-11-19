@@ -100,7 +100,7 @@ data betas;
   * Only OUTPUT once per _imputation_, after we've assigned all param columns ;
   if last._imputation_ then output;
 
-	* set negative beta to 0 to avoid errors in PAR -- chpa2 <0 in imputations 1-2;
+	* set negative beta to 0 to avoid errors in PAR -- chpa2 <0 in imputations 2,5;
 	if chpaq2 <0 then chpaq2=0;
 run;
 proc print data=betas; 

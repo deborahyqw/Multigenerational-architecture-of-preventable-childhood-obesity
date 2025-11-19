@@ -31,9 +31,9 @@ Main exposures/Covariates
         Gestational diabetes [GESDBG1-GESDBG16]
         C-section [CSECTG1-CSECTG16]
         Small or large for gestational age 
-                [need to derive based on birth weight: GESCNG1-GESCNG16  GESCTG1-GESCTG16
+                [need to derive based on gestational age: GESCNG1-GESCNG16  GESCTG1-GESCTG16
                 AND 
-                gestational age: W1G1-W1G16 W2G1-W2G16 W3G1-W3G16 W4G1-W4G16 W5G1-W5G16 W6G1-W6G16 BWTCNG1-BWTCNG16]
+                birthweight: W1G1-W1G16 W2G1-W2G16 W3G1-W3G16 W4G1-W4G16 W5G1-W5G16 W6G1-W6G16 BWTCNG1-BWTCNG16]
         Gestational Weight gain [weight gain in kg (continuous): GESWEIGAIN; class for gestional weight gain (binary): GOTWEIGHT]
         Spouse education (hs or less/some college/grad school) [HUSBEDUC]
         Maternal job stress
@@ -428,11 +428,12 @@ code from: /proj/n2nios/n2nio0a/kaori/cum.rotat.shift/bmi9397.cumshiftwk.final.m
 %nur05(keep=id shi0105 shi0305); /*shi0105 6/01-6/03 shi0305 Since 6/03 
 									1.none 2.1-4mos 3.5-9mos 4.10-14mos 5.15-19mos 6.20+ mos 7.pt */
 %nur11(keep=id shift11); /*1.none 2.1-4 months 3.5-9 months 4.10-14 months 5.15-19 months 6.20+ months 7.pt*/
+%nur07(keep=id shift07); /*Web only 0. missing 1.none 2.1-4 months 3.5-9 months 4.10-14 months 5.15-19 months 6.20+ months*/
 %nur13(keep=id shift13); /*1.none 2.1-4 months 3.5-9 months 4.10-14 months 5.15-19 months 6.20+ months 7.pt*/
 
 /* Merge shiftwork files */
 data nightshift;
-	merge	nur89 nur91 nur93 ses97 nur01 nur05 nur11 nur13;
+	merge	nur89 nur91 nur93 ses97 nur01 nur05 nur07 nur11 nur13;
 	by id;
 	
 	/*   1989 is in categories of years, convert to months */
@@ -518,6 +519,14 @@ data nightshift;
 		else if shi0305=6 then shi0305_con=22;
 		else                   shi0305_con=.;
 		
+	if shift07=1 then shi07_con=0;
+		else if shift07=2 then shi07_con=2.5;
+		else if shift07=3 then shi07_con=7;
+		else if shift07=4 then shi07_con=12;
+		else if shift07=5 then shi07_con=17;
+		else if shift07=6 then shi07_con=22;
+		else                   shi07_con=.;
+		
 	if shift11=1 then shi11_con=0;
 		else if shift11=2 then shi11_con=2.5;
 		else if shift11=3 then shi11_con=7;
@@ -534,13 +543,13 @@ data nightshift;
 		else if shift13=6 then shi13_con=22;
 		else                   shi13_con=.;
 		
-	%cumavg(cycle=11, cyclevar=1,
-        varin =shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi11_con shi13_con,
-        varout=shi89v shi8991v shi9193v shi9395v shi9597v shi9799v shi9901v shi0103v shi0305v shi11v shi13v );
+	%cumavg(cycle=12, cyclevar=1,
+        varin =shi89_con shi8991_con shi9193_con shi9395_con shi9597_con shi9799_con shi9901_con shi0103_con shi0305_con shi07_con shi11_con shi13_con,
+        varout=shi89v shi8991v shi9193v shi9395v shi9597v shi9799v shi9901v shi0103v shi0305v shi07v shi11v shi13v );
 run;
 
 proc datasets;
-	delete nur89 nur91 nur93 ses97 nur01 nur05 nur11 nur13;
+	delete nur89 nur91 nur93 ses97 nur01 nur05 nur07 nur11 nur13;
 run; 
 
 /*Job insecurity********************************************:
@@ -600,7 +609,7 @@ run;
 run;
 
 *Read geographic data prepared by Bethsaida;
-proc import datafile="nhs2.spatial.vars.csv"
+proc import datafile="/udd/nhywa/GUTSOB/nhs2.spatial.vars.csv"
         out=geo
         dbms=csv
         replace;

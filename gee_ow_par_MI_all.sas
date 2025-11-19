@@ -34,9 +34,7 @@ Preparation date: 12/2024
 data all;
   set all end=_end_;
   cohort=cohort-1;
-  
-  /* if agebirth >=35 then oldbirth=1; else oldbirth=0; */
-  
+    
      %indic3(vbl=mowestq, reflev=0, missing=., min=1, max=3, prefix=mowestq, usemiss=0,
             label1='Q2',label2='Q3', label3='Q4');
      %indic3(vbl=mocalq, reflev=0, missing=., min=1, max=3, prefix=mocalq, usemiss=0,
@@ -48,23 +46,7 @@ data all;
             
     %indic3(vbl=sesq, reflev=3, missing=., min=0, max=2, prefix=sesq, usemiss=0,
             label0='Q1',label1='Q2', label2='Q3');
-   /*  %indic3(vbl=nvdi270q, reflev=3, missing=., min=0, max=2, prefix=nvdi270q, usemiss=0,
-            label0='Q1',label1='Q2', label2='Q3');
-    %indic3(vbl=pm25q, reflev=0, missing=., min=1, max=3, prefix=pm25q, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=no2q, reflev=0, missing=., min=1, max=3, prefix=no2q, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=temsq, reflev=0, missing=., min=1, max=3, prefix=temsq, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=temwq, reflev=0, missing=., min=1, max=3, prefix=temwq, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=foodswampq , reflev=0, missing=., min=1, max=3, prefix=foodswampq, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=physicianq, reflev=0, missing=., min=1, max=3, prefix=physicianq, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-     %indic3(vbl=food_desertq, reflev=0, missing=., min=1, max=3, prefix=food_desertq, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');   */
-
+  
 	%indic3(vbl=chwestq, reflev=0, missing=., min=1, max=3, prefix=chwestq, usemiss=0,
             label1='Q2',label2='Q3', label3='Q4');
     %indic3(vbl=chcalq, reflev=0, missing=., min=1, max=3, prefix=chcalq, usemiss=0,
@@ -99,8 +81,8 @@ proc genmod data = all descending;
  run;
   
 *ever had negative coef:
-	mowestq1 mowestq2 mowestq3 mopaq0 mopaq1 mopaq2 moshiftq3 abwt1
-	gweek1 gweek3 sesq0 fincome2 fincome3 chpaq1 chpaq2
+	mowestq1 mowestq2 mowestq3 mopaq0 mopaq1 mopaq2 abwt1
+	gweek1   fincome1 fincome2 fincome3 chpaq1 chpaq2
 	;
 
 data betas; 
@@ -144,14 +126,14 @@ data betas;
 	
   * Only OUTPUT once per _imputation_, after we've assigned all param columns ;
   if last._imputation_ then output;
-  
+  	
   * set negative beta to 0 to 1) avoid errors in PAR and 2) to prevent certain exposures were omitted from PAR calculation;
   if mowestq1 <0 then  mowestq1 =0;    if mowestq2 <0 then  mowestq2 =0;
   if mowestq3 <0 then  mowestq3 =0;    if mopaq0 <0 then mopaq0 =0;     
   if mopaq1 <0 then mopaq1 =0;         if mopaq2 <0 then mopaq2 =0;     
-  if moshiftq3 <0 then moshiftq3=0;    if abwt1 <0 then abwt1 =0;     
-  if gweek1 <0 then  gweek1=0;         if gweek3 <0 then gweek3 =0;
-  if sesq0 <0 then sesq0 =0;           if fincome2 <0 then fincome2 =0;     
+  if abwt1 <0 then abwt1 =0;     
+  if gweek1 <0 then  gweek1=0;         
+  if fincome1 <0 then fincome1 =0;     if fincome2 <0 then fincome2 =0;     
   if fincome3 <0 then fincome3 =0;     if chpaq1 <0 then chpaq1 =0; 
   if chpaq2 <0 then chpaq2 =0;         
   

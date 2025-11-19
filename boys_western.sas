@@ -306,10 +306,17 @@ keep yr96b id momid
   		legume96    othveg96   potato96    french96  wholeg96   refing96   pizza96    
   		sugdrk96    lowdrk96   snack96     nuts96    mayo96     dress96    crmsoup96   
   		sweets96    condim96     ;
+
+ if nmiss(of promeat96   redmeat96  orgmeat96   fish96    poult96    eggs96     butter96    
+  		marg96      lowdai96   highdai96   wine96    liquor96   beer96     tea96       
+  		coffee96    fruit96    fruju96     cruveg96  yelveg96   tomato96   leafveg96   
+  		legume96    othveg96   potato96    french96  wholeg96   refing96   pizza96    
+  		sugdrk96    lowdrk96   snack96     nuts96    mayo96     dress96    crmsoup96   
+  		sweets96    condim96    ) >0 then delete; *405 missing removed;
+
 run;
 
 proc factor data=boys96 rotate=varimax mineigen=1.5 fuzz=0.10 nfactor=3 scree reorder out=f96;
-	where promeat96 ne .;
 	var promeat96   redmeat96  orgmeat96   fish96    poult96    eggs96     butter96    
   		marg96      lowdai96   highdai96   wine96    liquor96   beer96     tea96       
   		coffee96    fruit96    fruju96     cruveg96  yelveg96   tomato96   leafveg96   
@@ -602,10 +609,17 @@ keep yrq97 id momid
   		legume97    othveg97   potato97    french97  wholeg97   refing97   pizza97    
   		sugdrk97    lowdrk97   snack97     nuts97    mayo97     dress97    crmsoup97   
   		sweets97    condim97      ;
+
+ if nmiss(of promeat97   redmeat97  orgmeat97   fish97    poult97    eggs97     butter97    
+  		marg97      lowdai97   highdai97   wine97    liquor97   beer97     tea97       
+  		coffee97    fruit97    fruju97     cruveg97  yelveg97   tomato97   leafveg97   
+  		legume97    othveg97   potato97    french97  wholeg97   refing97   pizza97    
+  		sugdrk97    lowdrk97   snack97     nuts97    mayo97     dress97    crmsoup97   
+  		sweets97    condim97    ) >0 then delete; *296 missing removed;
+
 run;
 
 proc factor data=boys97 rotate=varimax mineigen=1.5 fuzz=0.10 nfactor=3 scree reorder out=f97;
-	where promeat97 ne .;
 	var promeat97   redmeat97  orgmeat97   fish97    poult97    eggs97     butter97    
   		marg97      lowdai97   highdai97   wine97    liquor97   beer97     tea97       
   		coffee97    fruit97    fruju97     cruveg97  yelveg97   tomato97   leafveg97   
@@ -873,10 +887,17 @@ keep yr98b id momid
   		legume98    othveg98   potato98    french98  wholeg98   refing98   pizza98    
   		sugdrk98    lowdrk98   snack98     nuts98    mayo98     dress98    crmsoup98   
   		sweets98    condim98      ;
+
+ if nmiss(of promeat98   redmeat98   fish98    poult98    eggs98     butter98    
+  		marg98      lowdai98   highdai98   wine98    liquor98   beer98     tea98       
+  		coffee98    fruit98    fruju98     cruveg98  yelveg98   tomato98   leafveg98   
+  		legume98    othveg98   potato98    french98  wholeg98   refing98   pizza98    
+  		sugdrk98    lowdrk98   snack98     nuts98    mayo98     dress98    crmsoup98   
+  		sweets98    condim98    ) >0 then delete; *269 missing removed;
+
 run;
 
 proc factor data=boys98 rotate=varimax mineigen=1.5 fuzz=0.10 nfactor=3 scree reorder out=f98;
-	where promeat98 ne .;
 	var promeat98   redmeat98   fish98    poult98    eggs98     butter98    
   		marg98      lowdai98   highdai98   wine98    liquor98   beer98     tea98       
   		coffee98    fruit98    fruju98     cruveg98  yelveg98   tomato98   leafveg98   
@@ -990,10 +1011,16 @@ keep yrq01 id momid
   		sugdrk01    lowdrk01   snack01     nuts01    mayo01     dress01    crmsoup01   
   		sweets01    condim01      ;
 
+ if nmiss(of promeat01   redmeat01   fish01    poult01    eggs01     butter01    
+  		marg01      lowdai01   highdai01   wine01    liquor01   beer01     tea01       
+  		coffee01    fruit01    fruju01     cruveg01  yelveg01   tomato01   leafveg01   
+  		legume01    othveg01   potato01    french01  wholeg01   refing01   pizza01    
+  		sugdrk01    lowdrk01   snack01     nuts01    mayo01     dress01    crmsoup01   
+  		sweets01    condim01    ) >0 then delete; *105 missing removed;
+
 run;
 
 proc factor data=boys01 rotate=varimax mineigen=1.5 fuzz=0.10 nfactor=3 scree reorder out=f01;
-	where promeat01 ne .;
 	var promeat01   redmeat01   fish01    poult01    eggs01     butter01    
   		marg01      lowdai01   highdai01   wine01    liquor01   beer01     tea01       
   		coffee01    fruit01    fruju01     cruveg01  yelveg01   tomato01   leafveg01   
@@ -1234,6 +1261,13 @@ keep yr204b id momid
   		legume204    othveg204   potato204    french204  wholeg204   refing204   pizza204    
   		sugdrk204    lowdrk204   snack204     nuts204    mayo204     dress204    crmsoup204   
   		sweets204    condim204      ;
+
+ if nmiss(of promeat204   redmeat204  orgmeat204   fish204    poult204    eggs204     butter204    
+  		marg204      lowdai204   highdai204   wine204    liquor204   beer204     tea204       
+  		coffee204    fruit204    fruju204     cruveg204  yelveg204   tomato204   leafveg204   
+  		legume204    othveg204   potato204    french204  wholeg204   refing204   pizza204    
+  		sugdrk204    lowdrk204   snack204     nuts204    mayo204     dress204    crmsoup204   
+  		sweets204    condim204    ) >0 then delete; *282 missing removed;
 
 run;
 
@@ -1478,10 +1512,17 @@ keep yr206b id momid
   		legume206    othveg206   potato206    french206  wholeg206   refing206   pizza206    
   		sugdrk206    lowdrk206   snack206     nuts206    mayo206     dress206    crmsoup206   
   		sweets206    condim206      ;
+
+ if nmiss(of promeat206   redmeat206    fish206    poult206    eggs206     butter206    
+  		marg206      lowdai206   highdai206   wine206    liquor206   beer206     tea206       
+  		coffee206    fruit206    fruju206     cruveg206  yelveg206   tomato206   leafveg206   
+  		legume206    othveg206   potato206    french206  wholeg206   refing206   pizza206    
+  		sugdrk206    lowdrk206   snack206     nuts206    mayo206     dress206    crmsoup206   
+  		sweets206    condim206     ) >0 then delete; *154 missing removed;
+
 run;
 
 proc factor data=boys206 rotate=varimax mineigen=1.5 fuzz=0.10 nfactor=3 scree reorder out=f06;
-	where promeat206 ne .;
 	var promeat206   redmeat206    fish206    poult206    eggs206     butter206    
   		marg206      lowdai206   highdai206   wine206    liquor206   beer206     tea206       
   		coffee206    fruit206    fruju206     cruveg206  yelveg206   tomato206   leafveg206   
@@ -1745,9 +1786,15 @@ keep yr208b id momid
   		sugdrk208    lowdrk208   snack208     nuts208    mayo208     dress208    crmsoup208   
   		sweets208    condim208      ;
 
+ if nmiss(of promeat208   redmeat208  orgmeat208   fish208    poult208    eggs208     butter208    
+  		marg208      lowdai208   highdai208   wine208    liquor208   beer208     tea208       
+  		coffee208    fruit208    fruju208     cruveg208  yelveg208   tomato208   leafveg208   
+  		legume208    othveg208   potato208    french208  wholeg208   refing208   pizza208    
+  		sugdrk208    lowdrk208   snack208     nuts208    mayo208     dress208    crmsoup208   
+  		sweets208    condim208     ) >0 then delete; *78 missing removed;
+
 run;
 proc factor data=boys208 rotate=varimax mineigen=1.5 fuzz=0.10 nfactor=3 scree reorder out=f08;
-	where promeat208 ne .;
 	var promeat208   redmeat208  orgmeat208   fish208    poult208    eggs208     butter208    
   		marg208      lowdai208   highdai208   wine208    liquor208   beer208     tea208       
   		coffee208    fruit208    fruju208     cruveg208  yelveg208   tomato208   leafveg208   
@@ -1889,9 +1936,16 @@ keep yr211b id momid
   		legume211    othveg211   potato211    french211  wholeg211   refing211   pizza211    
   		sugdrk211    lowdrk211   snack211     nuts211    mayo211     dress211    crmsoup211   
   		sweets211    condim211      ;
+
+ if nmiss(of promeat211   redmeat211    fish211    poult211    eggs211     butter211    
+  		marg211      lowdai211   highdai211   wine211    liquor211   beer211     tea211       
+  		coffee211    fruit211    fruju211     cruveg211  yelveg211   tomato211   leafveg211   
+  		legume211    othveg211   potato211    french211  wholeg211   refing211   pizza211    
+  		sugdrk211    lowdrk211   snack211     nuts211    mayo211     dress211    crmsoup211   
+  		sweets211    condim211    ) >0 then delete; *40 missing removed;
+
 run;
 proc factor data=boys211 rotate=varimax mineigen=1.5 fuzz=0.10 nfactor=3 scree reorder out=f11;
-	where promeat211 ne .;
 	var promeat211   redmeat211    fish211    poult211    eggs211     butter211    
   		marg211      lowdai211   highdai211   wine211    liquor211   beer211     tea211       
   		coffee211    fruit211    fruju211     cruveg211  yelveg211   tomato211   leafveg211   

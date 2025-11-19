@@ -32,7 +32,7 @@ Preparation date: 12/2024
 
 /**********************************************************************/
 data all;
-  set all;
+  set all end=_end_ ;
   cohort=cohort-1;
   
   /*if agebirth >=35 then oldbirth=1; else oldbirth=0;*/
@@ -68,7 +68,7 @@ proc freq data=all;
 	table ( mowestq mocalq mopaq mosmk2 mosmk3 moow moshiftq bpregow 
 			abwt1 abwt3 gweek1 gweek3 Delivery pregcomp2
 			sesq husbeduc income incom01 
-			chwestq chstq chpaq chcalq chsleep chsleepc 
+			chwestq chstq chpaq chcalq 
    			cohort white sex 
    			prev_preg1 prev_preg2 prev_preg3
    			midwest south west)*chow; 
@@ -382,6 +382,37 @@ MODELEFFECTS INTERCEPT
 		chwest_m chst_m chpa_m chcal_m 
   			chbmibase	cohort chage white sex ;
 RUN;	
+
+/**********************************************************************/
+/*****   gestational weigh only available in GUTSI               *****/	
+/*****   establish different baselines for different variables   *****/		
+/**********************************************************************/
+title 'gestational weight gain ';
+data all1; set all;
+  if cohort=0; *only available in GUTS1;
+run; 
+
+proc sort data=all1; by _imputation_; run;
+
+proc freq; table (gotweight prev_preg1 prev_preg2 prev_preg3 bpregow
+				white sex  )*chow;
+
+proc genmod data = all1 descending;
+	by _imputation_ ;
+ class id momid ;
+   model chow = gotweight prev_preg1 prev_preg2 prev_preg3 agebirth bpregow chage white sex 
+     / dist = Poisson link = log;
+     repeated subject=id(momid)/type=unstr PRINTMLE ecovb;
+     ods output GEEEmpPEst = geswt;
+ run;
+ 
+ TITLE " multiple imputation - personal modifiable factors";
+ods output ParameterEstimates=mi_gweight;
+PROC MIANALYZE parms=geswt;
+MODELEFFECTS INTERCEPT 
+			gotweight prev_preg1 prev_preg2 prev_preg3 agebirth bpregow
+  				 chage white sex  ;
+RUN;
 		
   
 *****************************************;
@@ -392,7 +423,8 @@ length Parm $ 15;
    	   mi_momsensi(in=d) mi_momsensit(in=e) mi_mobsensi(in=f) 
    	   mi_uter(in=g) mi_pregob(in=h)  
    	   mi_soc(in=i) mi_soct(in=j) mi_edu(in=k) mi_edut(in=l)
-   	   mi_inc(in=m) mi_inct(in=n)  mi_life(in=o) mi_lifet(in=p) ;
+   	   mi_inc(in=m) mi_inct(in=n)  mi_life(in=o) mi_lifet(in=p) 
+   	   mi_gweight(in=q);
   	
   	if a then mod="mom";
   	if b then mod="mom trend";
@@ -410,6 +442,7 @@ length Parm $ 15;
   	if n then mod="income trend";
   	if o then mod="life";
   	if p then mod="life trend";
+  	if q then mod="geswtgrain";
 
 	RR=exp(Estimate); LCI=exp(LCLMean); UCI=exp(UCLMean);
    

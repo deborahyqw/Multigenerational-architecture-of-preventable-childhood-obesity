@@ -32,7 +32,7 @@ Preparation date: 12/2024
 
 /**********************************************************************/
 data all;
-  set all;
+  set all  end=_end_ ;
   cohort=cohort-1;
   
   /*if agebirth >=35 then oldbirth=1; else oldbirth=0;*/
@@ -48,17 +48,7 @@ data all;
             
     %indic3(vbl=sesq, reflev=3, missing=., min=0, max=2, prefix=sesq, usemiss=0,
             label0='Q1',label1='Q2', label2='Q3');
-    /*%indic3(vbl=nvdi270q, reflev=0, missing=., min=1, max=3, prefix=nvdi270q, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=pm25q, reflev=0, missing=., min=1, max=3, prefix=pm25q, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=no2q, reflev=0, missing=., min=1, max=3, prefix=no2q, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=temsq, reflev=0, missing=., min=1, max=3, prefix=temsq, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4');
-    %indic3(vbl=temwq, reflev=0, missing=., min=1, max=3, prefix=temwq, usemiss=0,
-            label1='Q2',label2='Q3', label3='Q4'); */
-
+  
 	%indic3(vbl=chwestq, reflev=0, missing=., min=1, max=3, prefix=chwestq, usemiss=0,
             label1='Q2',label2='Q3', label3='Q4');
     %indic3(vbl=chcalq, reflev=0, missing=., min=1, max=3, prefix=chcalq, usemiss=0,
@@ -78,7 +68,7 @@ proc freq data=all;
 	table ( mowestq mocalq mopaq mosmk2 mosmk3 moob moshiftq bpregob 
 			abwt1 abwt3 gweek1 gweek3 Delivery pregcomp2
 			sesq husbeduc income incom01 
-			chwestq chstq chpaq chcalq chsleep chsleepc 
+			chwestq chstq chpaq chcalq 
    			cohort white sex 
    			prev_preg1 prev_preg2 prev_preg3
    			midwest south west)*chob; 
@@ -395,6 +385,38 @@ MODELEFFECTS INTERCEPT
 RUN;	
 		
   
+/**********************************************************************/
+/*****   gestational weigh only available in GUTSI               *****/	
+/*****   establish different baselines for different variables   *****/		
+/**********************************************************************/
+title 'gestational weight gain ';
+data all1; set all;
+  if cohort=0; *only available in GUTS1;
+run; 
+
+proc sort data=all1; by _imputation_; run;
+
+proc freq; table (gotweight prev_preg1 prev_preg2 prev_preg3 bpregob
+				white sex  )*chob;
+
+proc genmod data = all1 descending;
+	by _imputation_ ;
+ class id momid ;
+   model chob = gotweight prev_preg1 prev_preg2 prev_preg3 agebirth bpregob chage white sex 
+     / dist = Poisson link = log;
+     repeated subject=id(momid)/type=unstr PRINTMLE ecovb;
+     ods output GEEEmpPEst = geswt;
+ run;
+ 
+ TITLE " multiple imputation - personal modifiable factors";
+ods output ParameterEstimates=mi_gweight;
+PROC MIANALYZE parms=geswt;
+MODELEFFECTS INTERCEPT 
+			gotweight prev_preg1 prev_preg2 prev_preg3 agebirth bpregob
+  				 chage white sex  ;
+RUN;
+
+
 *****************************************;
 ************** PREPARE DATA FOR TABLE *************************;
 data allob;
@@ -403,7 +425,8 @@ length Parm $ 15;
    	   mi_momsensi(in=d) mi_momsensit(in=e) mi_mobsensi(in=f) 
    	   mi_uter(in=g) mi_pregob(in=h)  
    	   mi_soc(in=i) mi_soct(in=j) mi_edu(in=k) mi_edut(in=l)
-   	   mi_inc(in=m) mi_inct(in=n)  mi_life(in=o) mi_lifet(in=p) ;
+   	   mi_inc(in=m) mi_inct(in=n)  mi_life(in=o) mi_lifet(in=p) 
+   	   mi_gweight(in=q) ;
   	
   	if a then mod="mom";
   	if b then mod="mom trend";
@@ -421,6 +444,7 @@ length Parm $ 15;
   	if n then mod="income trend";
   	if o then mod="life";
   	if p then mod="life trend";
+  	if q then mod="geswtgrain";
 
 	RR=exp(Estimate); LCI=exp(LCLMean); UCI=exp(UCLMean);
    

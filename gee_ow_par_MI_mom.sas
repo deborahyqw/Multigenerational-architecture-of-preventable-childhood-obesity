@@ -104,7 +104,9 @@ data betas;
   * Only OUTPUT once per _imputation_, after we've assigned all param columns ;
   if last._imputation_ then output;
   
-  if mopaq0 <0 then  mopaq0 =0;  if mopaq1 <0 then  mopaq1 =0;  if mopaq2 <0 then  mopaq2 =0;
+  if mowestq1 <0 then  mowestq1 =0;    if mowestq2 <0 then  mowestq2 =0;
+  if mopaq0 <0 then  mopaq0 =0;
+  if mopaq1 <0 then  mopaq1 =0;        if mopaq2 <0 then  mopaq2 =0;
 
 run;
 *proc print data=betas; 
@@ -380,7 +382,7 @@ data betas;
   if last._imputation_ then output;
   
   if mowestq1 <0 then  mowestq1 =0;    if mowestq2 <0 then  mowestq2 =0;
-  if mowestq3 <0 then  mowestq3 =0;    if mopaq0 <0 then  mopaq0 =0;
+  if mopaq0 <0 then  mopaq0 =0;
   if mopaq1 <0 then  mopaq1 =0;        if mopaq2 <0 then  mopaq2 =0;
 run;
 *proc print data=betas; 

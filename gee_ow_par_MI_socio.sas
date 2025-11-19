@@ -304,8 +304,6 @@ data betas;
   * Only OUTPUT once per _imputation_, after we've assigned all param columns ;
   if last._imputation_ then output;
   
-  if fincome2 <0 then  fincome2 =0;  if fincome3 <0 then  fincome3 =0; 
-
 run;
 *proc print data=betas; 
 

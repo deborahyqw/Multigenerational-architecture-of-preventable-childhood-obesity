@@ -111,27 +111,27 @@ data all2;
 			agebirth moagebase age06 age08 age11 age13
 			bmi03v bmi05v bmi07v bmi11v bmi13v
 			smk03 smk05 smk07 smk11 smk13  white  husbeduc
-			ahei03v ahei07v ahei11v      f203v  f207v  f211v
-			alco03v alco07v alco11v      calor03n calor07n calor11n 
+			/* ahei03v ahei07v ahei11v */     f203v  f207v  f211v
+			/* alco03v alco07v alco11v */     calor03v calor07v calor11v 
 			act01v act05v act09v act13v       
-			shi0103v shi0305v shi11v shi13v   incom01 sleep06 sleep08 sleep11
+			shi0103v shi0305v shi07v shi11v shi13v   incom01 /* sleep06 sleep08 sleep11 */
 			nSES_03v nSES_05v nSES_07v nSES_09v nSES_11v nSES_13v 
-    supermarket1500_2003v supermarket1500_2005v supermarket1500_2007v supermarket1500_2009v supermarket1500_2011v supermarket1500_2013v  
+    /* supermarket1500_2003v supermarket1500_2005v supermarket1500_2007v supermarket1500_2009v supermarket1500_2011v supermarket1500_2013v  
 	restaurant1500_2003v  restaurant1500_2005v  restaurant1500_2007v  restaurant1500_2009v  restaurant1500_2011v  restaurant1500_2013v   
 	fastfood1500_2003v    fastfood1500_2005v    fastfood1500_2007v    fastfood1500_2009v    fastfood1500_2011v    fastfood1500_2013v   
-	convenience1500_2003v convenience1500_2005v convenience1500_2007v convenience1500_2009v convenience1500_2011v convenience1500_2013v  	
+	convenience1500_2003v convenience1500_2005v convenience1500_2007v convenience1500_2009v convenience1500_2011v convenience1500_2013v  */	
         		midwest03 midwest05 midwest07 midwest11 midwest13 
 				south03 south05 south07 south11 south13 
 				west03 west05 west07 west11 west13 
 			chage04 chage06 chage08 chage11 chage13
-			chdiet04v chdiet06v chdiet08v chdiet11v   chwest04 chwest06 chwest08 chwest11  
+			/* chdiet04v chdiet06v chdiet08v chdiet11v */  chwest04 chwest06 chwest08 chwest11  
 			chcal04v chcal06v chcal08v chcal11v
-			 chcig06 chcig08 chcig11 chcig13
+			/* chcig06 chcig08 chcig11 chcig13 */
 			chst04v chst06v chst08v chst11v 
 			chpa04v chpa06v chpa08v chpa11v 
 			chbmi04 chbmi06 chbmi08 chbmi11 chbmi13
 			bmibpreg  Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery prev_preg  bwg gestweek 
-			physician_ratio10v food_desert10v physician_ratio12v food_desert12v physician_ratio13v food_desert13v 			
+			/* physician_ratio10v food_desert10v physician_ratio12v food_desert12v physician_ratio13v food_desert13v 	*/		
 			chob04 chob06 chob08 chob11 chob13 
 			chow04 chow06 chow08 chow11 chow13 chpreg13;
 run;
@@ -144,7 +144,7 @@ class white natal_sex Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery
     		  midwest03 midwest05 midwest07 midwest11 midwest13 
 				south03 south05 south07 south11 south13 
 				west03 west05 west07 west11 west13 
-			    prev_preg  bwg gestweek husbeduc incom01 sleep06 sleep08 sleep11;
+			    prev_preg  bwg gestweek husbeduc incom01 ;
 	    
 var chage04 chage06 chage08 chage11 chage13
 			chwest04 chwest06 chwest08 chwest11  
@@ -153,25 +153,19 @@ var chage04 chage06 chage08 chage11 chage13
 			chpa04v chpa06v chpa08v chpa11v 
 
 	agebirth moagebase age06 age08 age11 age13
-			f203v  f207v  f211v           calor03n calor07n calor11n 
+			f203v  f207v  f211v           calor03v calor07v calor11v 
 			act01v act05v act09v act13v    bmi03v bmi05v bmi07v bmi11v bmi13v
-	shi0103v shi0305v shi11v shi13v
+	shi0103v shi0305v shi07v shi11v shi13v
 
     nSES_03v nSES_05v nSES_07v nSES_09v nSES_11v nSES_13v 
-   supermarket1500_2003v supermarket1500_2005v supermarket1500_2007v supermarket1500_2009v supermarket1500_2011v supermarket1500_2013v  
-	restaurant1500_2003v  restaurant1500_2005v  restaurant1500_2007v  restaurant1500_2009v  restaurant1500_2011v  restaurant1500_2013v   
-	fastfood1500_2003v    fastfood1500_2005v    fastfood1500_2007v    fastfood1500_2009v    fastfood1500_2011v    fastfood1500_2013v   
-	convenience1500_2003v convenience1500_2005v convenience1500_2007v convenience1500_2009v convenience1500_2011v convenience1500_2013v  	
-    chbmi04 chbmi06 chbmi08 chbmi11 chbmi13
+      chbmi04 chbmi06 chbmi08 chbmi11 chbmi13
  	bmibpreg
-	
-	physician_ratio10v food_desert10v physician_ratio12v food_desert12v physician_ratio13v food_desert13v
-	
+		
 	white natal_sex Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery
     		  midwest03 midwest05 midwest07 midwest11 midwest13 
 				south03 south05 south07 south11 south13 
 				west03 west05 west07 west11 west13 
-				 prev_preg  bwg gestweek husbeduc incom01 sleep06 sleep08 sleep11;
+				 prev_preg  bwg gestweek husbeduc incom01 ;
 	
 fcs reg( chage04 chage06 chage08 chage11 chage13
 			 chwest04 chwest06 chwest08 chwest11  
@@ -180,24 +174,19 @@ fcs reg( chage04 chage06 chage08 chage11 chage13
 			chpa04v chpa06v chpa08v chpa11v 
 
 	agebirth moagebase age06 age08 age11 age13
-			 f203v  f207v  f211v          calor03n calor07n calor11n 
+			 f203v  f207v  f211v          calor03v calor07v calor11v 
 			act01v act05v act09v act13v    bmi03v bmi05v bmi07v bmi11v bmi13v
-	shi0103v shi0305v shi11v shi13v
+	shi0103v shi0305v shi07v shi11v shi13v
 
 	 nSES_03v nSES_05v nSES_07v nSES_09v nSES_11v nSES_13v 
-   supermarket1500_2003v supermarket1500_2005v supermarket1500_2007v supermarket1500_2009v supermarket1500_2011v supermarket1500_2013v  
-	restaurant1500_2003v  restaurant1500_2005v  restaurant1500_2007v  restaurant1500_2009v  restaurant1500_2011v  restaurant1500_2013v   
-	fastfood1500_2003v    fastfood1500_2005v    fastfood1500_2007v    fastfood1500_2009v    fastfood1500_2011v    fastfood1500_2013v   
-	convenience1500_2003v convenience1500_2005v convenience1500_2007v convenience1500_2009v convenience1500_2011v convenience1500_2013v  	
-    chbmi04 chbmi06 chbmi08 chbmi11 chbmi13
- 	bmibpreg
-	physician_ratio10v food_desert10v physician_ratio12v food_desert12v physician_ratio13v food_desert13v) 
+      chbmi04 chbmi06 chbmi08 chbmi11 chbmi13
+ 	bmibpreg )
 
     logistic( white natal_sex Comp_Gesdbg Comp_prghtng Comp_peclmpg Delivery
     		  midwest03 midwest05 midwest07 midwest11 midwest13 
 				south03 south05 south07 south11 south13 
 				west03 west05 west07 west11 west13 
-			  prev_preg  bwg gestweek husbeduc incom01 sleep06 sleep08 sleep11/ likelihood=augment) 
+			  prev_preg  bwg gestweek husbeduc incom01 / likelihood=augment) 
      nbiter =10 ; 
 run;
 
