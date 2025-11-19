@@ -73,6 +73,7 @@ proc print data=meta_RR_age; run;
 
 /**MATERNAL BMI************************************/
 
+
 data meta_RR_mob;
    set dat_lb.mom_moob_RR  dat_lb.mom_nomoob_RR; 
 	length  HRCI2 $ 18; 
@@ -84,7 +85,7 @@ data meta_RR_mob;
 run;
 
 proc print data=meta_RR_mob; run;
- 
+
 
 
 /**********************************************************************
