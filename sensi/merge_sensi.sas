@@ -115,10 +115,7 @@ data all1;
             label1='<50k',label2='50-99k',label3='100-149k');   
     
     if gotweight=. then  gotweight=0; *8537;
-     
-	*make primary physician and food desert missing to match with GUTSII;
-	physician=. ; food_desert=.; 
- 	
+     	
 	year96=1996; year97=1997; year98=1998; year99=1999; year00=2000;
 	year01=2001; year03=2003; year05=2005;
 	
@@ -199,33 +196,28 @@ do time=1 to 8;
 ********************************************************************/
 *baseline;
 if time=1 then do;	
-	*%exclude(id ne ., nodelete=t); *16611;
-	%exclude(momid ne ., nodelete=t); 
-    %exclude(exrec eq 1); *exclude those not in GUTS1 -1 ;
+	%exclude(momid ne ., nodelete=t); *16611 ;
+    %exclude(exrec eq 1); *exclude those not in GUTS1 1 ;
     %exclude(chob eq 1); *baseline ob n=741;
 	%exclude(chbmi eq .); * baseline bmi missing - should be 0, already excluded; 
 	%exclude(bwg eq . or  gestweek eq . or husbeduc eq . or incom01 eq . or bmibpreg eq . or
 			 chwest eq . or chcal eq . or chst eq . or chpa eq . or
     		 mowest eq . or mocal eq . or mopa eq . or mobmi eq . or moshift eq . or ses eq . ); *exclude missing exposures 7464;
-    %exclude(lastq eq irt{1});  /*only returned baseline 1996Q n=142*/
-    *%exclude(id ne ., nodelete=t);
-    %exclude(momid ne ., nodelete=t); *8263;
+    %exclude(momid ne ., nodelete=t); *8405;
   %output();
   end;
 
 *Follow-up;
   else if time>1 then do;
-  	%exclude(irt{time} eq .); * observations if not returning questionnaires 3942;
-  	%exclude(0 lt lastq lt irt{time}); 	 *censor lost to follow up ;
+  	%exclude(irt{time} eq .); * observations if not returning questionnaires 4084;
   	%exclude(0 lt obyear lt qyear{time} );  *censor observations after becoming OB 291  ;
   	%exclude(bmi{time} eq .); 	   *censor missing bmi 532;
   	%exclude(age{time} gt 18); 	   *censor age>18 3103;
 	%exclude(preg{time} eq 1 , skip=T); * skip observations if pregnant 31;
-	*%exclude(id ne ., nodelete=t); 
 	%exclude(momid ne ., nodelete=t); *28979;
   %output();
   end;
-end; *37242;
+end; *37384;
 
 %endex();
 
@@ -375,10 +367,10 @@ do time=1 to 5;
 	year=qyear(time); 	       chage =age(time);     	 chob  =ob(time);
 	chbmi =bmi(time);          chwest =wdiet(time);     
 	chcal =kcal(time);         chst =sed(time);          chpa  =pa(time);          
-	chpreg  =preg(time);	   moage =mage(time);	        mowest =mwest(time);
-	mocal  =mcal(time);       mosmk  =msmk(time);
+	chpreg  =preg(time);	   moage =mage(time);	     mowest =mwest(time);
+	mocal  =mcal(time);        mosmk  =msmk(time);
 	mopa   =mpa(time);         mobmi  =mbmi(time);       moshift  =mshift(time);
-	ses  =mses(time);         region = location(time);      chirt = irt{time};
+	ses  =mses(time);          region = location(time);  chirt = irt{time};
       
     %indic3 (vbl=mosmk, prefix=mosmk, min=2, max=3, reflev=1, missing=., usemiss=0,
       label2='mom past smoking', label3='mom current smoking');
@@ -388,33 +380,28 @@ do time=1 to 5;
 ********************************************************************/
 *baseline;
 if time=1 then do;	
-	*%exclude(id ne ., nodelete=t); *10289;
-	%exclude(momid ne ., nodelete=t);
+	%exclude(momid ne ., nodelete=t); *10289 ;
     %exclude(exrec eq 1); *exclude those not in GUTS2;
     %exclude(chob eq 1); *baseline ob 510;
 	%exclude(chbmi eq .); * baseline bmi missing - should be 0, already excluded; 
 	%exclude(bwg eq . or  gestweek eq . or husbeduc eq . or incom01 eq . or bmibpreg eq . or
 			 chwest eq . or chcal eq . or chst eq . or chpa eq . or
     		 mowest eq . or mocal eq . or mopa eq . or mobmi eq . or moshift eq . or ses eq . ); *exclude missing exposures 2926;
-    %exclude(lastq eq irt{1});  /*only returned baseline 2004Q 651 */
-    *%exclude(id ne ., nodelete=t);
-    %exclude(momid ne ., nodelete=t); *6202; 
+    %exclude(momid ne ., nodelete=t); *6853; 
   %output();
   end;
 
 *Follow-up;
   else if time>1 then do;
-  	%exclude(irt{time} eq .); * cesnor observations if not returning questionnaires 6272;
-  	%exclude(0 lt lastq lt irt{time}); 	 *censor lost to follow up ;
+  	%exclude(irt{time} eq .); * cesnor observations if not returning questionnaires 3323;
   	%exclude(0 lt obyear lt qyear{time} );  *censor observations after becoming OB  120;
   	%exclude(bmi{time} eq .); 	   *censor missing bmi 1068;
   	%exclude(age{time} gt 18); 	   *censor age>18 2342;
 	%exclude(preg{time} eq 1 , skip=T); * skip observations if pregnant  0;
-	*%exclude(id ne ., nodelete=t);
 	%exclude(momid ne ., nodelete=t); *8584;
   %output();
   end;
-end; *14786;
+end; *15437;
 
 %endex();
  
@@ -440,6 +427,15 @@ data all; set all1 all2;
 	bpregob=.; if bmibpreg >= 30 then bpregob=1; else if bmibpreg>0 & bmibpreg<30 then bpregob=0;
 
 run;
+
+proc sql;
+   select count(distinct momid) as n_unique_ids
+   from all1; 
+quit;
+proc sql;
+   select count(distinct momid) as n_unique_ids
+   from all2; 
+quit;
 
 proc datasets nolist;
 delete nhs2_vars guts1 guts2 gutsmoms1 gutsmoms2 grav09guts1 grav09guts2 bmibpregdt all1 all2;
