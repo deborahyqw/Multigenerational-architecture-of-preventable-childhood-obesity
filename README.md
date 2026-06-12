@@ -1,4 +1,4 @@
-# YWang-BCardona_GUTSOB_10_2025
+# Multigenerational architecture of preventable childhood obesity
 
 The codes were used to generate data for the following manuscript:
 
